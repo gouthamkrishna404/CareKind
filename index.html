@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>We4Care Navbar</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="container">
+      <div class="brand">We4Care</div>
+
+      <nav>
+        <div class="dropdown">
+          <button class="dropbtn">
+            Home <span class="arrow">&#9660;</span>
+          </button>
+          <div class="dropdown-content">
+            <a href="#">Home Care Services</a>
+            <a href="#">Alzheimers and Dementia Care</a>
+            <a href="#">Arthritis Care</a>
+            <a href="#">Diabetes Care</a>
+            <a href="#">Our Process</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropbtn">
+            Careers <span class="arrow">&#9660;</span>
+          </button>
+          <div class="dropdown-content">
+            <a href="#">Careers</a>
+            <a href="#">Care Professionals Experience</a>
+            <a href="#">Care Professional Recognition</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropbtn">
+            Cost of Care <span class="arrow">&#9660;</span>
+          </button>
+          <div class="dropdown-content">
+            <a href="#">Cost of Care</a>
+            <a href="#">Home Care Benefits</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropbtn">
+            About <span class="arrow">&#9660;</span>
+          </button>
+          <div class="dropdown-content">
+            <a href="#">About History</a>
+            <a href="#">Mission Giving Back</a>
+          </div>
+        </div>
+
+        <!-- Contact Us button inside nav for desktop -->
+        <a href="tel:+1234567890" class="call-button nav-call">
+          Contact Us
+        </a>
+      </nav>
+
+      <div class="hamburger" aria-label="Menu" aria-expanded="false" role="button" tabindex="0">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contact Us bar separate below navbar on mobile -->
+  <a href="tel:+1234567890" class="call-button contact-bar">
+    Contact Us
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
