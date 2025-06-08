@@ -4,10 +4,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const container = document.querySelector('.container');
   const closeIcon = document.querySelector('.close-icon');
 
-  // Function to close all dropdowns
-  const dropdowns = document.querySelectorAll('.dropdown');
-  function closeAllDropdowns() {
-    dropdowns.forEach(dd => dd.classList.remove('open'));
+  // Show hamburger on mobile, hide on desktop
+  function updateMenuDisplay() {
+    if (window.innerWidth > 768) {
+      nav.classList.remove('active');
+      container.classList.remove('menu-open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      closeIcon.style.display = 'none';
+      hamburger.style.display = 'none';  // hide hamburger on desktop
+      closeAllDropdowns();
+    } else {
+      hamburger.style.display = 'flex';  // show hamburger on mobile
+      closeIcon.style.display = 'none';
+    }
   }
 
   // Toggle menu open/close
@@ -17,33 +26,28 @@ document.addEventListener('DOMContentLoaded', () => {
       nav.classList.remove('active');
       container.classList.remove('menu-open');
       hamburger.setAttribute('aria-expanded', 'false');
-      closeIcon.style.display = 'none';  // hide close icon
-      hamburger.style.display = 'flex';  // show hamburger bars
+      closeIcon.style.display = 'none';
+      hamburger.style.display = 'flex';
       closeAllDropdowns();
     } else {
       nav.classList.add('active');
       container.classList.add('menu-open');
       hamburger.setAttribute('aria-expanded', 'true');
-      closeIcon.style.display = 'block'; // show close icon
-      hamburger.style.display = 'none';  // hide hamburger bars
+      closeIcon.style.display = 'block';
+      hamburger.style.display = 'none';
     }
   }
 
-  // Hamburger click toggles menu
   hamburger.addEventListener('click', toggleMenu);
-
-  // Close icon click toggles menu (closes menu)
   closeIcon.addEventListener('click', toggleMenu);
 
-  // Accessibility: allow toggling with Enter or Space on hamburger
+  // Accessibility: allow toggling with Enter or Space on hamburger and close icon
   hamburger.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       toggleMenu();
     }
   });
-
-  // Accessibility: allow toggling with Enter or Space on close icon
   closeIcon.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -52,6 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Dropdown toggle on mobile
+  const dropdowns = document.querySelectorAll('.dropdown');
+
   dropdowns.forEach(dropdown => {
     const btn = dropdown.querySelector('.dropbtn');
 
@@ -69,18 +75,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Close menu if window is resized larger than mobile breakpoint
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
-      nav.classList.remove('active');
-      container.classList.remove('menu-open');
-      hamburger.setAttribute('aria-expanded', 'false');
-      closeIcon.style.display = 'none';
-      hamburger.style.display = 'flex';
-      closeAllDropdowns();
-    }
-  });
+  // Close all dropdowns
+  function closeAllDropdowns() {
+    dropdowns.forEach(dd => dd.classList.remove('open'));
+  }
 
-  // Initially hide close icon
-  closeIcon.style.display = 'none';
+  // Window resize handler
+  window.addEventListener('resize', updateMenuDisplay);
+
+  // Initial setup on page load
+  updateMenuDisplay();
 });
