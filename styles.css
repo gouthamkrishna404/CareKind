@@ -40,28 +40,55 @@ nav {
 .hamburger {
   display: none;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   cursor: pointer;
   user-select: none;
+  width: 28px;
+  height: 24px;
+  position: relative;
+  justify-content: center;
 }
 
 .hamburger-icon {
-  width: 22px;
+  width: 100%;
   height: 3px;
   background-color: #b6d7a8;
-  margin: 3px 0;
+  border-radius: 2px;
   transition: all 0.3s ease;
 }
 
+/* Hide hamburger bars when menu is open */
+.hamburger.open .hamburger-icon {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .close-icon {
-  display: none;
-  font-size: 26px;
+  font-size: 28px;
   color: #b6d7a8;
   font-weight: bold;
   cursor: pointer;
   line-height: 1;
   user-select: none;
+  position: fixed;   /* FIXED positioning */
+  top: 15px;         /* distance from top of viewport */
+  right: 15px;       /* distance from right of viewport */
+  z-index: 9999;     /* make sure it’s above everything */
+  display: none;     /* initially hidden */
+  padding: 4px 8px;
+  background-color: transparent;
+  border-radius: 4px;
+  transition: opacity 0.3s ease;
 }
+
+
+/* Show close icon when hamburger has open class */
+.hamburger.open .close-icon {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+
 
 /* When menu is open, hide hamburger bars & show close icon */
 .menu-open .hamburger-icon {
