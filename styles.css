@@ -42,12 +42,34 @@ nav {
   flex-direction: column;
   gap: 6px;
   cursor: pointer;
+  user-select: none;
 }
 
-.hamburger div {
+.hamburger-icon {
   width: 22px;
   height: 3px;
   background-color: #b6d7a8;
+  margin: 3px 0;
+  transition: all 0.3s ease;
+}
+
+.close-icon {
+  display: none;
+  font-size: 26px;
+  color: #b6d7a8;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 1;
+  user-select: none;
+}
+
+/* When menu is open, hide hamburger bars & show close icon */
+.menu-open .hamburger-icon {
+  display: none;
+}
+
+.menu-open .close-icon {
+  display: block;
 }
 
 .dropbtn {
@@ -236,12 +258,12 @@ nav {
     display: flex;
   }
 
-  /* Hide Contact Us inside nav on mobile */
+  /* Hide contact button inside nav on mobile */
   .nav-call {
     display: none;
   }
 
-  /* Show Contact Us separate bar below navbar on mobile */
+  /* Show mobile contact bar */
   .contact-bar {
     display: block;
   }
