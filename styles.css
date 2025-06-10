@@ -167,12 +167,12 @@ nav {
 }
 
 .call-button {
-  background-color: #2f4f2f;
-  color: #fbffee;
+  background-color: #fbffee;
+  color: #2f4f2f;
   font-size: 18px;
   font-weight: 600;
   padding: 10px 16px;
-  border-radius: 6px;
+  border-radius: 45px;
   text-decoration: none;
   display: flex;
   justify-content: center;
@@ -187,6 +187,10 @@ nav {
 .call-button:hover {
   background-color: #1b3a2a;
   color: #f0f9f0;
+}
+
+.get-started-btn{
+  background-color: #deed6a;
 }
 
 /* Hide mobile contact bar by default */
@@ -214,6 +218,356 @@ nav {
 /* Contact button inside nav */
 .nav-call {
   white-space: nowrap;
+}
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+}
+
+#slidePanel {
+  position: fixed;
+  top: 20px;
+  right: -500px; /* push further based on new width */
+  bottom: 20px;
+  width: 480px;  /* wider panel */
+  background: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 25px 20px; /* increased top padding for questions */
+  transition: right 0.3s ease;
+  z-index: 1001;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* small gap between elements inside */
+}
+
+#slidePanel.open {
+  right: 20px;
+}
+
+/* Keep close button as before */
+#closeSlide {
+  position: absolute;
+  top: 8px;
+  right: 20px;
+  font-size: 35px; /* <-- Make X bigger */
+  font-weight: bold;
+  color: #333;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1002;
+}
+
+.step {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  opacity: 0;
+}
+
+.step.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Slide Animations Without position:absolute */
+.slide-in-right {
+  animation: slideInRight 0.3s forwards;
+}
+.slide-out-left {
+  animation: slideOutLeft 0.3s forwards;
+}
+.slide-in-left {
+  animation: slideInLeft 0.3s forwards;
+}
+.slide-out-right {
+  animation: slideOutRight 0.3s forwards;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideOutLeft {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(-100%); opacity: 0; }
+}
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideOutRight {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(100%); opacity: 0; }
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.slide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-slide {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+  z-index: 10;
+}
+
+.back-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.back-arrow {
+  top: 25px;
+  width: 22px;
+  height: 22px;
+  left: 20px;
+  text-decoration: none;
+  z-index: 1002;
+}
+
+.question {
+  padding-top: 70px;
+  padding-bottom: 20px;
+}
+
+.question2 {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.slide-content h2 {
+  font-size: 22px;
+  margin: 20px 0 20px;
+  color: #1b3a2a;
+}
+
+.option-btn {
+  display: block;
+  width: 100%;
+  padding: 16px 20px;        /* Increased vertical padding for taller buttons */
+  margin: 8px 0;            /* More vertical spacing between buttons */
+  font-size: 18px;
+  background-color: #2f4f2f;
+  color: #d9f0d9;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 45px;
+  transition: background-color 0.2s ease;
+}
+
+.option-btn:hover {
+  background-color: #1b3a2a;
+}
+
+.mcq-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 16px 20px;
+  margin: 8px 0;
+  font-size: 18px;
+  background-color: #e0e8e0; /* light color */
+  color: #036635; /* dark text */
+  border-radius: 45px;
+  cursor: pointer;
+  user-select: none;
+  border: 2px solid transparent;
+  gap: 10px;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  text-decoration: none;
+}
+
+/* Hide the actual checkbox */
+.mcq-btn input[type="checkbox"] {
+  display: none;
+}
+
+/* When checked, dark background and light text */
+.mcq-btn input[type="checkbox"]:checked + span {
+  background-color: #036635; /* dark */
+  color: #d9f0d9; /* light text */
+  padding: 0 12px;
+  border-radius: 45px;
+}
+
+/* Hover effect for unselected */
+.mcq-btn:hover {
+  background-color: #c9d8c9; /* slightly darker light */
+}
+
+/* Entire label dark when checked (if browser supports :has) */
+.mcq-btn:has(input[type="checkbox"]:checked) {
+  background-color: #036635;
+  color: #d9f0d9;
+  border-color: #036635;
+}
+/* Container styling for the form */
+#jobFormFields,
+#careRequestForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 16px;
+}
+
+/* Inputs */
+#jobFormFields input[type="text"],
+#jobFormFields input[type="tel"],
+#jobFormFields input[type="email"],
+#careRequestForm input[type="text"],
+#careRequestForm input[type="tel"],
+#careRequestForm input[type="email"] {
+  padding: 14px 20px;
+  font-size: 18px;
+  border: 2px solid #c9d8c9;
+  border-radius: 45px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  color: #2f4f2f;
+  background-color: #f4faf4;
+}
+
+#jobFormFields input[type="text"]:focus,
+#jobFormFields input[type="tel"]:focus,
+#jobFormFields input[type="email"]:focus,
+#careRequestForm input[type="text"]:focus,
+#careRequestForm input[type="tel"]:focus,
+#careRequestForm input[type="email"]:focus {
+  border-color: #2f4f2f;
+  box-shadow: 0 0 8px rgba(47, 79, 47, 0.3);
+}
+
+/* --- REMOVE GLOBAL CHECKBOX LABEL STYLING --- */
+/* No more #jobFormFields label {...} */
+/* No more hiding of all checkboxes like input[type="checkbox"] { display: none; } */
+
+/* Submit button */
+#jobFormFields button[type="submit"],
+#careRequestForm button[type="submit"] {
+  padding: 16px 20px;
+  font-size: 20px;
+  background-color: #2f4f2f;
+  color: #d9f0d9;
+  border: none;
+  border-radius: 45px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#jobFormFields button[type="submit"]:hover,
+#careRequestForm button[type="submit"]:hover {
+  background-color: #244025;
+}
+
+
+/* Message below the submit button */
+.submit-note {
+  font-size: 13px;
+  color: #2f4f2f;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.submit-note a {
+  color: #2f4f2f;
+  text-decoration: underline;
+}
+
+.affirmation-checkbox {
+  display: flex;
+  align-items: center; /* Vertically center checkbox and text */
+  gap: 12px;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #2f4f2f;
+  padding: 8px 12px; /* Padding left & right */
+}
+
+/* Checkbox styling */
+.affirmation-checkbox input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #2f4f2f;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  margin: 0; /* Removes default spacing */
+}
+
+/* Padding space around checkbox (left-right) */
+.affirmation-checkbox input[type="checkbox"]::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+}
+
+/* Tick mark styling */
+.affirmation-checkbox input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid #d9f0d9;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Hover and active states */
+.affirmation-checkbox input[type="checkbox"]:hover {
+  background-color: #d9f0d9;
+}
+.affirmation-checkbox input[type="checkbox"]:active {
+  background-color: #b2d8b2;
+}
+.affirmation-checkbox input[type="checkbox"]:checked {
+  background-color: #2f4f2f;
+  border-color: #2f4f2f;
+}
+
+/* Text beside the checkbox */
+.affirmation-checkbox span {
+  display: inline-block;
+  color: inherit;
+  font-weight: normal;
+}
+
+.mobile-get-started-bar {
+  display: none; /* hidden on desktop */
 }
 
 /* Responsive */
@@ -293,5 +647,27 @@ nav {
   /* Show mobile contact bar */
   .contact-bar {
     display: block;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
+  }
+   .navbar .get-started-btn {
+    display: none;
+  }
+  
+  /* Show sticky bar at bottom */
+  .mobile-get-started-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #1b3a2a;
+    padding: 12px 0;
+    justify-content: center;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
+    z-index: 9999;
+  }
+
+  .mobile-get-started-bar .get-started-btn{
+    width: 80%;
   }
 }
