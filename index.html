@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>We4Care</title>
+  <title>CareKind</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="navbar">
     <div class="container">
-      <div class="brand">We4Care</div>
+      <div class="brand">CareKind</div>
 
       <nav>
         <div class="dropdown">
@@ -56,30 +56,135 @@
           </div>
         </div>
 
-        <!-- Contact Us button inside nav for desktop -->
-        <a href="tel:+1234567890" class="call-button nav-call">
-          Contact Us
-        </a>
+        <!-- Contact Us and Get Started buttons -->
+        <a href="tel:+1234567890" class="call-button nav-call">Contact Us</a>
+        <a href="#" class="call-button get-started-btn">Get Started</a>
+
+        <!-- Slide Panel and Overlay -->
+        <div class="overlay" id="overlay"></div>
+
+        <div class="slide-panel" id="slidePanel">
+          <span class="close-slide" id="closeSlide">&times;</span>
+
+          <!-- Step 1 -->
+          <div class="step active" id="step1">
+            <h2 class="question">What are you looking for?</h2>
+            <a href="#" class="option-btn" data-next="jobForm">Job</a>
+            <a href="#" class="option-btn" data-next="careForm">Care for an adult</a>
+          </div>
+
+          <!-- Step 2a: Job Form -->
+          <div class="step" id="jobForm">
+            <a href="#" class="back-arrow" data-back="step1" aria-label="Back">
+              <img src="images/back-arrow.svg" alt="Back" class="back-icon" />
+            </a>
+            <h2 class="question2">Apply to be a caregiver</h2>
+            <form id="jobFormFields">
+              <input type="text" name="First Name" placeholder="First Name" required />
+              <input type="text" name="Last Name" placeholder="Last Name" required />
+              <input type="tel" name="Phone Number" placeholder="Phone Number" required />
+              <input type="email" name="Email" placeholder="Email" required />
+              <label class="affirmation-checkbox">
+                <input type="checkbox" name="identityDocs" required/>
+                <span>
+                  I have documents that establish my identity and eligibility to work in Canada.
+                </span>
+              </label>
+
+              <label class="affirmation-checkbox">
+                <input type="checkbox" name="englishAffirmation" required/>
+                <span>
+                  I can conduct business in written and spoken English.
+                </span>
+              </label>
+              <button type="submit">Submit</button>
+              <p class="submit-note">
+                By clicking "Submit," you agree to our <a href="#">Privacy Policy</a>.
+              </p>
+            </form>
+          </div>
+
+          <!-- Step 2b: Care Type -->
+          <div class="step" id="careForm">
+            <a href="#" class="back-arrow" data-back="step1" aria-label="Back">
+              <img src="images/back-arrow.svg" alt="Back" class="back-icon" />
+            </a>
+            <h2 class="question">Who needs care?</h2>
+            <a href="#" class="option-btn" data-next="careNeeds" name="A loved One">A parent or loved one</a>
+            <a href="#" class="option-btn" data-next="careNeeds" name="Self">Me</a>
+          </div>
+
+          <!-- Step 3: Care Needs -->
+          <div class="step" id="careNeeds">
+            <a href="#" class="back-arrow" data-back="careForm" aria-label="Back">
+              <img src="images/back-arrow.svg" alt="Back" class="back-icon" />
+            </a>
+            <h2 class="question">What kinds of assistance are needed?</h2>
+
+            <label class="mcq-btn">
+              <input type="checkbox" name="Mobility" />
+              <span>Mobility</span>
+            </label>
+
+            <label class="mcq-btn">
+              <input type="checkbox" name="Everyday Tasks" />
+              <span>Everyday tasks</span>
+            </label>
+
+            <label class="mcq-btn">
+              <input type="checkbox" name="Memory Care" />
+              <span>Memory care</span>
+            </label>
+
+            <label class="mcq-btn">
+              <input type="checkbox" name="Other" />
+              <span>Other</span>
+            </label>
+
+            <a href="#" class="option-btn" data-next="careRequest">Next</a>
+          </div>
+
+          <!-- Step 4: Care Request Form -->
+          <div class="step" id="careRequest">
+            <a href="#" class="back-arrow" data-back="careNeeds" aria-label="Back">
+              <img src="images/back-arrow.svg" alt="Back" class="back-icon" />
+            </a>
+            <h2 class="question2">Find care for a loved one</h2>
+            <form id="careRequestForm">
+              <input type="text" name="First Name" placeholder="First Name" required />
+              <input type="text" name="Last Name" placeholder="Last Name" required />
+              <input type="tel" name="Phone Number" placeholder="Phone Number" required />
+              <input type="email" name="Email" placeholder="Email" required />
+              <input type="text" name="Postal Code" placeholder="Postal Code" required />
+              <button type="submit">Request a care consultation</button>
+              <p class="submit-note">
+                By clicking "Request a Care Consultation," you agree to our <a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
+              </p>
+            </form>
+          </div>
+        </div> <!-- close slide-panel -->
+
       </nav>
 
+      <!-- Mobile hamburger -->
       <div class="hamburger" aria-expanded="false" role="button" tabindex="0">
-       <div class="hamburger-icon"></div>
-       <div class="hamburger-icon"></div>
-       <div class="hamburger-icon"></div>
+        <div class="hamburger-icon"></div>
+        <div class="hamburger-icon"></div>
+        <div class="hamburger-icon"></div>
       </div>
 
       <span class="close-icon" aria-label="Close menu">&times;</span>
-
-
-
-    </div>
+    </div> <!-- close container -->
   </header>
 
-  <!-- Contact Us bar separate below navbar on mobile -->
+  <!-- Mobile contact bar -->
   <a href="tel:+1234567890" class="call-button contact-bar">
     Contact Us
   </a>
-
+  <!-- Sticky bottom bar for mobile (initially hidden) -->
+  <div class="mobile-get-started-bar">
+    <a href="#" class="call-button get-started-btn">Get Started</a>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
