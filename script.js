@@ -1,3 +1,4 @@
+console.log("✅ script.js loaded successfully");
 document.addEventListener('DOMContentLoaded', () => {
   // ======= Menu Elements =======
   const hamburger = document.querySelector('.hamburger');
