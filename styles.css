@@ -671,8 +671,9 @@ nav {
     width: 80%;
   }
   #slidePanel {
-  right: -400px; /* push further based on new width */
+  right: -800px; /* push further based on new width */
   bottom: 20px;
-  width: 350px;  /* wider panel */
+  width: calc(100% - 40px);
+  margin: 0 auto;
 }
 }
