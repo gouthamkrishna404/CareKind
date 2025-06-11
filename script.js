@@ -260,7 +260,6 @@ function submitForm(form, includeExtra = false) {
     });
 }
 
-// Define goToStep and closeModal if not already present
 function goToStep(stepId) {
   const steps = document.querySelectorAll('.step');
   steps.forEach(step => {
