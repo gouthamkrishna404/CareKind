@@ -664,7 +664,7 @@ nav {
     padding: 12px 0;
     justify-content: center;
     box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
-    z-index: 9999;
+    z-index: 998;
   }
 
   .mobile-get-started-bar .get-started-btn{
