@@ -1,4 +1,3 @@
-console.log("✅ script.js loaded successfully");
 document.addEventListener('DOMContentLoaded', () => {
   // ======= Menu Elements =======
   const hamburger = document.querySelector('.hamburger');
@@ -8,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const dropdowns = document.querySelectorAll('.dropdown');
 
   // ======= Slide Panel Elements =======
-  const getStartedBtn = document.querySelector('.get-started-btn');
+  const getStartedBtn = document.querySelectorAll('.get-started-btn');
   const slidePanel = document.getElementById('slidePanel');
   const overlay = document.getElementById('overlay');
   const closeSlide = document.getElementById('closeSlide');
@@ -96,12 +95,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ======= Slide panel open/close =======
-  if (getStartedBtn && slidePanel && overlay && closeSlide) {
-    getStartedBtn.addEventListener('click', () => {
-      slidePanel.classList.add('open');
-      overlay.classList.add('active');
-    });
-
+  getStartedBtn.forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.preventDefault();               // prevent default anchor behavior
+    document.getElementById('slidePanel').classList.add('open');
+    document.getElementById('overlay').classList.add('active');
+    goToStep('step1');                // reset to first step
+  });
+});
+  if (slidePanel && overlay && closeSlide) {
     closeSlide.addEventListener('click', () => {
       slidePanel.classList.remove('open');
       overlay.classList.remove('active');
