@@ -185,8 +185,27 @@ nav {
 }
 
 .call-button:hover {
-  background-color: #1b3a2a;
+  background-color: #102219;
   color: #f0f9f0;
+}
+
+.call-button .option-icon {
+  width: 20px;
+  height: 20px;
+  bottom: -1px;
+  fill: currentColor;
+  margin-right: 2px; /* a bit smaller gap than original 20px to suit smaller gap in .call-button */
+  transition: fill 0.3s ease, transform 0.3s ease;
+  position: relative;
+}
+
+.call-button:hover .option-icon {
+  transform: scale(1.1);
+  fill: #deed6a;
+}
+
+.call-button .option-icon path {
+  transform-origin: center;
 }
 
 .get-started-btn{
@@ -366,13 +385,15 @@ nav {
 }
 
 .option-btn {
-  display: block;
+  display: inline-flex;
   width: 100%;
-  padding: 16px 20px;        /* Increased vertical padding for taller buttons */
+  align-items: center;             
+  justify-content: flex-start; 
+  padding: 16px 50px;        /* Increased vertical padding for taller buttons */
   margin: 8px 0;            /* More vertical spacing between buttons */
   font-size: 18px;
-  background-color: #2f4f2f;
-  color: #d9f0d9;
+  background-color: #a3b0a9;
+  color: #1b3a2a;
   text-align: center;
   text-decoration: none;
   border-radius: 45px;
@@ -381,18 +402,48 @@ nav {
 
 .option-btn:hover {
   background-color: #1b3a2a;
+  color: #d9f0d9;
+}
+
+
+.option-btn .option-icon {
+  width: 30px;                    /* smaller SVG width */
+  height: 30px;                   /* smaller SVG height */
+  fill: currentColor;             /* inherit color from .option-btn */
+  margin-right: 20px;              /* space between icon and text */
+  transition: fill 0.3s ease, transform 0.3s ease;
+  position: relative;             /* keep original vertical offset */
+}
+
+.option-btn:hover .option-icon {
+  transform: scale(1.1);
+  fill: #deed6a;
+}
+
+/* Optional fine-tuning if you want */
+.option-btn .option-icon path {
+  transform-origin: center;
+}
+
+#next {
+  background-color: #2f4f2f;
+  color: #d9f0d9;
+}
+
+#next:hover {
+  background-color: #1b3a2a;
 }
 
 .mcq-btn {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* Align like .option-btn */
   width: 100%;
-  padding: 16px 20px;
+  padding: 16px 50px;
   margin: 8px 0;
   font-size: 18px;
-  background-color: #e0e8e0; /* light color */
-  color: #036635; /* dark text */
+  background-color: #a3b0a9; /* light color */
+  color: #1b3a2a; /* dark text */
   border-radius: 45px;
   cursor: pointer;
   user-select: none;
@@ -407,25 +458,47 @@ nav {
   display: none;
 }
 
-/* When checked, dark background and light text */
+/* Checked state */
 .mcq-btn input[type="checkbox"]:checked + span {
-  background-color: #036635; /* dark */
+  background-color: #036635; /* dark background */
   color: #d9f0d9; /* light text */
-  padding: 0 12px;
+  padding: 0 2px;
   border-radius: 45px;
 }
 
-/* Hover effect for unselected */
+/* Hover effect */
 .mcq-btn:hover {
-  background-color: #c9d8c9; /* slightly darker light */
+  background-color: #c9d8c9;
+  color: #1b3a2a;
 }
 
-/* Entire label dark when checked (if browser supports :has) */
+/* Checked (whole label with :has, optional support) */
 .mcq-btn:has(input[type="checkbox"]:checked) {
   background-color: #036635;
   color: #d9f0d9;
   border-color: #036635;
 }
+
+/* Icon inside the button */
+.mcq-btn .option-icon {
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+  margin-right: 10px;
+  transition: fill 0.3s ease, transform 0.3s ease;
+  position: relative;
+}
+
+/* Hover icon effect */
+.mcq-btn:hover .option-icon {
+  transform: scale(1.1);
+}
+
+/* Optional fine-tuning */
+.mcq-btn .option-icon path {
+  transform-origin: center;
+}
+
 /* Container styling for the form */
 #jobFormFields,
 #careRequestForm {
@@ -570,6 +643,94 @@ nav {
   display: none; /* hidden on desktop */
 }
 
+.form-group {
+  position: relative;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 18px;
+  border: 2px solid #c9d8c9;
+  border-radius: 45px;
+  outline: none;
+  background-color: #f4faf4;
+  color: #2f4f2f;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input::placeholder {
+  color: transparent;
+}
+
+.form-group label {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #555;
+  background-color: transparent; /* transparent background */
+  padding: 0 6px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 16px;
+  font-size: 14px;
+  color: #2f4f2f;
+  background-color: transparent; /* stays transparent */
+}
+
+.form-group input:focus {
+  border-color: #2f4f2f;
+  box-shadow: 0 0 8px rgba(47, 79, 47, 0.2);
+}
+
+.form-group select {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 18px;
+  border: 2px solid #c9d8c9;
+  border-radius: 45px;
+  outline: none;
+  background-color: #f4faf4;
+  color: #2f4f2f;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='7' viewBox='0 0 10 7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%232f4f2f' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 20px center;
+  background-size: 12px;
+  padding-right: 40px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.form-group select:focus {
+  border-color: #2f4f2f;
+  box-shadow: 0 0 8px rgba(47, 79, 47, 0.2);
+}
+
+.form-group select:focus + label,
+.form-group select:valid + label {
+  top: -10px;
+  left: 16px;
+  font-size: 14px;
+  color: #2f4f2f;
+  background-color: transparent;
+}
+
+.form-group select:focus + label,
+.form-group select:valid + label {
+  top: -10px;
+  left: 16px;
+  font-size: 14px;
+  color: #2f4f2f;
+  background-color: transparent;
+}
 /* Responsive */
 
 @media (max-width: 768px) {
