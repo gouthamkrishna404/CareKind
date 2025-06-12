@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ======= Form Submission =======
-const scriptURL = 'https://script.google.com/macros/s/AKfycbxiCqmlApiEmiLrWRke9_NvkOEqoTXhPreW9PY5Skt2B6ilG1FpR6uzAzY5QAc-YHs3/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzVPGA41BE0LRNEqB-_CbdmZVlRjRrSg5Zmqk-nlS68CaUTtz2PTKMdo0arZ4zHNWU4/exec';
 let careFor = '';
 
 // Save careFor value from step
@@ -260,6 +260,7 @@ function submitForm(form, includeExtra = false) {
     });
 }
 
+// Define goToStep and closeModal if not already present
 function goToStep(stepId) {
   const steps = document.querySelectorAll('.step');
   steps.forEach(step => {
