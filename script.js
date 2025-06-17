@@ -1,3 +1,4 @@
+// Wait for DOM content to load before running scripts
 document.addEventListener('DOMContentLoaded', () => {
   // ======= Menu Elements =======
   const hamburger = document.querySelector('.hamburger');
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const optionButtons = document.querySelectorAll('.option-btn');
   const backButtons = document.querySelectorAll('.back-arrow');
 
+  // Exit if essential elements are missing
   if (!hamburger || !closeIcon || !nav || !container) return;
 
   // ----- Dropdown helpers -----
@@ -96,13 +98,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ======= Slide panel open/close =======
   getStartedBtn.forEach(btn => {
-  btn.addEventListener('click', e => {
-    e.preventDefault();               // prevent default anchor behavior
-    document.getElementById('slidePanel').classList.add('open');
-    document.getElementById('overlay').classList.add('active');
-    goToStep('step1');                // reset to first step
+    btn.addEventListener('click', e => {
+      e.preventDefault();               // prevent default anchor behavior
+      slidePanel.classList.add('open');
+      overlay.classList.add('active');
+      goToStep('step1');                // reset to first step
+    });
   });
-});
+
   if (slidePanel && overlay && closeSlide) {
     closeSlide.addEventListener('click', () => {
       slidePanel.classList.remove('open');
@@ -216,8 +219,8 @@ if (careForm) {
 function submitForm(form, includeExtra = false) {
   const formData = new FormData(form);
   const data = {};
-  goToStep("step1"); // define goToStep to handle UI reset
-  closeModal(); 
+  goToStep("step1"); // Reset UI to first step
+  closeModal();
 
   formData.forEach((value, key) => {
     if (data[key]) {
@@ -240,8 +243,8 @@ function submitForm(form, includeExtra = false) {
       const label = cb.parentElement.textContent.trim();
       needs.push(label);
     });
-    data["Care Needs"] = needs.join(" | ");;
-  }else {
+    data["Care Needs"] = needs.join(" | ");
+  } else {
     data["formType"] = "job";
   }
 
@@ -260,7 +263,7 @@ function submitForm(form, includeExtra = false) {
     });
 }
 
-// Define goToStep and closeModal if not already present
+// ----- Helper functions for UI -----
 function goToStep(stepId) {
   const steps = document.querySelectorAll('.step');
   steps.forEach(step => {
@@ -283,3 +286,25 @@ function closeModal() {
     overlay.classList.remove('active');
   }
 }
+
+document.addEventListener("mousemove", function(e) {
+    const ripple = document.createElement("div");
+    ripple.classList.add("ripple-cursor");
+    ripple.style.left = `${e.clientX}px`;
+    ripple.style.top = `${e.clientY}px`;
+    document.body.appendChild(ripple);
+
+    setTimeout(() => {
+      ripple.remove();
+    }, 600); // Match the duration of the animation
+  });
+const cursor = document.getElementById('custom-cursor');
+
+document.querySelectorAll('button, a').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.backgroundImage = "url('cursor-hover.png')";
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.backgroundImage = "url('cursor-default.png')";
+  });
+});
