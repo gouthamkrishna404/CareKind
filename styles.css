@@ -1,3 +1,4 @@
+/* CSS Variables */
 :root {
   --light_one: #f5faff;    /* Alice Blue */
   --light_two: #d9eaff;    /* Very light blue */
@@ -10,7 +11,7 @@
   --light_nine: #eaf4ff;   /* Very pale blue */
   --light_ten: #8eb3e6;    /* Medium light blue */
   --light_eleven: #FFA500;
-  
+
   --dark_one: #0b2d66;     /* Dark navy blue */
   --dark_two: #1a3d8f;     /* Strong blue */
   --dark_three: #d35400;   /* Deep orange (button color) */
@@ -19,6 +20,7 @@
   --dark_six: #04082b;
 }
 
+/* Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -26,10 +28,22 @@
 }
 
 body {
+  margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--light_one);
+  background-color: var(--light_four);
+  overflow-x: hidden;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(245, 250, 255, 1) 0%,         /* solid color (same as background-color) */
+      rgba(245, 250, 255, 1) 5vh,       /* keep solid until 70vh */
+      rgba(245, 250, 255, 0) 100%        /* fade to transparent from 70vh to 100% */
+    ),url('images/image.png');
+  background-position: center;
+  background-size: contain;
+  cursor: url('images/cursor.png') 16 16, auto; /* hotspot at center */
 }
 
+/* Navigation Styles */
 .navbar {
   background-color: var(--light_one);
   padding: 18px 25px;
@@ -40,6 +54,16 @@ body {
   justify-content: space-between;
   align-items: center;
   flex-wrap: nowrap;
+}
+
+section {
+  padding: 2rem 2rem;
+}
+
+.container2 {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: justify;
 }
 
 .brand {
@@ -91,17 +115,16 @@ nav {
   cursor: pointer;
   line-height: 1;
   user-select: none;
-  position: fixed;   /* FIXED positioning */
-  top: 15px;         /* distance from top of viewport */
-  right: 15px;       /* distance from right of viewport */
-  z-index: 9999;     /* make sure it’s above everything */
-  display: none;     /* initially hidden */
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 9999;
+  display: none;
   padding: 4px 8px;
   background-color: transparent;
   border-radius: 4px;
   transition: opacity 0.3s ease;
 }
-
 
 /* Show close icon when hamburger has open class */
 .hamburger.open .close-icon {
@@ -109,7 +132,6 @@ nav {
   opacity: 1;
   pointer-events: auto;
 }
-
 
 /* When menu is open, hide hamburger bars & show close icon */
 .menu-open .hamburger-icon {
@@ -120,6 +142,7 @@ nav {
   display: block;
 }
 
+/* Dropdown Styles */
 .dropbtn {
   background: none;
   border: none;
@@ -188,6 +211,7 @@ nav {
   display: flex;
 }
 
+/* Call Button Styles */
 .call-button {
   background-color: var(--dark_one);
   color: var(--light_one);
@@ -216,7 +240,7 @@ nav {
   height: 20px;
   bottom: -1px;
   fill: currentColor;
-  margin-right: 2px; /* a bit smaller gap than original 20px to suit smaller gap in .call-button */
+  margin-right: 2px;
   transition: fill 0.3s ease, transform 0.3s ease;
   position: relative;
 }
@@ -230,15 +254,16 @@ nav {
   transform-origin: center;
 }
 
-.get-started-btn{
+.get-started-btn {
   background-color: var(--dark_three);
 }
-.get-started-btn:hover{
+
+.get-started-btn:hover {
   background-color: var(--light_five);
   color: var(--light_three);
 }
 
-/* Hide mobile contact bar by default */
+/* Contact Bar Styles */
 .contact-bar {
   display: none;
   width: 100%;
@@ -264,7 +289,8 @@ nav {
 .nav-call {
   white-space: nowrap;
 }
-/* Overlay */
+
+/* Overlay Styles */
 .overlay {
   position: fixed;
   top: 0;
@@ -278,34 +304,35 @@ nav {
   transition: 0.3s ease;
 }
 
+/* Slide Panel Styles */
 #slidePanel {
   position: fixed;
   top: 20px;
-  right: -500px; /* push further based on new width */
+  right: -500px;
   bottom: 20px;
-  width: 480px;  /* wider panel */
+  width: 480px;
   background: white;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  padding: 25px 20px; /* increased top padding for questions */
+  padding: 25px 20px;
   transition: right 0.3s ease;
   z-index: 1001;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 15px; /* small gap between elements inside */
+  gap: 15px;
 }
 
 #slidePanel.open {
   right: 20px;
 }
 
-/* Keep close button as before */
+/* Close Slide Button */
 #closeSlide {
   position: absolute;
   top: 8px;
   right: 20px;
-  font-size: 35px; /* <-- Make X bigger */
+  font-size: 35px;
   font-weight: bold;
   color: #333;
   background: none;
@@ -314,6 +341,7 @@ nav {
   z-index: 1002;
 }
 
+/* Step Styles */
 .step {
   display: none;
   flex-direction: column;
@@ -326,35 +354,65 @@ nav {
   opacity: 1;
 }
 
-/* Slide Animations Without position:absolute */
+/* Slide Animations */
 .slide-in-right {
   animation: slideInRight 0.3s forwards;
 }
+
 .slide-out-left {
   animation: slideOutLeft 0.3s forwards;
 }
+
 .slide-in-left {
   animation: slideInLeft 0.3s forwards;
 }
+
 .slide-out-right {
   animation: slideOutRight 0.3s forwards;
 }
 
 @keyframes slideInRight {
-  from { transform: translateX(100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
+
 @keyframes slideOutLeft {
-  from { transform: translateX(0); opacity: 1; }
-  to { transform: translateX(-100%); opacity: 0; }
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
 }
+
 @keyframes slideInLeft {
-  from { transform: translateX(-100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
+
 @keyframes slideOutRight {
-  from { transform: translateX(0); opacity: 1; }
-  to { transform: translateX(100%); opacity: 0; }
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }
 
 .overlay.active {
@@ -362,12 +420,14 @@ nav {
   visibility: visible;
 }
 
+/* Slide Header */
 .slide-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+/* Close Slide Button */
 .close-slide {
   position: absolute;
   top: 10px;
@@ -380,11 +440,13 @@ nav {
   z-index: 10;
 }
 
+/* Back Icon */
 .back-icon {
   width: 22px;
   height: 22px;
 }
 
+/* Back Arrow */
 .back-arrow {
   top: 25px;
   width: 22px;
@@ -394,6 +456,7 @@ nav {
   z-index: 1002;
 }
 
+/* Question Styles */
 .question {
   padding-top: 70px;
   padding-bottom: 20px;
@@ -404,19 +467,21 @@ nav {
   padding-bottom: 20px;
 }
 
+/* Slide Content */
 .slide-content h2 {
   font-size: 22px;
   margin: 20px 0 20px;
   color: var(--dark_one);
 }
 
+/* Option Button */
 .option-btn {
   display: inline-flex;
   width: 100%;
-  align-items: center;             
-  justify-content: flex-start; 
-  padding: 16px 50px;        /* Increased vertical padding for taller buttons */
-  margin: 8px 0;            /* More vertical spacing between buttons */
+  align-items: center;
+  justify-content: flex-start;
+  padding: 16px 50px;
+  margin: 8px 0;
   font-size: 18px;
   background-color: var(--light_six);
   color: var(--dark_one);
@@ -431,14 +496,13 @@ nav {
   color: var(--light_seven);
 }
 
-
 .option-btn .option-icon {
-  width: 30px;                    /* smaller SVG width */
-  height: 30px;                   /* smaller SVG height */
-  fill: currentColor;             /* inherit color from .option-btn */
-  margin-right: 20px;              /* space between icon and text */
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+  margin-right: 20px;
   transition: fill 0.3s ease, transform 0.3s ease;
-  position: relative;             /* keep original vertical offset */
+  position: relative;
 }
 
 .option-btn:hover .option-icon {
@@ -446,11 +510,12 @@ nav {
   fill: var(--light_eleven);
 }
 
-/* Optional fine-tuning if you want */
+/* Optional fine-tuning */
 .option-btn .option-icon path {
   transform-origin: center;
 }
 
+/* Next Button */
 #next {
   background-color: var(--dark_one);
   color: var(--light_seven);
@@ -460,16 +525,17 @@ nav {
   background-color: var(--dark_two);
 }
 
+/* MCQ Button */
 .mcq-btn {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Align like .option-btn */
+  justify-content: flex-start;
   width: 100%;
   padding: 16px 50px;
   margin: 8px 0;
   font-size: 18px;
-  background-color: var(--light_six); /* light color */
-  color: var(--dark_one); /* dark text */
+  background-color: var(--light_six);
+  color: var(--dark_one);
   border-radius: 45px;
   cursor: pointer;
   user-select: none;
@@ -486,8 +552,8 @@ nav {
 
 /* Checked state */
 .mcq-btn input[type="checkbox"]:checked + span {
-  background-color: var(--dark_four); /* dark background */
-  color: var(--light_seven); /* light text */
+  background-color: var(--dark_four);
+  color: var(--light_seven);
   padding: 0 2px;
   border-radius: 45px;
 }
@@ -525,7 +591,7 @@ nav {
   transform-origin: center;
 }
 
-/* Container styling for the form */
+/* Form Container */
 #jobFormFields,
 #careRequestForm {
   display: flex;
@@ -561,11 +627,7 @@ nav {
   box-shadow: 0 0 8px var(--dark_six);
 }
 
-/* --- REMOVE GLOBAL CHECKBOX LABEL STYLING --- */
-/* No more #jobFormFields label {...} */
-/* No more hiding of all checkboxes like input[type="checkbox"] { display: none; } */
-
-/* Submit button */
+/* Submit Button */
 #jobFormFields button[type="submit"],
 #careRequestForm button[type="submit"] {
   padding: 16px 20px;
@@ -583,8 +645,7 @@ nav {
   background-color: var(--dark_six);
 }
 
-
-/* Message below the submit button */
+/* Submit Note */
 .submit-note {
   font-size: 13px;
   color: var(--dark_one);
@@ -597,17 +658,17 @@ nav {
   text-decoration: underline;
 }
 
+/* Affirmation Checkbox */
 .affirmation-checkbox {
   display: flex;
-  align-items: center; /* Vertically center checkbox and text */
+  align-items: center;
   gap: 12px;
   font-size: 16px;
   line-height: 1.4;
   color: var(--dark_one);
-  padding: 8px 12px; /* Padding left & right */
+  padding: 8px 12px;
 }
 
-/* Checkbox styling */
 .affirmation-checkbox input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
@@ -623,17 +684,15 @@ nav {
   display: inline-block;
   vertical-align: middle;
   transition: background-color 0.2s ease, border-color 0.2s ease;
-  margin: 0; /* Removes default spacing */
+  margin: 0;
 }
 
-/* Padding space around checkbox (left-right) */
 .affirmation-checkbox input[type="checkbox"]::before {
   content: '';
   display: inline-block;
   width: 4px;
 }
 
-/* Tick mark styling */
 .affirmation-checkbox input[type="checkbox"]:checked::after {
   content: '';
   position: absolute;
@@ -646,29 +705,31 @@ nav {
   transform: rotate(45deg);
 }
 
-/* Hover and active states */
 .affirmation-checkbox input[type="checkbox"]:hover {
   background-color: var(--light_seven);
 }
+
 .affirmation-checkbox input[type="checkbox"]:active {
   background-color: var(--light_ten);
 }
+
 .affirmation-checkbox input[type="checkbox"]:checked {
   background-color: var(--dark_one);
   border-color: var(--dark_one);
 }
 
-/* Text beside the checkbox */
 .affirmation-checkbox span {
   display: inline-block;
   color: inherit;
   font-weight: normal;
 }
 
+/* Mobile Get Started Bar */
 .mobile-get-started-bar {
-  display: none; /* hidden on desktop */
+  display: none;
 }
 
+/* Form Group */
 .form-group {
   position: relative;
   margin-bottom: 5px;
@@ -697,7 +758,7 @@ nav {
   transform: translateY(-50%);
   font-size: 18px;
   color: #555;
-  background-color: transparent; /* transparent background */
+  background-color: transparent;
   padding: 0 6px;
   pointer-events: none;
   transition: all 0.3s ease;
@@ -709,7 +770,7 @@ nav {
   left: 16px;
   font-size: 14px;
   color: var(--dark_one);
-  background-color: transparent; /* stays transparent */
+  background-color: transparent;
 }
 
 .form-group input:focus {
@@ -749,16 +810,91 @@ nav {
   background-color: transparent;
 }
 
-.form-group select:focus + label,
-.form-group select:valid + label {
-  top: -10px;
-  left: 16px;
-  font-size: 14px;
-  color: var(--dark_one);
-  background-color: transparent;
+.score-column2 {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
-/* Responsive */
 
+.score-left, .score-right {
+  flex: 1 1 45%;
+  min-width: 300px;
+}
+
+.score-section-hero .title-accent {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--dark_four);
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.05em;
+}
+
+.score-section-hero h2 {
+  font-size: 2.2rem;
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+}
+
+.score-hero-body {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--dark_two);
+}
+
+.score-call-to-action {
+  margin-top: 1.5rem;
+}
+
+.btn-primary {
+  background-color: var(--dark_three);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #b24300; /* Could create a new variable if needed */
+}
+
+/* Bubble Grid Styles */
+.bubble-grid {
+  display: grid;
+  margin: 0 auto 1rem auto; /* center horizontally, margin below */
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1.2rem;
+}
+
+.bubble {
+  color: var(--dark_four);
+  height: 110px;
+  width: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  user-select: none;
+  transition: transform 0.3s ease;
+  cursor: default;
+}
+
+.bubble:hover {
+  transform: scale(1.1);
+}
+
+/* For the second section: bubbles below the text */
+.score-right .bubble-grid {
+  margin-top: 1.5rem;
+}
+/* Responsive Styles */
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
@@ -832,10 +968,11 @@ nav {
     display: block;
     box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
   }
-   .navbar .get-started-btn {
+
+  .navbar .get-started-btn {
     display: none;
   }
-  
+
   /* Show sticky bar at bottom */
   .mobile-get-started-bar {
     display: flex;
@@ -850,42 +987,60 @@ nav {
     z-index: 998;
   }
 
-  .mobile-get-started-bar .get-started-btn{
+  .mobile-get-started-bar .get-started-btn {
     width: 80%;
   }
+
   #slidePanel {
-  right: -800px; /* push further based on new width */
-  bottom: 20px;
-  width: calc(100% - 40px);
-  margin: 0 auto;
+    right: -800px;
+    bottom: 20px;
+    width: calc(100% - 40px);
+    margin: 0 auto;
+  }
+  .score-column2 {
+    flex-direction: column;
+  }
+  .score-left, .score-right {
+    flex: 1 1 100%;
+    min-width: auto;
+  }
+  .bubble {
+    height: 90px;
+    width: 90px;
+    font-size: 1rem;
+  }
 }
+
+.section-separator {
+  width: 100%;
+  height: 80px; /* Adjust height to fit your image */
+  background-image: url('blue-leaves.png'); /* your leaf image or SVG */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain; /* or cover if you want full width */
+  margin: 2rem 0; /* spacing around separator */
 }
 
 
-/* for the body */
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--light_four);
-  overflow-x: hidden;
-}
+/* Hero Section */
 .hero {
   height: 90vh;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   padding: 3rem 5rem 3rem 3rem;
-  background-color: var(--light_four);
   gap: 1rem;
   flex-direction: row;
   overflow: hidden;
 }
+
 .hero-text {
   width: 35%;
   z-index: 10;
   margin-right: 1rem;
   order: 1;
 }
+
 /* Text shadows for subtle reflection/glossy effect */
 .tagline {
   font-size: 1.3rem;
@@ -896,6 +1051,7 @@ body {
     0 1px 2px rgba(255, 255, 255, 0.7),
     0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .headline {
   font-size: 4.8rem;
   font-weight: bold;
@@ -906,6 +1062,7 @@ body {
     0 2px 4px rgba(255, 255, 255, 0.6),
     0 4px 8px rgba(0, 0, 0, 0.15);
 }
+
 .subtext {
   font-size: 1.4rem;
   color: var(--dark_six);
@@ -915,6 +1072,7 @@ body {
     0 1px 2px rgba(255, 255, 255, 0.5),
     0 1px 3px rgba(0, 0, 0, 0.1);
 }
+
 .cta-button {
   padding: 1rem 2rem;
   background-color: var(--dark_three);
@@ -928,11 +1086,13 @@ body {
   box-shadow:
     0 4px 8px rgba(245, 166, 35, 0.5);
 }
+
 .cta-button:hover {
   background-color: var(--light_five);
   box-shadow:
     0 6px 14px rgba(211, 84, 0, 0.6);
 }
+
 .hero-images {
   width: 65%;
   position: relative;
@@ -943,6 +1103,7 @@ body {
   order: 2;
   overflow: visible;
 }
+
 /* Single wrapper per image */
 .img-wrapper {
   position: absolute;
@@ -953,6 +1114,7 @@ body {
     0 15px 25px rgba(0, 0, 0, 0.15),
     0 5px 10px rgba(0, 0, 0, 0.1);
 }
+
 .img-wrapper img {
   display: block;
   width: 100%;
@@ -962,6 +1124,7 @@ body {
   user-select: none;
   pointer-events: none;
 }
+
 /* Desktop positions and sizes */
 .img1-wrapper {
   width: 60%;
@@ -969,18 +1132,30 @@ body {
   top: 10%;
   z-index: 3;
 }
+
 .img2-wrapper {
   width: 38%;
   left: 55%;
   top: 20%;
   z-index: 2;
 }
+
 .img3-wrapper {
   width: 32%;
   left: 70%;
   top: 45%;
   z-index: 1;
 }
+
+.float-image {
+  display: block;
+  margin: 0 auto 0 auto; /* center horizontally, margin below */
+  width: 90%; /* Optional: set a fixed size */
+  height: auto;
+  border-radius: 10px; /* Optional: make it prettier */
+}
+
+
 /* Responsive for tablets and mobile */
 @media (max-width: 1024px) {
   .hero {
@@ -991,6 +1166,7 @@ body {
     justify-content: flex-start;
     gap: 2rem;
   }
+
   .hero-images {
     width: 100%;
     position: relative;
@@ -1000,9 +1176,10 @@ body {
     margin-bottom: 1.5rem;
     order: 1;
   }
+
   .img-wrapper {
     position: relative;
-    width: 280px !important; /* changed from 280px to 220px */
+    width: 280px !important;
     margin: 0;
     top: 0 !important;
     left: auto !important;
@@ -1011,24 +1188,29 @@ body {
       0 15px 25px rgba(0, 0, 0, 0.15),
       0 5px 10px rgba(0, 0, 0, 0.1);
   }
+
   /* Overlap with negative margins using second media query values */
   .img1-wrapper {
-    margin-right: -70px;  /* changed from 10% to -70px */
+    margin-right: -70px;
     z-index: 3;
   }
+
   .img2-wrapper {
-    margin: 0 -60px;      /* changed from 0 -80px to 0 -60px */
+    margin: 0 -60px;
+    margin-left: 10px;
     position: relative;
-    top: 40px !important; /* changed from 50px to 40px and added !important */
+    top: 40px !important;
     z-index: 2;
   }
+
   /* Slightly smaller third image */
   .img3-wrapper {
-    margin-left: 20px;   /* changed from -90px to -70px */
-    width: 190px !important; /* changed from 250px to 190px */
+    margin-left: 20px;
+    width: 190px !important;
     top: -30px !important;
     z-index: 1;
   }
+
   .hero-text {
     width: 100%;
     margin: 0 auto;
@@ -1036,10 +1218,38 @@ body {
     order: 2;
     padding: 1.5rem 1rem;
   }
+
   .hero-text .headline {
     font-size: 3rem;
   }
+
   .hero-text .subtext {
     font-size: 1.1rem;
+  }
+  .float-image {
+  width: 70%; /* Optional: set a fixed size */
+}
+}
+
+.ripple-cursor {
+  position: fixed;
+  pointer-events: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--light_six) 0%, rgba(30, 144, 255, 0) 70%);
+  transform: translate(-50%, -50%);
+  animation: ripple 0.5s ease-out forwards;
+  z-index: 9999;
+}
+
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(6);
+    opacity: 0;
   }
 }
