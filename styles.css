@@ -45,8 +45,14 @@ body {
 
 /* Navigation Styles */
 .navbar {
-  background-color: var(--light_one);
   padding: 18px 25px;
+}
+
+.navv {
+  position: sticky;
+  top: 0;
+  background-color: var(--light_four);
+  z-index: 1000;
 }
 
 .container {
@@ -1003,23 +1009,19 @@ nav {
     box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
   }
 
-  .get-started-btn {
-    display: none;
-  }
-
   /* Show sticky bar at bottom */
   .mobile-get-started-bar {
-    display: flex;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: var(--dark_one);
-    padding: 12px 0;
-    justify-content: center;
-    box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
-    z-index: 998;
-  }
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--dark_one);
+  padding: 12px 0;
+  justify-content: center;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
+  z-index: 1001;  /* make it highest */
+}
 
   .mobile-get-started-bar .get-started-btn {
     width: 80%;
@@ -1192,6 +1194,17 @@ nav {
 
 /* Responsive for tablets and mobile */
 @media (max-width: 1024px) {
+  body {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(245, 250, 255, 1) 0%,         /* solid color (same as background-color) */
+      rgba(245, 250, 255, 1) 1vh,       /* keep solid until 70vh */
+      rgba(245, 250, 255, 0) 100%        /* fade to transparent from 70vh to 100% */
+    ),url('images/image.png');
+}
+  nav {
+    position: sticky;
+  }
   .hero {
     flex-direction: column;
     height: auto;
@@ -1273,8 +1286,8 @@ nav {
   .bubble-grid .bubble {
     grid-column: span 1 !important; /* Cancel any previous column spanning */
     margin-bottom: 2rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
   }
   h2, p {
     text-align: center;
