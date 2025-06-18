@@ -43,7 +43,7 @@ body {
   cursor: url('images/cursor.png'), auto; /* hotspot at center */
 }
 
-a, button, input[type="button"], input[type="submit"], .clickable {
+a, span, button, input[type="button"], input[type="submit"], .clickable {
   cursor: url('images/point.png'), pointer;
 }
 
@@ -1110,14 +1110,12 @@ nav {
   font-weight: 600;
   transition: background 0.3s;
   font-size: 1.2rem;
-  box-shadow:
-    0 4px 8px rgba(245, 166, 35, 0.5);
+  box-shadow:0 4px 8px rgba(245, 166, 35, 0.5);
 }
 
 .cta-button:hover {
   background-color: var(--light_five);
-  box-shadow:
-    0 6px 14px rgba(211, 84, 0, 0.6);
+  box-shadow:0 6px 14px rgba(211, 84, 0, 0.6);
 }
 
 .hero-images {
@@ -1251,8 +1249,9 @@ nav {
 }
  .grid-container {
   grid-template-columns: repeat(1,1fr);
-  width: 80%;
+  width: 60%;
   margin: 0 auto;
+  margin-bottom: 30px;
 }
   nav {
     position: sticky;
