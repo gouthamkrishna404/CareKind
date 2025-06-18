@@ -867,28 +867,62 @@ nav {
 /* Bubble Grid Styles */
 .bubble-grid {
   display: grid;
-  margin: 0 auto 1rem auto; /* center horizontally, margin below */
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1.2rem;
+  grid-template-columns: repeat(10, 1fr); /* Double the columns to allow half-step shifts */
+  gap: 1rem;
+  justify-items: center;
+}
+
+/* First row spans two columns each */
+.bubble:nth-child(-n+5) {
+  grid-column: span 2;
+}
+
+/* Second row bubbles start offset by 1 */
+.bubble.staggered:nth-child(6) {
+  grid-column-start: 2;
+  grid-column-end: span 2;
+}
+.bubble.staggered:nth-child(7) {
+  grid-column-start: 4;
+  grid-column-end: span 2;
+}
+.bubble.staggered:nth-child(8) {
+  grid-column-start: 6;
+  grid-column-end: span 2;
+}
+.bubble.staggered:nth-child(9) {
+  grid-column-start: 8;
+  grid-column-end: span 2;
 }
 
 .bubble {
+  text-align: center;
   color: var(--dark_four);
   height: 110px;
   width: 110px;
   display: flex;
+  flex-direction: column; /* Stack icon above text */
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-weight: 700;
   font-size: 1.1rem;
   user-select: none;
   transition: transform 0.3s ease;
   cursor: default;
+  padding: 0.5rem; /* Optional: adds spacing inside the bubble */
 }
 
 .bubble:hover {
   transform: scale(1.1);
 }
+
+.bubble .option-icon {
+  fill: var(--dark_one);
+  width: 64px; /* Adjust as needed */
+  height: 64px;
+  margin-bottom: 0.3rem; /* Space between icon and text */
+}
+
 
 /* For the second section: bubbles below the text */
 .score-right .bubble-grid {
@@ -969,7 +1003,7 @@ nav {
     box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
   }
 
-  .navbar .get-started-btn {
+  .get-started-btn {
     display: none;
   }
 
@@ -1229,13 +1263,41 @@ nav {
   .float-image {
   width: 70%; /* Optional: set a fixed size */
 }
+  /* Stack bubbles vertically */
+  .bubble-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Or 5 or 10, depending on your layout */
+  gap: 1rem;
+}
+
+  .bubble-grid .bubble {
+    grid-column: span 1 !important; /* Cancel any previous column spanning */
+    margin-bottom: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  h2, p {
+    text-align: center;
+  }
+  .container2{
+    max-width: 75%;
+  }
+  .score-call-to-action {
+    text-align: center;
+}
+  .score-right {
+  display: flex;
+  justify-content: center; /* centers horizontally */
+  align-items: flex-start; /* aligns to top */
+  width: 100%;
+}
 }
 
 .ripple-cursor {
   position: fixed;
   pointer-events: none;
-  width: 10px;
-  height: 10px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: radial-gradient(circle, var(--light_six) 0%, rgba(30, 144, 255, 0) 70%);
   transform: translate(-50%, -50%);
