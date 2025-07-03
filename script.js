@@ -1,13 +1,9 @@
-// Wait for DOM content to load before running scripts
 document.addEventListener("DOMContentLoaded", () => {
-  // ======= Menu Elements =======
   const hamburger = document.querySelector(".hamburger");
   const closeIcon = document.querySelector(".close-icon");
   const nav = document.querySelector("nav");
   const container = document.querySelector(".container");
   const dropdowns = document.querySelectorAll(".dropdown");
-
-  // ======= Slide Panel Elements =======
   const getStartedBtn = document.querySelectorAll(".get-started-btn");
   const slidePanel = document.getElementById("slidePanel");
   const overlay = document.getElementById("overlay");
@@ -15,15 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const optionButtons = document.querySelectorAll(".option-btn");
   const backButtons = document.querySelectorAll(".back-arrow");
 
-  // Exit if essential elements are missing
   if (!hamburger || !closeIcon || !nav || !container) return;
 
-  // ----- Dropdown helpers -----
   function closeAllDropdowns() {
     dropdowns.forEach((dd) => dd.classList.remove("open", "show"));
   }
 
-  // ----- Menu open/close helpers -----
   function updateMenuDisplay() {
     if (window.innerWidth > 768) {
       nav.classList.remove("active");
@@ -60,7 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ----- Event listeners for menu -----
   hamburger.addEventListener("click", toggleMenu);
   closeIcon.addEventListener("click", toggleMenu);
 
@@ -80,12 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const clickOnCloseIcon = closeIcon.contains(e.target);
     const clickBelowNav = e.clientY > navRect.bottom;
 
-    if (
-      clickBelowNav &&
-      !clickInsideNav &&
-      !clickOnHamburger &&
-      !clickOnCloseIcon
-    ) {
+    if (clickBelowNav && !clickInsideNav && !clickOnHamburger && !clickOnCloseIcon) {
       if (nav.classList.contains("active")) {
         toggleMenu();
       }
@@ -95,24 +82,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("resize", updateMenuDisplay);
 
-  // ----- Dropdown hover effects (desktop optional) -----
   dropdowns.forEach((dropdown) => {
-    dropdown.addEventListener("mouseenter", () =>
-      dropdown.classList.add("show")
-    );
-    dropdown.addEventListener("mouseleave", () =>
-      dropdown.classList.remove("show")
-    );
+    dropdown.addEventListener("mouseenter", () => dropdown.classList.add("show"));
+    dropdown.addEventListener("mouseleave", () => dropdown.classList.remove("show"));
   });
 
-  // ======= Slide panel open/close =======
   getStartedBtn.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      e.preventDefault(); // prevent default anchor behavior
+      e.preventDefault();
       slidePanel.classList.add("open");
       overlay.classList.add("active");
-      goToStep("step1"); // reset to first step
+      goToStep("step1");
     });
+  });
+
+  document.getElementById("footerApplyJobBtn").addEventListener("click", (e) => {
+    e.preventDefault();
+    slidePanel.classList.add("open");
+    overlay.classList.add("active");
+    goToStep("jobForm");
+  });
+
+  document.getElementById("footerCareAdultBtn").addEventListener("click", (e) => {
+    e.preventDefault();
+    slidePanel.classList.add("open");
+    overlay.classList.add("active");
+    goToStep("careForm");
   });
 
   if (slidePanel && overlay && closeSlide) {
@@ -126,18 +121,14 @@ document.addEventListener("DOMContentLoaded", () => {
       overlay.classList.remove("active");
     });
 
-    // ----- Step switching helpers -----
     function switchStep(currentStep, nextStep, outClass, inClass) {
       currentStep.classList.add(outClass);
-
       currentStep.addEventListener("animationend", function handleOut() {
         currentStep.removeEventListener("animationend", handleOut);
         currentStep.style.display = "none";
         currentStep.classList.remove(outClass, "active");
-
         nextStep.style.display = "flex";
         nextStep.classList.add(inClass, "active");
-
         nextStep.addEventListener("animationend", function handleIn() {
           nextStep.classList.remove(inClass);
           nextStep.removeEventListener("animationend", handleIn);
@@ -145,7 +136,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // ----- Initialize steps -----
     const steps = document.querySelectorAll(".step");
     steps.forEach((step) => {
       step.style.display = "none";
@@ -158,7 +148,6 @@ document.addEventListener("DOMContentLoaded", () => {
       step1.classList.add("active");
     }
 
-    // ----- Option button click (Next) -----
     optionButtons.forEach((button) => {
       button.addEventListener("click", (event) => {
         const currentStep = button.closest(".step");
@@ -166,9 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const nextStep = document.getElementById(nextStepId);
 
         if (currentStep.id === "careNeeds") {
-          const checkedBoxes = currentStep.querySelectorAll(
-            'input[type="checkbox"]:checked'
-          );
+          const checkedBoxes = currentStep.querySelectorAll('input[type="checkbox"]:checked');
           if (checkedBoxes.length === 0) {
             event.preventDefault();
             return;
@@ -182,7 +169,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // ----- Back button click -----
     backButtons.forEach((button) => {
       button.addEventListener("click", () => {
         const currentStep = button.closest(".step");
@@ -196,16 +182,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Set initial menu state based on window size
   updateMenuDisplay();
 });
 
-// ======= Form Submission =======
-const scriptURL =
-  "https://script.google.com/macros/s/AKfycbzVPGA41BE0LRNEqB-_CbdmZVlRjRrSg5Zmqk-nlS68CaUTtz2PTKMdo0arZ4zHNWU4/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzVPGA41BE0LRNEqB-_CbdmZVlRjRrSg5Zmqk-nlS68CaUTtz2PTKMdo0arZ4zHNWU4/exec";
 let careFor = "";
 
-// Save careFor value from step
 document.querySelectorAll("#careForm .option-btn").forEach((button) => {
   button.addEventListener("click", () => {
     careFor = button.getAttribute("name");
@@ -231,7 +213,7 @@ if (careForm) {
 function submitForm(form, includeExtra = false) {
   const formData = new FormData(form);
   const data = {};
-  goToStep("step1"); // Reset UI to first step
+  goToStep("step1");
   closeModal();
 
   formData.forEach((value, key) => {
@@ -249,14 +231,11 @@ function submitForm(form, includeExtra = false) {
   if (includeExtra) {
     data["formType"] = "consultation";
     data["Care For"] = careFor;
-
     const needs = [];
-    document
-      .querySelectorAll("#careNeeds input[type='checkbox']:checked")
-      .forEach((cb) => {
-        const label = cb.parentElement.textContent.trim();
-        needs.push(label);
-      });
+    document.querySelectorAll("#careNeeds input[type='checkbox']:checked").forEach((cb) => {
+      const label = cb.parentElement.textContent.trim();
+      needs.push(label);
+    });
     data["Care Needs"] = needs.join(" | ");
   } else {
     data["formType"] = "job";
@@ -277,7 +256,6 @@ function submitForm(form, includeExtra = false) {
     });
 }
 
-// ----- Helper functions for UI -----
 function goToStep(stepId) {
   const steps = document.querySelectorAll(".step");
   steps.forEach((step) => {
@@ -301,8 +279,7 @@ function closeModal() {
   }
 }
 
-let lastX = 0,
-  lastY = 0;
+let lastX = 0, lastY = 0;
 const minDistance = 200;
 
 function distance(x1, y1, x2, y2) {
@@ -315,13 +292,17 @@ document.addEventListener("mousemove", (e) => {
   lastY = e.pageY;
 
   const leaf = document.createElement("img");
-  leaf.src = "images/image.svg"; // Make sure path is correct
+  leaf.src = "images/image.svg";
   leaf.className = "leaf";
 
   const offsetX = Math.random() * 20 - 10;
   const offsetY = 10 + Math.random() * 10;
+
+  const contentRect = document.getElementById("page-content").getBoundingClientRect();
+  const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  
   leaf.style.left = e.pageX + offsetX + "px";
-  leaf.style.top = e.pageY + offsetY + "px";
+  leaf.style.top = (e.pageY - contentRect.top - scrollTop + offsetY) + "px";
 
   const rotation = Math.floor(Math.random() * 360) + "deg";
   leaf.style.setProperty("--rotation", rotation);
@@ -339,12 +320,13 @@ document.addEventListener("mousemove", (e) => {
   const duration = (Math.random() * 3 + 4).toFixed(2);
   leaf.style.animation = `leaf-fall ${duration}s linear forwards`;
 
-  document.body.appendChild(leaf);
+  document.getElementById("page-content").appendChild(leaf);
 
   setTimeout(() => {
     leaf.remove();
   }, duration * 1000 + 500);
 });
+
 const track = document.getElementById("testimonial-track");
 const leftArrow = document.getElementById("arrow-left");
 const rightArrow = document.getElementById("arrow-right");
@@ -359,11 +341,7 @@ function getCardWidth() {
   const card = track.querySelector(".testimonial-card");
   if (!card) return 0;
   const style = window.getComputedStyle(card);
-  return (
-    card.offsetWidth +
-    parseFloat(style.marginLeft) +
-    parseFloat(style.marginRight)
-  );
+  return card.offsetWidth + parseFloat(style.marginLeft) + parseFloat(style.marginRight);
 }
 
 function moveToIndex(newIndex) {
@@ -375,13 +353,12 @@ function moveToIndex(newIndex) {
   track.style.transition = "transform 0.6s ease";
   track.style.transform = `translateX(${-cardWidth * index}px)`;
 
-  // Reset to real beginning after clones
   if (index >= total - count) {
     setTimeout(() => {
       track.style.transition = "none";
       index = 0;
       track.style.transform = `translateX(0)`;
-    }, 600); // Wait for transition to finish
+    }, 600);
   }
 }
 
@@ -432,6 +409,7 @@ window.addEventListener("resize", () => {
     startAutoSlide();
   }, 300);
 });
+
 function cloneCardsForLoop() {
   const count = visibleCount();
   const cards = track.querySelectorAll(".testimonial-card");
