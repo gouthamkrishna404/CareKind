@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateMenuDisplay() {
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 1250) {
       nav.classList.remove("active");
       container.classList.remove("menu-open");
       hamburger.setAttribute("aria-expanded", "false");
@@ -364,10 +364,17 @@ function moveToIndex(newIndex) {
 
 function startAutoSlide() {
   if (intervalId) return;
+  let delay;
+  if (window.innerWidth > 1024) {
+    delay = 3000;
+  } else {
+    delay = 5000;
+  }
   intervalId = setInterval(() => {
     moveToIndex(index + 1);
-  }, 2000);
+  }, delay);
 }
+
 
 function stopAutoSlide() {
   if (!intervalId) return;
