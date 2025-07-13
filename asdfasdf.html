@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Balanced Home Care Layout</title>
+  <style>
+    :root {
+      --light_one: #f5faff;
+      --light_five: #f5a623;
+      --dark_one: #0b2d66;
+      --dark_two: #1a3d8f;
+      --dark_three: #d35400;
+    }
+
+    body {
+      background: var(--light_one);
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      color: var(--dark_one);
+      display: flex;
+      justify-content: center;
+    }
+
+    .home-care-container {
+      background: white;
+      max-width: 800px;
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(11, 45, 102, 0.15);
+      padding: 2rem 3rem; /* equal top and bottom padding */
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      background-image: linear-gradient(135deg, #f5faff 0%, #eaf4ff 100%);
+      border: 1px solid var(--light_five);
+    }
+
+    .home-care-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .home-care-text h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: var(--dark_two);
+    }
+
+    .home-care-text p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--dark_one);
+      margin: 0;
+    }
+
+    .contact-btn-container {
+      flex-shrink: 0;
+    }
+
+    .contact-btn {
+      background-color: var(--light_five);
+      color: white;
+      font-weight: 700;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      user-select: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-size: 1.15rem;
+      box-shadow: 0 3px 8px rgba(245, 166, 35, 0.5);
+      display: inline-block;
+    }
+
+    .contact-btn:hover,
+    .contact-btn:focus {
+      background-color: var(--dark_three);
+      outline: none;
+      box-shadow: 0 5px 15px rgba(211, 84, 0, 0.7);
+    }
+
+    @media (max-width: 700px) {
+      .home-care-container {
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1.5rem;
+        text-align: center;
+      }
+
+      .home-care-text h2 {
+        font-size: 1.8rem;
+        text-align: center;
+      }
+
+      .home-care-text p {
+        font-size: 1rem;
+        text-align: center;
+      }
+
+      .contact-btn {
+        width: 100%;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="home-care-container">
+    <div class="home-care-text">
+      <h2>Individualized Home Care Options</h2>
+      <p>
+        Long term home care, 24 hour home care, and short term care options customized for you.
+      </p>
+    </div>
+    <div class="contact-btn-container">
+      <a href="contact.html" class="contact-btn">Contact Us</a>
+    </div>
+  </section>
+</body>
+</html>
