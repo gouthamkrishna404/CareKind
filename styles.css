@@ -1911,6 +1911,7 @@ footer.leaf-footer {
     padding: 0.5rem;
     gap: 1.5rem;
     text-align: center;
+    margin: 1rem auto 2rem auto;
   }
 
   .home-care-text,
@@ -1983,7 +1984,7 @@ footer.leaf-footer {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 0rem 1rem;
   }
 
   .services-hero-page img{
@@ -2050,6 +2051,7 @@ footer.leaf-footer {
     align-items: center;
     hyphens: auto;
     max-width: 70%;
+    padding: 1rem 2rem;
   }
 
   .info-text {
