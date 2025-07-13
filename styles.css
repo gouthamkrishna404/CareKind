@@ -110,6 +110,15 @@ nav {
 .brandtext {
   font-size: 1.5rem;
   font-weight: bold;
+  text-decoration: none;
+}
+
+.brandtext:hover,
+.brandtext:visited,
+.brandtext:active,
+.brandtext:focus  {
+  color: currentColor;
+  text-decoration: none;
 }
 
 /* Hamburger Menu */
@@ -1497,6 +1506,7 @@ footer.leaf-footer {
       to bottom,
       rgba(245, 250, 255, 1) 0%,
       rgba(245, 250, 255, 1) 1vh,
+      rgba(245, 250, 255, 0.2) 150vh,
       rgba(245, 250, 255, 0) 100%
     ),
     url("images/image.webp");
