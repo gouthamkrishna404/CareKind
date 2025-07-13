@@ -1710,6 +1710,7 @@ footer.leaf-footer {
   .score-left,
   .score-right {
     flex: 1 1 100%;
+    min-width: auto;
     text-align: justify;
   }
 
