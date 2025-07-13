@@ -1714,6 +1714,13 @@ footer.leaf-footer {
     text-align: justify;
   }
 
+  .score-right {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+  }
+
   .bubble {
     height: 90px;
     width: 90px;
