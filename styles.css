@@ -1703,13 +1703,6 @@ footer.leaf-footer {
     text-align: center;
   }
 
-  .score-right {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    width: 100%;
-  }
-
   .score-column2 {
     flex-direction: column;
   }
@@ -1718,6 +1711,7 @@ footer.leaf-footer {
   .score-right {
     flex: 1 1 100%;
     min-width: auto;
+    text-align: justify;
   }
 
   .bubble {
