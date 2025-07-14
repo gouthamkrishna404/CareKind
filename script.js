@@ -72,7 +72,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const clickOnCloseIcon = closeIcon.contains(e.target);
     const clickBelowNav = e.clientY > navRect.bottom;
 
-    if (clickBelowNav && !clickInsideNav && !clickOnHamburger && !clickOnCloseIcon) {
+    if (
+      clickBelowNav &&
+      !clickInsideNav &&
+      !clickOnHamburger &&
+      !clickOnCloseIcon
+    ) {
       if (nav.classList.contains("active")) {
         toggleMenu();
       }
@@ -83,8 +88,12 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", updateMenuDisplay);
 
   dropdowns.forEach((dropdown) => {
-    dropdown.addEventListener("mouseenter", () => dropdown.classList.add("show"));
-    dropdown.addEventListener("mouseleave", () => dropdown.classList.remove("show"));
+    dropdown.addEventListener("mouseenter", () =>
+      dropdown.classList.add("show")
+    );
+    dropdown.addEventListener("mouseleave", () =>
+      dropdown.classList.remove("show")
+    );
   });
 
   getStartedBtn.forEach((btn) => {
@@ -96,19 +105,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  document.getElementById("footerApplyJobBtn").addEventListener("click", (e) => {
-    e.preventDefault();
-    slidePanel.classList.add("open");
-    overlay.classList.add("active");
-    goToStep("jobForm");
-  });
+  document
+    .getElementById("footerApplyJobBtn")
+    .addEventListener("click", (e) => {
+      e.preventDefault();
+      slidePanel.classList.add("open");
+      overlay.classList.add("active");
+      goToStep("jobForm");
+    });
 
-  document.getElementById("footerCareAdultBtn").addEventListener("click", (e) => {
-    e.preventDefault();
-    slidePanel.classList.add("open");
-    overlay.classList.add("active");
-    goToStep("careForm");
-  });
+  document
+    .getElementById("footerCareAdultBtn")
+    .addEventListener("click", (e) => {
+      e.preventDefault();
+      slidePanel.classList.add("open");
+      overlay.classList.add("active");
+      goToStep("careForm");
+    });
 
   if (slidePanel && overlay && closeSlide) {
     closeSlide.addEventListener("click", () => {
@@ -155,7 +168,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const nextStep = document.getElementById(nextStepId);
 
         if (currentStep.id === "careNeeds") {
-          const checkedBoxes = currentStep.querySelectorAll('input[type="checkbox"]:checked');
+          const checkedBoxes = currentStep.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
           if (checkedBoxes.length === 0) {
             event.preventDefault();
             return;
@@ -185,7 +200,8 @@ document.addEventListener("DOMContentLoaded", () => {
   updateMenuDisplay();
 });
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbzVPGA41BE0LRNEqB-_CbdmZVlRjRrSg5Zmqk-nlS68CaUTtz2PTKMdo0arZ4zHNWU4/exec";
+const scriptURL =
+  "https://script.google.com/macros/s/AKfycbzVPGA41BE0LRNEqB-_CbdmZVlRjRrSg5Zmqk-nlS68CaUTtz2PTKMdo0arZ4zHNWU4/exec";
 let careFor = "";
 
 document.querySelectorAll("#careForm .option-btn").forEach((button) => {
@@ -232,10 +248,12 @@ function submitForm(form, includeExtra = false) {
     data["formType"] = "consultation";
     data["Care For"] = careFor;
     const needs = [];
-    document.querySelectorAll("#careNeeds input[type='checkbox']:checked").forEach((cb) => {
-      const label = cb.parentElement.textContent.trim();
-      needs.push(label);
-    });
+    document
+      .querySelectorAll("#careNeeds input[type='checkbox']:checked")
+      .forEach((cb) => {
+        const label = cb.parentElement.textContent.trim();
+        needs.push(label);
+      });
     data["Care Needs"] = needs.join(" | ");
   } else {
     data["formType"] = "job";
@@ -279,7 +297,8 @@ function closeModal() {
   }
 }
 
-let lastX = 0, lastY = 0;
+let lastX = 0,
+  lastY = 0;
 const minDistance = 200;
 
 function distance(x1, y1, x2, y2) {
@@ -298,11 +317,13 @@ document.addEventListener("mousemove", (e) => {
   const offsetX = Math.random() * 20 - 10;
   const offsetY = 10 + Math.random() * 10;
 
-  const contentRect = document.getElementById("page-content").getBoundingClientRect();
+  const contentRect = document
+    .getElementById("page-content")
+    .getBoundingClientRect();
   const scrollTop = window.scrollY || document.documentElement.scrollTop;
-  
+
   leaf.style.left = e.pageX + offsetX + "px";
-  leaf.style.top = (e.pageY - contentRect.top - scrollTop + offsetY) + "px";
+  leaf.style.top = e.pageY - contentRect.top - scrollTop + offsetY + "px";
 
   const rotation = Math.floor(Math.random() * 360) + "deg";
   leaf.style.setProperty("--rotation", rotation);
@@ -341,7 +362,11 @@ function getCardWidth() {
   const card = track.querySelector(".testimonial-card");
   if (!card) return 0;
   const style = window.getComputedStyle(card);
-  return card.offsetWidth + parseFloat(style.marginLeft) + parseFloat(style.marginRight);
+  return (
+    card.offsetWidth +
+    parseFloat(style.marginLeft) +
+    parseFloat(style.marginRight)
+  );
 }
 
 function moveToIndex(newIndex) {
@@ -374,7 +399,6 @@ function startAutoSlide() {
     moveToIndex(index + 1);
   }, delay);
 }
-
 
 function stopAutoSlide() {
   if (!intervalId) return;
