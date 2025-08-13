@@ -40,7 +40,6 @@ body {
     url("images/image.webp");
   background-position: center;
   background-size: contain;
-  cursor: url("images/cursor.png"), auto;
 }
 
 a,
@@ -49,7 +48,7 @@ button,
 input[type="button"],
 input[type="submit"],
 .clickable {
-  cursor: url("images/point.png"), pointer;
+  cursor: pointer;
 }
 
 section {
