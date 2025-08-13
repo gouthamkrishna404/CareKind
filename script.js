@@ -297,57 +297,6 @@ function closeModal() {
   }
 }
 
-let lastX = 0,
-  lastY = 0;
-const minDistance = 200;
-
-function distance(x1, y1, x2, y2) {
-  return Math.hypot(x2 - x1, y2 - y1);
-}
-
-document.addEventListener("mousemove", (e) => {
-  if (distance(e.pageX, e.pageY, lastX, lastY) < minDistance) return;
-  lastX = e.pageX;
-  lastY = e.pageY;
-
-  const leaf = document.createElement("img");
-  leaf.src = "images/image.svg";
-  leaf.className = "leaf";
-
-  const offsetX = Math.random() * 20 - 10;
-  const offsetY = 10 + Math.random() * 10;
-
-  const contentRect = document
-    .getElementById("page-content")
-    .getBoundingClientRect();
-  const scrollTop = window.scrollY || document.documentElement.scrollTop;
-
-  leaf.style.left = e.pageX + offsetX + "px";
-  leaf.style.top = e.pageY - contentRect.top - scrollTop + offsetY + "px";
-
-  const rotation = Math.floor(Math.random() * 360) + "deg";
-  leaf.style.setProperty("--rotation", rotation);
-
-  const driftX = (Math.random() * 200 - 100).toFixed(2) + "px";
-  const fallDistance = (Math.random() * 300 + 250).toFixed(2) + "px";
-  leaf.style.setProperty("--drift-x", driftX);
-  leaf.style.setProperty("--fall-distance", fallDistance);
-
-  const scale = (Math.random() * 0.4 + 0.8).toFixed(2);
-  leaf.style.setProperty("--scale", scale);
-  leaf.style.width = 24 * scale + "px";
-  leaf.style.height = 24 * scale + "px";
-
-  const duration = (Math.random() * 3 + 4).toFixed(2);
-  leaf.style.animation = `leaf-fall ${duration}s linear forwards`;
-
-  document.getElementById("page-content").appendChild(leaf);
-
-  setTimeout(() => {
-    leaf.remove();
-  }, duration * 1000 + 500);
-});
-
 const track = document.getElementById("testimonial-track");
 const leftArrow = document.getElementById("arrow-left");
 const rightArrow = document.getElementById("arrow-right");
