@@ -2013,12 +2013,14 @@ footer.leaf-footer {
 
   .img-wrapper {
     position: relative;
-    width: 280px !important;
-    margin: 0;
+    width: 80% !important;
+    max-width: 300px;
+    margin: 0 auto;
     top: 0 !important;
     left: auto !important;
     transition: none;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15),
+                0 5px 10px rgba(0, 0, 0, 0.1);
   }
 
   .img1-wrapper {
@@ -2063,7 +2065,7 @@ footer.leaf-footer {
   .bubble-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    gap: 0.1rem;
   }
 
   .bubble-grid .bubble {
@@ -2089,26 +2091,27 @@ footer.leaf-footer {
 
   .score-column2 {
     flex-direction: column;
+    align-items: center;
   }
 
   .score-left,
   .score-right {
+    display: flex;
     flex: 1 1 100%;
-    min-width: auto;
-    text-align: justify;
-    hyphens: auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-width: 0;
   }
 
   .score-right {
-    display: flex;
-    justify-content: center;
     align-items: flex-start;
     width: 100%;
   }
 
   .bubble {
     height: 90px;
-    width: 90px;
+    width: 100px;
     font-size: 1rem;
   }
 
@@ -2118,7 +2121,9 @@ footer.leaf-footer {
     hyphens: auto;
   }
 
-  h2,
+  h2 {
+    text-align: center;
+  }
   p {
     text-align: center;
     hyphens: auto;
@@ -2326,4 +2331,53 @@ footer.leaf-footer {
 }
 .float-above {
   animation: float-above 10s ease-in-out infinite;
+}
+
+@media (max-width: 400px) {
+  body {
+    font-size: 14px;
+  }
+
+  section {
+    padding: 1.5rem 1rem;
+  }
+
+  .navbar {
+    padding: 12px 15px;
+  }
+
+  .brand {
+    margin-bottom: 10px;
+  }
+  .dropbtn,
+  .call-button {
+    font-size: 15px;
+    padding: 8px 10px;
+  }
+  
+  .call-button {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 5px;
+  }
+  #slidePanel {
+    width: calc(100% - 20px);
+    right: -100%;
+    top: 10px;
+    bottom: 10px;
+    padding: 20px 15px;
+  }
+
+  #slidePanel.open {
+    right: 10px;
+  }
+
+  .question,
+  .question2 {
+    font-size: 1.2rem;
+  }
+  .option-btn {
+    padding: 12px;
+    font-size: 1rem;
+  }
 }
