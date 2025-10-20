@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+        
+      <meta charset="UTF-8" />
+        
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+      <title>Request Care - CareKind Homecare Services Halifax</title>
+        
+      <link rel="stylesheet" href="styles.css" />
+        
+      <link rel="icon" href="https://carekind.ca/images/favicon.ico" type="image/x-icon" />
+        
+      <meta name="description" content="Request compassionate home care services for your loved one in Halifax, Nova Scotia. CareKind provides personalized senior care tailored to individual needs." />
+        
+      <style>
+             body{
+               background-size: cover;
+               min-height: 100vh;
+             }
+             
+             .care-form-container {
+               max-width: 800px;
+               margin: 4rem auto;
+               padding: 3rem 2rem;
+               background: white;
+               border-radius: 15px;
+               box-shadow: 0 10px 30px rgba(11, 45, 102, 0.15);
+               position: relative;
+             }
+             .care-form-header {
+               text-align: center;
+               margin-bottom: 2rem;
+             }
+             .care-form-header h1 {
+               font-size: 2.5rem;
+               color: var(--dark_one);
+               margin-bottom: 1rem;
+             }
+             .care-form-header p {
+               font-size: 1.1rem;
+               color: var(--dark_two);
+               line-height: 1.6;
+             }
+             .form-steps-wrapper {
+               position: relative;
+               overflow: hidden;
+               transition: height 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+             }
+             .form-step {
+               display: none;
+               width: 100%;
+             }
+             .form-step.active {
+               display: block;
+             }
+             @keyframes slideInFromRight {
+               from { transform: translateX(100%); opacity: 0; }
+               to { transform: translateX(0); opacity: 1; }
+             }
+             @keyframes slideOutToLeft {
+               from { transform: translateX(0); opacity: 1; }
+               to { transform: translateX(-100%); opacity: 0; }
+             }
+             @keyframes slideInFromLeft {
+               from { transform: translateX(-100%); opacity: 0; }
+               to { transform: translateX(0); opacity: 1; }
+             }
+             @keyframes slideOutToRight {
+               from { transform: translateX(0); opacity: 1; }
+               to { transform: translateX(100%); opacity: 0; }
+             }
+             .animate-in-right {
+               display: block !important;
+               animation: slideInFromRight 0.6s forwards cubic-bezier(0.65, 0, 0.35, 1);
+             }
+             .animate-out-left {
+               animation: slideOutToLeft 0.6s forwards cubic-bezier(0.65, 0, 0.35, 1);
+             }
+             .animate-in-left {
+               display: block !important;
+               animation: slideInFromLeft 0.6s forwards cubic-bezier(0.65, 0, 0.35, 1);
+             }
+             .animate-out-right {
+               animation: slideOutToRight 0.6s forwards cubic-bezier(0.65, 0, 0.35, 1);
+             }
+             .step-indicator {
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               margin-bottom: 3rem;
+               gap: 1rem;
+             }
+             .step-dot {
+               width: 12px;
+               height: 12px;
+               border-radius: 50%;
+               background-color: var(--light_eight);
+               transition: all 0.3s ease;
+             }
+             .step-dot.active {
+               width: 40px;
+               border-radius: 6px;
+               background-color: var(--dark_one);
+             }
+             
+             .step-title-container {
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               position: relative;
+               width: 100%;
+               margin-bottom: 1rem;
+             }
+             .step-title-container h2 {
+               margin-bottom: 0; 
+               margin-left: auto;
+               margin-right: auto;
+               padding-left: 40px;
+               padding-right: 40px;
+               text-align: center;
+             }
+             .btn-back-top {
+               position: absolute;
+               left: 0;
+               top: 50%;
+               transform: translateY(-50%);
+               background: transparent;
+               border: none;
+               cursor: pointer;
+               padding: 5px;
+               width: 32px;
+               height: 32px;
+             }
+             .btn-back-top img {
+               width: 100%;
+               height: auto;
+             }
+             .care-option-grid {
+               display: grid;
+               grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+               gap: 1.5rem;
+               margin: 2rem 0;
+             }
+             .care-option-card {
+               padding: 1rem 0.5rem;
+               background-color: var(--light_six);
+               color: var(--dark_one);
+               border-radius: 15px;
+               text-align: center;
+               cursor: pointer;
+               transition: all 0.3s ease;
+               border: 3px solid transparent;
+             }
+             .care-option-card:hover {
+               background-color: var(--dark_one);
+               color: var(--light_seven);
+             }
+             .care-option-card.selected {
+               background-color: var(--dark_four);
+               color: var(--light_seven);
+               border-color: var(--dark_one);
+             }
+             .care-option-card .option-icon {
+               width: 60px;
+               height: 60px;
+               fill: currentColor;
+               transition: fill 0.3s ease, transform 0.3s ease;
+               margin-bottom: 0.5rem;
+             }
+             .care-option-card:hover .option-icon {
+               transform: scale(1.1);
+               fill: var(--light_eleven);
+             }   
+             .care-option-card .option-icon path {
+               transform-origin: center;
+             }
+             .care-option-card h3 {
+               font-size: 1.15rem;
+             }
+             .needs-grid {
+               display: grid;
+               grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+               gap: 1rem;
+               margin: 2rem 0;
+             }
+             .need-checkbox-card {
+               display: flex;
+               align-items: center;
+               gap: 1rem;
+               padding: 1.5rem;
+               background-color: var(--light_six);
+               border-radius: 12px;
+               cursor: pointer;
+               transition: all 0.3s ease;
+               border: 2px solid transparent;
+             }
+             .need-checkbox-card:hover {
+               background-color: var(--light_eight);
+             }
+             .need-checkbox-card.checked {
+               background-color: var(--dark_four);
+               color: var(--light_seven);
+               border-color: var(--dark_one);
+             }
+             .need-checkbox-card input[type="checkbox"] {
+               display: none;
+             }
+             .need-checkbox-card .option-icon {
+               width: 40px;
+               height: 40px;
+               fill: currentColor;
+               flex-shrink: 0;
+             }
+             
+             .form-group {
+               position: relative;
+               padding: 0.5rem;
+               margin-bottom: 1rem;
+             }
+             .step-nav {
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               flex-direction: column;
+               gap: 1rem;
+               margin-top: 2rem;
+             }
+             .btn-next, .btn-submit {
+               padding: 1rem 2rem;
+               font-size: 1.1rem;
+               border: none;
+               border-radius: 45px;
+               cursor: pointer;
+               transition: all 0.3s ease;
+               font-weight: 600;
+               width: 100%;
+               max-width: 350px;
+             }
+             
+             .btn-next, .btn-submit {
+               background-color: var(--dark_one);
+               color: var(--light_seven);
+             }
+             .btn-next:hover, .btn-submit:hover {
+               background-color: var(--dark_six);
+             }
+             .btn-next:disabled {
+               background-color: var(--light_six);
+               color: var(--dark_one);
+               cursor: not-allowed;
+             }
+             .submit-note {
+               text-align: center;
+               font-size: 0.9rem;
+               color: var(--dark_two);
+               margin: 0;
+             }
+             .success-message {
+               text-align: center;
+               padding: 3rem 2rem;
+             }
+             .success-message .success-icon {
+               width: 80px;
+               height: 80px;
+               margin: 0 auto 2rem;
+               fill: #a9bee8;
+             }
+             .success-message h2 {
+               color: var(--dark_one);
+               font-size: 2rem;
+               margin-bottom: 1rem;
+             }
+             .success-message p {
+               color: var(--dark_two);
+               font-size: 1.1rem;
+               line-height: 1.6;
+             }
+             @media (max-width: 768px) {
+               .care-form-container {
+                 margin: 2rem 1rem;
+                 padding: 2rem 1rem;
+               }
+               .care-form-header h1 {
+                 font-size: 2rem;
+               }
+               .care-option-grid {
+                 grid-template-columns: 1fr;
+               }
+               .needs-grid {
+                 grid-template-columns: 1fr;
+               }
+               
+               .step-title-container h2 {
+                   padding-left: 30px;
+                   padding-right: 30px;
+                   font-size: 1.5rem;
+               }
+               .btn-back-top {
+                   width: 24px;
+                   height: 24px;
+               }
+             }
+           
+      </style>
+   </head>
+   <body>
+        
+      <header class="navv">
+             
+         <div class="navbar">
+                  
+            <div class="container">
+                       
+               <div class="brand">
+                            <img src="images/logo.svg" alt="CareKind Logo" class="logo" />
+                            <a href="index.html" class="brandtext">CareKind</a>
+                          
+               </div>
+                     
+            </div>
+                
+         </div>
+           
+      </header>
+        
+      <div id="page-content">
+             
+         <div class="care-form-container">
+                  
+            <div class="care-form-header">
+                       
+               <h1>Request Care</h1>
+                       
+               <p>Let us help you find the perfect care solution. Complete this form and we'll reach out within 24 hours.</p>
+                     
+            </div>
+                  
+            <div class="step-indicator">
+                       
+               <div class="step-dot active" data-step="1"></div>
+                       
+               <div class="step-dot" data-step="2"></div>
+                       
+               <div class="step-dot" data-step="3"></div>
+                     
+            </div>
+                  
+            <form id="careRequestFormPage">
+                       <input type="hidden" name="Care For" id="careForInput" required>
+                       
+               <div class="form-steps-wrapper">
+                              <!-- Step 1: Who needs care -->
+                              
+                  <div class="form-step active" data-step="1">
+                                   
+                     <div class="step-title-container">
+                                        
+                        <h2 style="text-align: center; color: var(--dark_one);">Who needs care?</h2>
+                                      
+                     </div>
+                                   
+                                   
+                     <div class="care-option-grid">
+                                        
+                        <div class="care-option-card" data-value="A loved One">
+                                             
+                           <svg viewBox="0 0 512 512" class="option-icon">
+                                                  
+                              <path d="M469.113 82.57C469.113 36.97 431.008 0 384 0s-85.113 36.969-85.113 82.57c0 45.602 38.105 82.57 85.113 82.57s85.113-36.968 85.113-82.57zM384 179.543c-9.074 0-17.926.953-26.465 2.746a92.635 92.635 0 0 1 6.996 6.813c16.117 17.484 24.996 40.55 24.996 64.957 0 29.539-14.394 51.144-26.933 66.664-.809 1.004-84.535 82.293-84.535 82.293-6.149 5.96-14.098 8.953-22.059 8.984-.04 0-.082.004-.121.004a31.78 31.78 0 0 1-22.234-9.04s-86.594-84.405-87.243-85.167c-15.437-17.348-23.93-39.934-23.93-63.738 0-24.407 8.88-47.473 24.997-64.957a92.635 92.635 0 0 1 6.996-6.813A128.676 128.676 0 0 0 128 179.543c-70.691 0-128 57.309-128 128v104.129c0 5.52 4.477 10 10 10h492c5.523 0 10-4.48 10-10V307.543c0-70.691-57.309-128-128-128zM213.113 82.57C213.113 36.97 175.008 0 128 0S42.887 36.969 42.887 82.57c0 45.602 38.105 82.57 85.113 82.57s85.113-36.968 85.113-82.57zm0 0"></path>
+                                                  
+                              <path d="M154.34 254.059c0 16.82 6.265 32.035 16.375 43.113l-.008.008 78.207 76.175a10.007 10.007 0 0 0 13.941.016l74.95-72.676c10.812-13.383 19.855-27.96 19.855-46.636 0-26.508-14.082-61.317-56.531-61.317-15.566 0-29.664 6.832-39.89 17.875a60.671 60.671 0 0 0-5.239 6.524 60.72 60.72 0 0 0-5.367-6.653c-10.211-10.968-24.258-17.746-39.766-17.746-37.101 0-56.527 34.809-56.527 61.317zm0 0"></path>
+                                                
+                           </svg>
+                                             
+                           <h3>A parent or loved one</h3>
+                                           
+                        </div>
+                                        
+                        <div class="care-option-card" data-value="Self">
+                                             
+                           <svg viewBox="0 0 512 512" class="option-icon">
+                                                  
+                              <path d="M210.352 246.633c33.882 0 63.222-12.153 87.195-36.13 23.973-23.972 36.125-53.304 36.125-87.19 0-33.876-12.152-63.211-36.129-87.192C273.566 12.152 244.23 0 210.352 0c-33.887 0-63.22 12.152-87.192 36.125s-36.129 53.309-36.129 87.188c0 33.886 12.156 63.222 36.133 87.195 23.977 23.969 53.313 36.125 87.188 36.125zM426.129 393.703c-.692-9.976-2.09-20.86-4.149-32.351-2.078-11.579-4.753-22.524-7.957-32.528-3.308-10.34-7.808-20.55-13.37-30.336-5.774-10.156-12.555-19-20.165-26.277-7.957-7.613-17.699-13.734-28.965-18.2-11.226-4.44-23.668-6.69-36.976-6.69-5.227 0-10.281 2.144-20.043 8.5a2711.03 2711.03 0 0 1-20.879 13.46c-6.707 4.274-15.793 8.278-27.016 11.903-10.949 3.543-22.066 5.34-33.039 5.34-10.972 0-22.086-1.797-33.047-5.34-11.21-3.622-20.296-7.625-26.996-11.899-7.77-4.965-14.8-9.496-20.898-13.469-9.75-6.355-14.809-8.5-20.035-8.5-13.313 0-25.75 2.254-36.973 6.7-11.258 4.457-21.004 10.578-28.969 18.199-7.605 7.281-14.39 16.12-20.156 26.273-5.558 9.785-10.058 19.992-13.371 30.34-3.2 10.004-5.875 20.945-7.953 32.524-2.059 11.476-3.457 22.363-4.149 32.363A438.821 438.821 0 0 0 0 423.949c0 26.727 8.496 48.363 25.25 64.32 16.547 15.747 38.441 23.735 65.066 23.735h246.532c26.625 0 48.511-7.984 65.062-23.734 16.758-15.946 25.254-37.586 25.254-64.325-.004-10.316-.351-20.492-1.035-30.242zm0 0"></path>
+                                                
+                           </svg>
+                                             
+                           <h3>Me</h3>
+                                           
+                        </div>
+                                      
+                     </div>
+                                 
+                  </div>
+                              <!-- Step 2: Care needs -->
+                              
+                  <div class="form-step" data-step="2">
+                                   
+                     <div class="step-title-container">
+                                        <button type="button" class="btn-back-top" id="step2Back"><img src="images/back-arrow.svg" alt="Back"></button>
+                                        
+                        <h2 style="text-align: center; color: var(--dark_one);">What kinds of assistance are needed?</h2>
+                                      
+                     </div>
+                                   
+                     <div class="needs-grid">
+                                        
+                        <label class="need-checkbox-card">
+                                             
+                           <svg viewBox="0 0 512 512" class="option-icon">
+                                              <path
+                                                d="M437.852 43.198C429.36 34.688 418.066 30 406.05 30h-19.945v20c0 22.056-17.924 40-39.956 40h-179.8c-22.032 0-39.956-17.944-39.956-40V30h-20.011c-24.758 0-44.922 20.164-44.95 44.95l-.432 392c-.014 12.029 4.656 23.341 13.147 31.852C82.64 507.313 93.934 512 105.95 512h299.667c24.758 0 44.923-20.164 44.95-44.95l.433-392c.014-12.029-4.656-23.341-13.148-31.852zM261.094 180h106.453c8.275 0 14.983 6.716 14.983 15s-6.708 15-14.983 15H261.094c-8.275 0-14.983-6.716-14.983-15s6.708-15 14.983-15zm0 100h106.453c8.275 0 14.983 6.716 14.983 15s-6.708 15-14.983 15H261.094c-8.275 0-14.983-6.716-14.983-15s6.708-15 14.983-15zm0 100h106.881c8.275 0 14.983 6.716 14.983 15s-6.708 15-14.983 15H261.094c-8.275 0-14.983-6.716-14.983-15s6.708-15 14.983-15zM133.431 180.592c5.852-5.858 15.338-5.858 21.19 0l8.147 8.157 34.554-34.592c5.852-5.857 15.338-5.859 21.189 0 5.851 5.857 5.851 15.355 0 21.213l-45.149 45.198a14.972 14.972 0 0 1-21.19 0l-18.742-18.764c-5.851-5.857-5.851-15.355.001-21.212zm0 107.637c5.852-5.858 15.338-5.858 21.19 0l8.147 8.156 34.554-34.592c5.851-5.857 15.338-5.857 21.189 0s5.851 15.355 0 21.213l-45.149 45.199a14.974 14.974 0 0 1-21.19 0l-18.742-18.764c-5.851-5.857-5.851-15.354.001-21.212zm0 100c5.852-5.858 15.338-5.858 21.19 0l8.147 8.156 34.554-34.592c5.851-5.857 15.338-5.857 21.189 0s5.851 15.355 0 21.213l-45.149 45.199a14.974 14.974 0 0 1-21.19 0l-18.742-18.764c-5.851-5.857-5.851-15.354.001-21.212z">
+                                              </path>
+                                              <path
+                                                d="M156.361 50c0 5.523 4.472 10 9.989 10h179.8c5.517 0 9.989-4.477 9.989-10V10c0-5.523-4.472-10-9.989-10h-179.8c-5.517 0-9.989 4.477-9.989 10z">
+                                              </path>
+                                            
+                           </svg>
+                                             <input type="checkbox" name="Everyday Tasks" value="Everyday Tasks">
+                                             <span>Everyday tasks</span>
+                                           
+                        </label>
+                                        
+                        <label class="need-checkbox-card">
+                                             
+                           <svg viewBox="0 0 512 512" class="option-icon">
+                                              
+                              <circle cx="133.667" cy="44.795" r="44.793" transform="rotate(-45 133.669 44.823)"></circle>
+                                              <path
+                                                d="m247.973 200.177 11.45 34.505 6.367 1.603a20.5 20.5 0 0 0 5.003.623c.045 0 .09-.005.135-.006v-14.996a44.914 44.914 0 0 1 7.236-24.482c-.776-.3-1.57-.571-2.398-.78l-36.65-9.224a27.377 27.377 0 0 1 8.857 12.757zM489.114 464.248h-17.351c8.434-5.468 12.666-16.003 9.698-26.144l-29.362-100.318a23.346 23.346 0 0 0-22.406-16.789h-38.839V293.18l54.176-24.922c9.762-4.49 14.035-16.044 9.544-25.806-4.49-9.761-16.044-14.035-25.806-9.544l-37.914 17.441v-28.443c0-18.33-14.859-33.19-33.19-33.19h-41.546c-18.33 0-33.19 14.859-33.19 33.19v20.396l22.977-16.87-37.44 41.61c-6.369 7.079-6.679 17.728-.731 25.164l53.963 67.478a19.766 19.766 0 0 0 1.595 1.761v24.019a31.159 31.159 0 0 1 14.919 0v-18.529a19.355 19.355 0 0 0 10.831-4.208c8.392-6.711 9.754-18.954 3.043-27.345l-43.653-54.585 26.398-29.339-14.749 25.293 25.676 32.106c52.929 7.393 92.966 52.874 92.966 106.925 0 10.043-1.383 19.768-3.961 29l1.884 6.438a23.243 23.243 0 0 0 9.721 13.028h-19.153a108.447 108.447 0 0 1-17.291 24.864h79.188c6.866 0 12.432-5.566 12.432-12.432s-5.562-12.432-12.429-12.432zM343.628 176.717c.102.008.201.022.303.029 23.864 1.693 44.476-16.298 46.161-40.043 1.69-23.805-16.238-44.472-40.043-46.161-23.805-1.69-44.472 16.238-46.161 40.043-1.682 23.703 16.088 44.288 39.74 46.132zM273.315 324.395l-3.741-11.274-14.477-18.103c-6.961-8.704-7.156-20.632-1.299-29.441l-4.46-13.443a34.835 34.835 0 0 1-4.981 22.083 34.843 34.843 0 0 1-10.327 10.734l18.678 56.291a108.786 108.786 0 0 1 20.607-16.847zM209.832 211.885l23.054 14.183a34.837 34.837 0 0 1 11.778 11.981l-10.992-33.126c-2.163-6.517-9.2-10.046-15.715-7.884-6.229 2.066-9.715 8.583-8.125 14.846z" />
+                                              <path
+                                                d="M359.425 325.947c.385.806 12.615 12.342 7.254 30.44a69.971 69.971 0 0 1 20.093 18.439l-33.512 19.348a31.222 31.222 0 0 1 7.475 12.911l33.512-19.348c3.806 8.583 5.938 18.068 5.938 28.046s-2.132 19.463-5.938 28.046l-33.512-19.348a31.222 31.222 0 0 1-7.475 12.911l33.512 19.348c-11.258 15.357-28.661 25.935-48.561 28.071v-38.709a31.15 31.15 0 0 1-14.919 0v38.709c-19.9-2.136-37.302-12.714-48.56-28.071l33.512-19.348a31.222 31.222 0 0 1-7.475-12.911l-33.512 19.348c-3.806-8.583-5.938-18.068-5.938-28.046s2.132-19.462 5.938-28.046l33.512 19.348a31.222 31.222 0 0 1 7.475-12.911l-33.512-19.348a69.867 69.867 0 0 1 26.646-21.937l-15.856-19.827c-29.216 16.039-49.067 47.104-49.067 82.72 0 51.996 42.302 94.298 94.297 94.298 51.996 0 94.298-42.302 94.298-94.298-.001-42.001-27.606-77.672-65.625-89.835z" />
+                                              
+                              <circle cx="330.752" cy="415.783" r="21.279" />
+                                              <path
+                                                d="m225.255 238.47-64.572-39.726-18.377-52.76 25.023 39.751 27.714 17.05c2.058-9.085 8.681-16.902 18.168-20.05 1.198-.398 2.404-.7 3.611-.927l-11.291-2.842-27.417-31.582.554-8.289c1.115-16.674-11.499-31.095-28.173-32.21l-53.841-3.6c-16.674-1.115-31.095 11.499-32.21 28.173L54.378 286.383s2.921 58.824 4.333 87.216L10.929 475.346c-5.698 12.289-.355 26.869 11.933 32.567 12.285 5.697 26.868.356 32.567-11.933l50.329-107.239a24.52 24.52 0 0 0 2.245-11.538l-4.363-87.526 11.056.739 27.138 80.702 10.299 116.678c1.115 12.769 11.823 22.395 24.405 22.394 14.489 0 25.705-12.396 24.46-26.66l-10.552-119.59a24.501 24.501 0 0 0-1.187-5.685l-21.622-64.299 2.31-24.422-49.653-30.547c-5.537-3.407-8.882-9.141-9.571-15.135l-7.019-64.423 20.771 59.633a20.442 20.442 0 0 0 8.591 10.685l70.771 43.539c9.575 5.889 22.178 2.956 28.117-6.698 5.915-9.615 2.916-22.2203-6.699-28.118z" />
+                                            
+                           </svg>
+                                             <input type="checkbox" name="Mobility" value="Mobility">
+                                             <span>Mobility</span>
+                                           
+                        </label>
+                                        
+                        <label class="need-checkbox-card">
+                                             
+                           <svg viewBox="0 0 64 64" class="option-icon">
+                                              <path
+                                                d="M57.91 35.43c5.072-6.015.254-12.395-6.72-18.73a8.312 8.312 0 0 1-6.07 5.8.998.998 0 0 1-.29-1.95 6.74 6.74 0 0 0 4.68-5.29 27.016 27.016 0 0 0-9.22-5.18c-2.928 2.569-6.137 6.52-3.37 11.96a.998.998 0 0 1-1.75.96c-3.048-5.918-.281-10.237 2.83-13.53a27.876 27.876 0 0 0-18.78 3.03 9.165 9.165 0 0 1 6.21 2.9 1 1 0 1 1-1.4 1.43c-3.995-4.243-9.959-2.177-12.38 2.55-3.223 5.77-.625 8.933 3.58 9.69a1 1 0 0 1-.27 1.98c-.18-.02-4.39-.64-6.08-3.95a5.756 5.756 0 0 1-.37-.89c-3.53 4.46-3.3 7.94.58 12.01a4.341 4.341 0 0 0 4.29 1.33c3.144-.795 7.396-2.555 8.27-4.82.804-1.997-.93-2.193.38-3.32 1.709-.767 2.244 2.153 1.5 4.02-.683 1.935-3.347 3.804-5.69 4.71a7.365 7.365 0 0 0 3.2 4.06c3.17 1.96 7.4 1.56 9.19 1.08a1.529 1.529 0 0 1 1.4.31 9.717 9.717 0 0 0 4.14 2.1 2.599 2.599 0 0 1 1.63 1.01l4.17 5.98a1.01 1.01 0 0 0 .82.43h3.49a1.003 1.003 0 0 0 1-1v-4.07c8.374-1.982 13.838-5.919 10.85-13.43a1.067 1.067 0 0 1 .18-1.18zm-9.7-6.81 4.07-.93a1 1 0 0 1 .45 1.95l-4.07.93a.859.859 0 0 1-.22.02 1 1 0 0 1-.23-1.97zm-7.75 5.22c1.055-1.942 2.091-6.127-1.06-7.45a1 1 0 0 1-.46-1.34c1.243-1.88 4.2 1.747 4.35 3 .71 2.46-.33 5.22-1.01 6.63a11.902 11.902 0 0 1 4.66 6.43 1.003 1.003 0 1 1-1.89.67c-2.609-7.844-8.953-7.105-12.92-4.72a1.003 1.003 0 0 1-1.08-1.69c.2-.12 4.83-3.02 9.41-1.53zm-17.9-7.96c-1.005-.103-4.125-.098-3.66-1.85a1 1 0 0 1 1.27-.61 5.118 5.118 0 0 0 7.09-3.3 1.003 1.003 0 0 1 1.92.58 8.697 8.697 0 0 1-1.66 2.9 4.498 4.498 0 0 0 1.51 2.47 3.78 3.78 0 0 0 2.98.56 1 1 0 0 1 1.15.83 1.013 1.013 0 0 1-.83 1.15 5.637 5.637 0 0 1-6.46-3.63 6.204 6.204 0 0 1-3.31.9z" />
+                                            
+                           </svg>
+                                             <input type="checkbox" name="Memory Care" value="Memory Care">
+                                             <span>Memory care</span>
+                                           
+                        </label>
+                                        
+                        <label class="need-checkbox-card">
+                                             
+                           <svg viewBox="0 0 95 95" class="option-icon">
+                                              <path
+                                                d="M95.6 46.3 74 8.5c-.6-1.3-2-2-3.5-2l-44.1-.3c-1.4 0-2.6.8-3.5 2L.6 45.6c-.8 1.3-.8 2.8 0 4l21.6 37.8c.6 1.3 2 2 3.5 2l44.1.4c1.4 0 2.6-.8 3.5-2l22.4-37.4c.4-1.1.4-2.5-.1-4.1zm-26.2 5.9H52.2v17c0 2.2-1.8 4-4 4s-4-1.8-4-4v-17H26.8c-2.2 0-4-1.8-4-4s1.8-4 4-4H44v-17c0-2.2 1.8-4 4-4s4 1.8 4 4v17h17.1c2.2 0 4 1.8 4 4s-1.5 4-3.7 4z" />
+                                            
+                           </svg>
+                                             <input type="checkbox" name="Other" value="Other">
+                                             <span>Other</span>
+                                           
+                        </label>
+                                      
+                     </div>
+                                   
+                     <div class="step-nav">
+                                        <button type="button" class="btn-next" id="step2Next" disabled>Next</button>
+                                      
+                     </div>
+                                 
+                  </div>
+                              <!-- Step 3: Contact information -->
+                              
+                  <div class="form-step" data-step="3">
+                                   
+                     <div class="step-title-container">
+                                        <button type="button" class="btn-back-top" id="step3Back"><img src="images/back-arrow.svg" alt="Back"></button>
+                                        
+                        <h2 style="text-align: center; color: var(--dark_one);">Your Contact Information</h2>
+                                      
+                     </div>
+                                   
+                     <div class="form-group">
+                                        <input type="text" name="First Name" placeholder=" " required />
+                                        <label>First Name</label>
+                                      
+                     </div>
+                                   
+                     <div class="form-group">
+                                        <input type="text" name="Last Name" placeholder=" " required />
+                                        <label>Last Name</label>
+                                      
+                     </div>
+                                   
+                     <div class="form-group">
+                                        <input type="tel" name="Phone Number" placeholder=" " required />
+                                        <label>Phone Number</label>
+                                      
+                     </div>
+                                   
+                     <div class="form-group">
+                                        <input type="email" name="Email" placeholder=" " required />
+                                        <label>Email</label>
+                                      
+                     </div>
+                                   
+                     <div class="form-group">
+                                        <input type="text" name="Postal Code" placeholder=" " required />
+                                        <label>Postal Code</label>
+                                      
+                     </div>
+                                   
+                     <div class="step-nav">
+                                        
+                        <p class="submit-note">
+                                              By clicking "Request Care Consultation," you agree to our
+                                              <a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
+                                          
+                        </p>
+                                       <button type="submit" class="btn-submit">Request Care Consultation</button>
+                                     
+                     </div>
+                                 
+                  </div>
+                              
+                              <!-- Success message -->
+                              
+                  <div class="form-step" id="successStep">
+                                   
+                     <div class="success-message">
+                                        
+                        <svg class="success-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                             
+                           <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                             
+                           <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                           
+                        </svg>
+                                        
+                        <h2>Thank You!</h2>
+                                        
+                        <p>Your care consultation request has been received. A member of our team will contact you within 24 hours to discuss your needs and answer any questions.</p>
+                                        
+                        <p style="margin-top: 1rem;"><strong>Need immediate assistance?</strong><br>Call us at <a href="tel:9029791445" style="color: var(--dark_two);">(902) 979-1445</a></p>
+                                        <a href="index.html" class="cta-button2" style="margin-top: 2rem;">Know more about us</a>
+                                      
+                     </div>
+                                 
+                  </div>
+                          
+               </div>
+                     
+            </form>
+                
+         </div>
+           
+      </div>
+        <script>
+             const form = document.getElementById('careRequestFormPage');
+             const steps = document.querySelectorAll('.form-step');
+             const stepDots = document.querySelectorAll('.step-dot');
+             const formStepsWrapper = document.querySelector('.form-steps-wrapper');
+         
+             let currentStep = 1;
+             let careForValue = '';
+             let selectedNeeds = [];
+             let isAnimating = false;
+             const animationDuration = 600; 
+         
+             function setWrapperHeight() {
+                 const activeStep = document.querySelector('.form-step.active');
+                 if (activeStep) {
+                     formStepsWrapper.style.height = activeStep.offsetHeight + 'px';
+                 }
+             }
+         
+             function goToStep(stepNum) {
+                 if (isAnimating) return;
+         
+                 const isSuccess = stepNum === 'success';
+                 const newStepEl = isSuccess ? document.getElementById('successStep') : document.querySelector(`.form-step[data-step="${stepNum}"]`);
+                 const currentStepEl = document.querySelector('.form-step.active');
+                 
+                 if (!newStepEl || newStepEl === currentStepEl) return;
+                 
+                 if (isSuccess) {
+                     document.querySelector('.care-form-header').style.display = 'none';
+                     document.querySelector('.step-indicator').style.display = 'none';
+                 }
+         
+                 isAnimating = true;
+                 const currentStepNum = currentStepEl ? parseInt(currentStepEl.dataset.step || 0) : 0;
+                 const isForward = isSuccess || stepNum > currentStepNum;
+                 
+                 newStepEl.style.display = 'block';
+                 const newHeight = newStepEl.offsetHeight;
+                 newStepEl.style.display = '';
+                 
+                 formStepsWrapper.style.height = newHeight + 'px';
+                 
+                 const outClass = isForward ? 'animate-out-left' : 'animate-out-right';
+                 const inClass = isForward ? 'animate-in-right' : 'animate-in-left';
+         
+                 if(currentStepEl) {
+                   currentStepEl.style.position = 'absolute';
+                   currentStepEl.style.top = '0';
+                   currentStepEl.style.left = '0';
+                   currentStepEl.classList.add(outClass);
+                   currentStepEl.classList.remove('active');
+                 }
+                 
+                 newStepEl.classList.add(inClass);
+                 newStepEl.classList.add('active');
+         
+                 setTimeout(() => {
+                     if(currentStepEl) {
+                         currentStepEl.classList.remove(outClass);
+                         currentStepEl.style.position = '';
+                         currentStepEl.style.top = '';
+                         currentStepEl.style.left = '';
+                     }
+                     
+                     newStepEl.classList.remove(inClass);
+                     
+                     if (!isSuccess) {
+                         currentStep = stepNum;
+                     }
+                     
+                     updateStepIndicator();
+                     isAnimating = false;
+                 }, animationDuration);
+             }
+         
+             function updateStepIndicator() {
+                 stepDots.forEach((dot, index) => {
+                     dot.classList.toggle('active', index + 1 === currentStep);
+                 });
+             }
+         
+             const careOptions = document.querySelectorAll('.care-option-card');
+             const careForInput = document.getElementById('careForInput');
+         
+             careOptions.forEach(option => {
+               option.addEventListener('click', () => {
+                 careOptions.forEach(opt => opt.classList.remove('selected'));
+                 option.classList.add('selected');
+                 careForValue = option.getAttribute('data-value');
+                 careForInput.value = careForValue;
+                 goToStep(2);
+               });
+             });
+         
+             const needCards = document.querySelectorAll('.need-checkbox-card');
+             const step2Next = document.getElementById('step2Next');
+             const step2Back = document.getElementById('step2Back');
+         
+             needCards.forEach(card => {
+               card.addEventListener('click', () => {
+                 const checkbox = card.querySelector('input[type="checkbox"]');
+                 checkbox.checked = !checkbox.checked;
+                 card.classList.toggle('checked', checkbox.checked);
+                 updateSelectedNeeds();
+               });
+             });
+         
+             function updateSelectedNeeds() {
+               selectedNeeds = Array.from(document.querySelectorAll('.need-checkbox-card input:checked')).map(cb => cb.value);
+               step2Next.disabled = selectedNeeds.length === 0;
+             }
+         
+             step2Next.addEventListener('click', () => goToStep(3));
+             step2Back.addEventListener('click', () => goToStep(1));
+         
+             const step3Back = document.getElementById('step3Back');
+             step3Back.addEventListener('click', () => goToStep(2));
+         
+             const scriptURL = 'https://script.google.com/macros/s/AKfycbzVPGA41BE0LRNEqB-_CbdmZVlRjRrSg5Zmqk-nlS68CaUTtz2PTKMdo0arZ4zHNWU4/exec';
+             form.addEventListener('submit', (e) => {
+               e.preventDefault();
+               goToStep('success');
+         
+               const data = {
+                 formType: 'consultation',
+                 'Care For': careForValue,
+                 'Care Needs': selectedNeeds.join(' | '),
+                 'First Name': form.querySelector('[name="First Name"]').value,
+                 'Last Name': form.querySelector('[name="Last Name"]').value,
+                 'Phone Number': form.querySelector('[name="Phone Number"]').value,
+                 'Email': form.querySelector('[name="Email"]').value,
+                 'Postal Code': form.querySelector('[name="Postal Code"]').value,
+               };
+         
+               fetch(scriptURL, {
+                 method: 'POST',
+                 headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                 body: JSON.stringify(data),
+               }).then(() => console.log('Form data sent in background.'))
+               .catch(error => console.error('Error sending form data in background:', error));
+             });
+             
+             document.addEventListener('DOMContentLoaded', () => {
+                 setWrapperHeight();
+                 window.addEventListener('resize', setWrapperHeight);
+             });
+           
+      </script>
+   </body>
+</html>
