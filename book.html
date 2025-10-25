@@ -698,6 +698,23 @@
                });
              });
          
+             const needCards = document.querySelectorAll('.need-checkbox-card');
+             const step2Next = document.getElementById('step2Next');
+             const step2Back = document.getElementById('step2Back');
+         
+             needCards.forEach(card => {
+               card.addEventListener('click', () => {
+                 const checkbox = card.querySelector('input[type="checkbox"]');
+                 checkbox.checked = !checkbox.checked;
+                 card.classList.toggle('checked', checkbox.checked);
+                 updateSelectedNeeds();
+               });
+             });
+         
+             function updateSelectedNeeds() {
+               selectedNeeds = Array.from(document.querySelectorAll('.need-checkbox-card input:checked')).map(cb => cb.value);
+               step2Next.disabled = selectedNeeds.length === 0;
+             }
          
              step2Next.addEventListener('click', () => goToStep(3));
              step2Back.addEventListener('click', () => goToStep(1));
