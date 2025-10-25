@@ -30,14 +30,6 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--light_four);
   overflow-x: hidden;
-  background-image: linear-gradient(
-      to bottom,
-      rgba(245, 250, 255, 1) 0%,
-      rgba(245, 250, 255, 1) 5vh,
-      rgba(245, 250, 255, 0.2) 250vh,
-      rgba(245, 250, 255, 0) 100%
-    ),
-    url("images/image.webp");
   background-position: center;
   background-size: contain;
 }
@@ -2381,3 +2373,4 @@ footer.leaf-footer {
     font-size: 1rem;
   }
 }
+
