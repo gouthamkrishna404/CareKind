@@ -115,6 +115,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
   document
+    .getElementById("popupGetStarted")
+    .addEventListener("click", (e) => {
+      e.preventDefault();
+      slidePanel.classList.add("open");
+      overlay.classList.add("active");
+      goToStep("careForm");
+    });
+  document
     .getElementById("footerCareAdultBtn")
     .addEventListener("click", (e) => {
       e.preventDefault();
@@ -200,45 +208,49 @@ document.addEventListener("DOMContentLoaded", () => {
   updateMenuDisplay();
 });
 
-const scriptURL =
-  "https://script.google.com/macros/s/AKfycbzVPGA41BE0LRNEqB-_CbdmZVlRjRrSg5Zmqk-nlS68CaUTtz2PTKMdo0arZ4zHNWU4/exec";
+const scriptURL = 'https://script.google.com/macros/s/AKfycbznNTKGjvHBfewbyYEZaCYwZsWnyb_MPO9KP2El5fzePhSRuPGnYmNHON43P8lZ7Voe/exec';
+
 let careFor = "";
 
+// -------------------- Care For buttons --------------------
 document.querySelectorAll("#careForm .option-btn").forEach((button) => {
   button.addEventListener("click", () => {
-    careFor = button.getAttribute("name");
+    careFor = button.getAttribute("name") || '';
   });
 });
 
+// -------------------- Job Form --------------------
 const jobForm = document.getElementById("jobFormFields");
 if (jobForm) {
-  jobForm.addEventListener("submit", function (e) {
+  jobForm.addEventListener("submit", (e) => {
     e.preventDefault();
     submitForm(jobForm);
   });
 }
 
+// -------------------- Care Request Form --------------------
 const careForm = document.getElementById("careRequestForm");
 if (careForm) {
-  careForm.addEventListener("submit", function (e) {
+  careForm.addEventListener("submit", (e) => {
     e.preventDefault();
     submitForm(careForm, true);
   });
 }
 
+// -------------------- Submit Form Function --------------------
 function submitForm(form, includeExtra = false) {
   const formData = new FormData(form);
   const data = {};
-  goToStep("step1");
-  closeModal();
 
+  // Go to first step and close modal if functions exist
+  if (typeof goToStep === "function") goToStep("step1");
+  if (typeof closeModal === "function") closeModal();
+
+  // Add normal form fields
   formData.forEach((value, key) => {
     if (data[key]) {
-      if (Array.isArray(data[key])) {
-        data[key].push(value);
-      } else {
-        data[key] = [data[key], value];
-      }
+      if (Array.isArray(data[key])) data[key].push(value);
+      else data[key] = [data[key], value];
     } else {
       data[key] = value;
     }
@@ -247,32 +259,34 @@ function submitForm(form, includeExtra = false) {
   if (includeExtra) {
     data["formType"] = "consultation";
     data["Care For"] = careFor;
-    const needs = [];
-    document
-      .querySelectorAll("#careNeeds input[type='checkbox']:checked")
-      .forEach((cb) => {
-        const label = cb.parentElement.textContent.trim();
-        needs.push(label);
-      });
-    data["Care Needs"] = needs.join(" | ");
+
+    // ✅ Capture Care Needs
+    const checkedNeeds = Array.from(document.querySelectorAll('#careNeeds input[type="checkbox"]:checked'))
+      .map(cb => cb.name);
+    data["Care Needs"] = checkedNeeds.join(" | ");
+
+    // ✅ Capture Preferred Time
+    const preferredTime = form.querySelector("input[name='Preferred Time']");
+    if (preferredTime && preferredTime.value) data["Preferred Time"] = preferredTime.value;
+
+    // ✅ Capture Preferred Contact
+    const preferredContact = form.querySelector("input[name='Preferred Contact']:checked");
+    if (preferredContact && preferredContact.value) data["Preferred Contact"] = preferredContact.value;
+
   } else {
     data["formType"] = "job";
   }
 
+  // -------------------- Send Data to Google Script --------------------
   fetch(scriptURL, {
     method: "POST",
-    headers: {
-      "Content-Type": "text/plain;charset=utf-8",
-    },
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
     body: JSON.stringify(data),
-  })
-    .then(() => {
-      form.reset();
-    })
-    .catch(() => {
-      form.reset();
-    });
+  }).finally(() => {
+    form.reset();
+  });
 }
+
 
 function goToStep(stepId) {
   const steps = document.querySelectorAll(".step");
@@ -398,7 +412,6 @@ function cloneCardsForLoop() {
     track.appendChild(clone);
   }
 }
-
 function init() {
   cloneCardsForLoop();
   if (window.innerWidth > 1024) {
@@ -413,4 +426,159 @@ function init() {
   startAutoSlide();
 }
 
+    // FAQ Accordion functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const faqItems = document.querySelectorAll('.faq-item');
+      
+      faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+          const isActive = item.classList.contains('active');
+          
+          // Close all FAQ items
+          faqItems.forEach(faq => {
+            faq.classList.remove('active');
+          });
+          
+          // Open clicked item if it wasn't active
+          if (!isActive) {
+            item.classList.add('active');
+          }
+        });
+      });
+
+      // Popup functionality
+      const popupOverlay = document.getElementById('popupOverlay');
+      const popupClose = document.getElementById('popupClose');
+      const popupGetStarted = document.getElementById('popupGetStarted');
+      let popupShown = false;
+
+      // Check if popup was already shown in this session
+      const popupShownSession = sessionStorage.getItem('popupShown');
+
+      // Show popup after 12 seconds or on scroll
+      if (!popupShownSession) {
+        // Timer-based trigger
+        setTimeout(() => {
+          if (!popupShown) {
+            showPopup();
+          }
+        }, 8000);
+
+        // Scroll-based trigger
+        let scrollThreshold = false;
+        window.addEventListener('scroll', () => {
+          if (!scrollThreshold && window.scrollY > 800 && !popupShown) {
+            scrollThreshold = true;
+            setTimeout(() => {
+              if (!popupShown) {
+                showPopup();
+              }
+            }, 2000);
+          }
+        });
+      }
+
+      function showPopup() {
+        popupOverlay.classList.add('show');
+        popupShown = true;
+        sessionStorage.setItem('popupShown', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function hidePopup() {
+        popupOverlay.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+
+      // Close popup on X button
+      popupClose.addEventListener('click', hidePopup);
+
+      // Close popup on overlay click
+      popupOverlay.addEventListener('click', (e) => {
+        if (e.target === popupOverlay) {
+          hidePopup();
+        }
+      });
+
+      // Close popup when clicking "Book Free Consultation"
+      popupGetStarted.addEventListener('click', hidePopup);
+
+      // Close popup on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && popupOverlay.classList.contains('show')) {
+          hidePopup();
+        }
+      });
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const href = this.getAttribute('href');
+          if (href !== '#' && href !== '#home') {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+              target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          }
+        });
+      });
+    });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const gridContainer = document.querySelector(".grid-container");
+  if (!gridContainer) return;
+  const sphereIndicator = document.createElement("div");
+  sphereIndicator.className = "carousel-sphere-indicator";
+  gridContainer.parentElement.insertAdjacentElement("afterend", sphereIndicator);
+  let scrollInterval;
+  let isScrolling = false;
+  function autoScroll() {
+    if (!gridContainer || isScrolling) return;
+    const scrollAmount = 360;
+    const maxScroll = gridContainer.scrollWidth - gridContainer.clientWidth;
+
+    if (gridContainer.scrollLeft >= maxScroll - 10) {
+      gridContainer.scrollTo({
+        left: 0,
+        behavior: "smooth",
+      });
+    } else {
+      // Scroll to next card
+      gridContainer.scrollBy({
+        left: scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  }
+  function startAutoScroll() {
+    if (scrollInterval) return;
+    scrollInterval = setInterval(autoScroll, 4000);
+  }
+  startAutoScroll();
+});
+
+document.querySelectorAll('#careRequest label.care-option-card input[type="radio"]').forEach(r => {
+      const card = r.parentElement;
+      card.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const name = r.getAttribute('name');
+        document.querySelectorAll(`#careRequest input[type="radio"][name="${name}"]`).forEach(inp => inp.parentElement.classList.remove('selected'));
+        r.checked = true;
+        card.classList.add('selected');
+      });
+    });
+
+setTimeout(() => {
+    document.getElementById('popup').classList.add('show');
+  }, 15000); // show popup after 15 seconds
+
 window.onload = init;
+
+
