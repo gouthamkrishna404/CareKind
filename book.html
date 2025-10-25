@@ -185,11 +185,30 @@
                gap: 1rem;
                margin: 2rem 0;
              }
+             /* Step 4 layout fixes */
+             .contact-method-section,
+             .availability-section {
+               display: block;
+               width: 95%;
+             }
+             .contact-method-section .care-option-grid {
+               grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+               gap: 1rem;
+             }
+             .availability-grid {
+               display: grid;
+               grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+               gap: 1rem;
+               width: 100%;
+             }
+             .form-step[data-step="4"] .form-group { margin-bottom: 0.75rem; }
+             .form-step[data-step="4"] .form-group > label { display: block; }
+             .form-step[data-step="4"] input[type="time"] { width: 100%; }
              .need-checkbox-card {
                display: flex;
                align-items: center;
                gap: 1rem;
-               padding: 1.5rem;
+               padding: 1rem;
                background-color: var(--light_six);
                border-radius: 12px;
                cursor: pointer;
@@ -514,20 +533,44 @@
                                         <label>Postal Code</label>
                                       
                      </div>
+
+                     <div class="contact-method-section">
+                        <label style="display:block; margin-bottom:0.5rem; color: var(--dark_two); font-weight:600;">Preferred contact method</label>
+                        <div class="care-option-grid" style="margin-top:0.5rem;">
+                           <label class="care-option-card" style="cursor:pointer;">
+                              <input type="radio" name="Preferred Contact" value="Call" style="display:none;" required>
+                              <h3>Call</h3>
+                           </label>
+                           <label class="care-option-card" style="cursor:pointer;">
+                              <input type="radio" name="Preferred Contact" value="Email" style="display:none;" required>
+                              <h3>Email</h3>
+                           </label>
+                           <label class="care-option-card" style="cursor:pointer;">
+                              <input type="radio" name="Preferred Contact" value="Message" style="display:none;" required>
+                              <h3>Message</h3>
+                           </label>
+                        </div>
+                     </div>
+                     <div class="availability-section">
+                        <label style="display:block; margin-bottom:0.5rem; color: var(--dark_two); font-weight:600;">What time works best for a free care consultation?</label>
+                        <div class="availability-grid">
+                           <div class="form-group">
+                              <input type="time" name="Preferred Time" placeholder=" " required />
+                           </div>
+                        </div>
+                     </div>
                                    
                      <div class="step-nav">
-                                        
                         <p class="submit-note">
-                                              By clicking "Request Care Consultation," you agree to our
-                                              <a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
-                                          
+                          By clicking "Request Care Consultation," you agree to our
+                          <a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
                         </p>
-                                       <button type="submit" class="btn-submit">Request Care Consultation</button>
-                                     
+                        <button type="submit" class="btn-submit">Request Care Consultation</button>
                      </div>
                                  
                   </div>
                               
+                                                            
                               <!-- Success message -->
                               
                   <div class="form-step" id="successStep">
@@ -642,7 +685,7 @@
                  });
              }
          
-             const careOptions = document.querySelectorAll('.care-option-card');
+             const careOptions = document.querySelectorAll('.form-step[data-step="1"] .care-option-card');
              const careForInput = document.getElementById('careForInput');
          
              careOptions.forEach(option => {
@@ -655,52 +698,50 @@
                });
              });
          
-             const needCards = document.querySelectorAll('.need-checkbox-card');
-             const step2Next = document.getElementById('step2Next');
-             const step2Back = document.getElementById('step2Back');
-         
-             needCards.forEach(card => {
-               card.addEventListener('click', () => {
-                 const checkbox = card.querySelector('input[type="checkbox"]');
-                 checkbox.checked = !checkbox.checked;
-                 card.classList.toggle('checked', checkbox.checked);
-                 updateSelectedNeeds();
-               });
-             });
-         
-             function updateSelectedNeeds() {
-               selectedNeeds = Array.from(document.querySelectorAll('.need-checkbox-card input:checked')).map(cb => cb.value);
-               step2Next.disabled = selectedNeeds.length === 0;
-             }
          
              step2Next.addEventListener('click', () => goToStep(3));
              step2Back.addEventListener('click', () => goToStep(1));
-         
+             
              const step3Back = document.getElementById('step3Back');
              step3Back.addEventListener('click', () => goToStep(2));
-         
-             const scriptURL = 'https://script.google.com/macros/s/AKfycbzVPGA41BE0LRNEqB-_CbdmZVlRjRrSg5Zmqk-nlS68CaUTtz2PTKMdo0arZ4zHNWU4/exec';
+             
+             // Toggle selected state on contact method cards in Step 3 only
+             document.querySelectorAll('.form-step[data-step="3"] label.care-option-card input[type="radio"]').forEach(r => {
+               const card = r.parentElement;
+               card.addEventListener('click', (e) => {
+                 e.preventDefault();
+                 e.stopPropagation();
+                 const name = r.getAttribute('name');
+                 document.querySelectorAll(`.form-step[data-step="3"] input[type="radio"][name="${name}"]`).forEach(inp => inp.parentElement.classList.remove('selected'));
+                 r.checked = true;
+                 card.classList.add('selected');
+               });
+             });
+             
+             const scriptURL = 'https://script.google.com/macros/s/AKfycbznNTKGjvHBfewbyYEZaCYwZsWnyb_MPO9KP2El5fzePhSRuPGnYmNHON43P8lZ7Voe/exec';
              form.addEventListener('submit', (e) => {
-               e.preventDefault();
-               goToStep('success');
-         
-               const data = {
-                 formType: 'consultation',
-                 'Care For': careForValue,
-                 'Care Needs': selectedNeeds.join(' | '),
-                 'First Name': form.querySelector('[name="First Name"]').value,
-                 'Last Name': form.querySelector('[name="Last Name"]').value,
-                 'Phone Number': form.querySelector('[name="Phone Number"]').value,
-                 'Email': form.querySelector('[name="Email"]').value,
-                 'Postal Code': form.querySelector('[name="Postal Code"]').value,
-               };
-         
-               fetch(scriptURL, {
-                 method: 'POST',
-                 headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                 body: JSON.stringify(data),
-               }).then(() => console.log('Form data sent in background.'))
-               .catch(error => console.error('Error sending form data in background:', error));
+             e.preventDefault();
+             goToStep('success');
+             
+             const data = {
+             formType: 'consultation',
+             'Care For': careForValue,
+             'Care Needs': selectedNeeds.join(' | '),
+             'First Name': form.querySelector('[name="First Name"]').value,
+             'Last Name': form.querySelector('[name="Last Name"]').value,
+             'Phone Number': form.querySelector('[name="Phone Number"]').value,
+             'Email': form.querySelector('[name="Email"]').value,
+             'Postal Code': form.querySelector('[name="Postal Code"]').value,
+             'Preferred Contact': (form.querySelector('input[name="Preferred Contact"]:checked')||{}).value || '',
+             'Preferred Time': form.querySelector('[name="Preferred Time"]').value,
+             };
+             
+             fetch(scriptURL, {
+             method: 'POST',
+             headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+             body: JSON.stringify(data),
+             }).then(() => console.log('Form data sent in background.'))
+             .catch(error => console.error('Error sending form data in background:', error));
              });
              
              document.addEventListener('DOMContentLoaded', () => {
