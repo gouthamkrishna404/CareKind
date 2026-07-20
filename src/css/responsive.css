@@ -1,0 +1,598 @@
+@media (min-width: 1250px) {
+  .consult-step:not(:last-child)::after {
+    width: 200px;
+    height: 3px;
+    bottom: -41px;
+    left: calc(50% + 40px);
+    transform: none;
+    background: linear-gradient(to right, var(--light_ten), var(--light_eight));
+  }
+  .popup-modal {
+    padding: 2rem 1.5rem;
+  }
+  .popup-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .popup-content h3 {
+    font-size: 1.5rem;
+  }
+
+  .popup-content p {
+    font-size: 1rem;
+  }
+
+
+  .consult-step:nth-child(even):not(:last-child)::after {
+    left: calc(50% - 240px);
+    background: linear-gradient(to left, var(--light_ten), var(--light_eight));
+  }
+
+  .consult-step:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 60px;
+    background: linear-gradient(
+      to bottom,
+      var(--light_eight),
+      var(--light_ten)
+    );
+    bottom: -70px;
+    z-index: 5;
+  }
+
+  .consult-step:nth-child(odd):not(:last-child)::before {
+    right: 120px;
+  }
+
+  .consult-step:nth-child(even):not(:last-child)::before {
+    left: 120px;
+  }
+}
+
+@media (max-width: 1250px) {
+  body {
+    background-image: none;
+  }
+  .hide-mobile {
+    display: none;
+  }
+
+  .faq-section h2 {
+    font-size: 2rem;
+  }
+
+  .faq-question {
+    font-size: 1rem;
+    padding: 1.25rem 3.5rem 1.25rem 1.25rem;
+  }
+
+  .titlee{
+    text-align: center;
+  }
+  nav {
+    position: sticky;
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .nav-call,
+  nav .get-started-btn {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .dropdown-content {
+    position: static;
+    box-shadow: none;
+    border-radius: 0;
+    background-color: transparent;
+    padding-left: 0;
+  }
+
+  .dropdown-content a {
+    background-color: transparent;
+    font-size: 18px;
+  }
+
+  .dropdown-content a:hover {
+    background-color: var(--dark_six);
+    color: var(--light_two);
+  }
+
+  .dropbtn {
+    width: 100%;
+    justify-content: space-between;
+    font-size: 20px;
+    padding: 12px 18px;
+  }
+
+  .why-choose-carekind .intro {
+    max-width: 90%;
+  }
+
+  .grid-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 1.5rem;
+    scroll-behavior: smooth;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .grid-item {
+    flex: 0 0 calc(100% - 2rem);
+    min-width: 280px;
+    max-width: 350px;
+    background: #ffffff;
+  }
+
+  .arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .dropdown.open > .dropbtn > .arrow {
+    transform: rotate(180deg);
+  }
+
+  .container.menu-open > .brand {
+    opacity: 0;
+    pointer-events: none;
+    width: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease;
+  }
+
+  .container.menu-open > nav {
+    display: flex;
+  }
+
+  .contact-bar {
+    display: block;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .mobile-get-started-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--dark_one);
+    padding: 12px 0;
+    justify-content: center;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+  }
+
+  .mobile-get-started-bar .get-started-btn {
+    width: 80%;
+  }
+
+  #slidePanel {
+    right: -3000px;
+    bottom: 20px;
+    width: calc(100% - 40px);
+    margin: 0 auto;
+  }
+
+  .leaf-footer {
+    padding-bottom: 50px;
+  }
+
+  .home-care-text h2 {
+    margin-top: 10px;
+  }
+  .contact-btn-container {
+    margin-bottom: 10px;
+  }
+  .grid-container {
+    grid-template-columns: 1fr;
+    width: 100%;
+    margin: 0 auto 30px;
+  }
+
+  .hero {
+    flex-direction: column;
+    height: auto;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    justify-content: flex-start;
+    gap: 2rem;
+  }
+
+  .hero-images {
+    width: 100%;
+    position: relative;
+    height: auto;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    order: 1;
+  }
+
+  .img-wrapper {
+    position: relative;
+    width: 80% !important;
+    max-width: 300px;
+    margin: 0 auto;
+    top: 0 !important;
+    left: auto !important;
+    transition: none;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15),
+                0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .img1-wrapper {
+    margin-right: -70px;
+    z-index: 3;
+  }
+
+  .img2-wrapper {
+    margin: 0 -60px 0 10px;
+    top: 40px !important;
+    position: relative;
+    z-index: 2;
+  }
+
+  .img3-wrapper {
+    margin-left: 20px;
+    width: 190px !important;
+    top: -30px !important;
+    z-index: 1;
+  }
+
+  .hero-text {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    order: 2;
+    padding: 1.5rem 1rem;
+  }
+
+  .services-hero-page .hero-text p {
+    margin: 0 auto;
+  }
+
+  .hero-text .headline {
+    font-size: 3rem;
+  }
+
+  .hero-text .subtext {
+    font-size: 1.1rem;
+  }
+
+  .bubble-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.1rem;
+  }
+
+  .bubble-grid .bubble {
+    grid-column: span 1 !important;
+    margin: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .home-care-container {
+    flex-direction: column;
+    width: 90%;
+    padding: 0.5rem;
+    gap: 1.5rem;
+    text-align: center;
+    margin: 1rem auto 2rem auto;
+    background: #ffffff;
+  }
+
+  .home-care-text,
+  .phone-number,
+  .score-call-to-action {
+    text-align: center;
+  }
+
+  .score-column2 {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .score-left,
+  .score-right {
+    display: flex;
+    flex: 1 1 100%;
+    min-width: 0;
+    justify-content: center;
+  }
+
+  .score-right {
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .bubble {
+    height: 90px;
+    width: 100px;
+    font-size: 1rem;
+  }
+
+  .container2 {
+    max-width: 98%;
+    text-align: left;
+  }
+
+  h2 {
+    text-align: left;
+  }
+
+  .home-care-text h2, .why-choose-carekind h2 {
+    text-align: center;
+  }
+
+  .score-call-to-action {
+    justify-self: left;
+  }
+
+  .testimonial-card {
+    flex: 0 0 calc(100% - 2rem);
+    margin: 0 1rem;
+    background: #ffffff;
+  }
+
+  .arrow-btn {
+    display: none !important;
+  }
+
+  .cta-button2 {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .phone-number {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .contact-btn {
+    width: 100%;
+    font-size: 1rem;
+    text-align: center;
+  }
+  .services-hero-page {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0rem 1rem;
+  }
+
+  .services-hero-page img {
+    display: none;
+  }
+
+  .services-hero-page .hero-image {
+    display: block;
+    order: -1;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 1rem;
+  }
+
+  .services-hero-page .hero-text {
+    padding: 0;
+    text-align: center;
+    max-width: 75%;
+  }
+
+  .service-block-page {
+    flex-direction: column;
+    background: #ffffff;
+    align-items: center;
+    padding: 0;
+    gap: 1rem;
+    width: 70%;
+  }
+
+  .service-block-page .service-image {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .service-block-page .service-image img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 0;
+    display: block;
+  }
+
+  .service-block-page .service-text {
+    padding: 1rem;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .service-block-page .service-text h3 {
+    font-size: 1.6rem;
+    text-align: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .service-block-page .service-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: justify;
+    margin-bottom: 1rem;
+    hyphens: auto;
+  }
+  .info-split-section,
+  .info-split-section-reverse {
+    flex-direction: column;
+    align-items: center;
+    hyphens: auto;
+    max-width: 75%;
+    padding: 1rem 2rem;
+  }
+
+  .info-text {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .consult-step {
+    flex-direction: column !important;
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .consult-step:nth-child(even) {
+    flex-direction: column !important;
+  }
+
+  .step-number {
+    width: 80px;
+    height: 80px;
+    font-size: 1.8rem;
+  }
+
+  .step-content {
+    padding: 25px;
+  }
+
+  .step-content h3 {
+    font-size: 1.2rem;
+  }
+
+  .consult-step:not(:last-child)::after {
+    left: 50%;
+    transform: translateX(-50%);
+    height: 40px;
+    bottom: -50px;
+  }
+
+  .consult-step:not(:last-child)::before {
+    display: none;
+  }
+
+  .herotext2 h1 {
+    font-size: 2rem;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .benefit-card {
+    padding: 1.5rem;
+    background: #ffffff;
+  }
+}
+
+@keyframes float-left {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(1deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes float-right {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(-1deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes float-above {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.float-left {
+  animation: float-left 10s ease-in-out infinite;
+}
+.float-right {
+  animation: float-right 10s ease-in-out infinite;
+}
+.float-above {
+  animation: float-above 10s ease-in-out infinite;
+}
+
+@media (max-width: 400px) {
+  body {
+    font-size: 14px;
+  }
+
+  section {
+    padding: 1.5rem 1rem;
+  }
+
+  .navbar {
+    padding: 12px 15px;
+  }
+
+  .brand {
+    margin-bottom: 10px;
+  }
+  .dropbtn,
+  .call-button {
+    font-size: 15px;
+    padding: 8px 10px;
+  }
+  
+  .call-button {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 5px;
+  }
+  #slidePanel {
+    width: calc(100% - 20px);
+    right: -100%;
+    top: 10px;
+    bottom: 10px;
+    padding: 20px 15px;
+  }
+
+  #slidePanel.open {
+    right: 10px;
+  }
+
+  .question,
+  .question2 {
+    font-size: 1.2rem;
+  }
+  .option-btn {
+    padding: 12px;
+    font-size: 1rem;
+  }
+}

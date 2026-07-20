@@ -1,0 +1,13 @@
+{
+  "name": "carekind-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CareKind homecare services marketing site (static HTML/CSS/JS, built from src/ to the repo root for GitHub Pages).",
+  "scripts": {
+    "build": "node build/build.js",
+    "watch": "node build/build.js --watch"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0"
+  }
+}

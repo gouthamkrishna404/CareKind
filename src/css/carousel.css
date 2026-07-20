@@ -1,0 +1,131 @@
+.testimonials-section {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  position: relative;
+  background-color: transparent;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.testimonial-title {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--dark_one);
+  margin-bottom: 2rem;
+}
+
+.carousel-wrapper {
+  position: relative;
+  padding: 0 2rem;
+}
+
+.testimonial-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.testimonial-track {
+  display: flex;
+  transition: transform 0.6s ease;
+  will-change: transform;
+}
+
+.titlee{
+    text-align: left;
+}
+
+.testimonial-card {
+  flex: 0 0 calc(33.333% - 2rem);
+  min-width: 0;
+  background-color: var(--light_one);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  margin: 0 1rem;
+  padding: 1.5rem;
+  color: var(--dark_one);
+  text-align: left;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.review-header img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 0.75rem;
+}
+
+.reviewer-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.reviewer-name {
+  font-weight: bold;
+  color: var(--dark_two);
+}
+
+.stars {
+  color: var(--light_eleven);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+}
+
+.review-text {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0.5rem 0 1rem;
+}
+
+.google-link {
+  font-size: 0.85rem;
+  color: var(--dark_two);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.google-link:hover {
+  text-decoration: underline;
+}
+
+.arrow-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--light_one);
+  border: 2px solid var(--dark_one);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  color: var(--dark_one);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  transition: background-color 0.3s, color 0.3s;
+  z-index: 10;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+}
+
+.arrow-btn:hover {
+  background-color: var(--dark_one);
+  color: white;
+}
+
+.arrow-left {
+  left: -60px;
+}
+
+.arrow-right {
+  right: -60px;
+}
+

@@ -1,0 +1,159 @@
+.home-care-container {
+  background: white;
+  width: 55%;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(11, 45, 102, 0.15);
+  padding: 2rem 3rem;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  background-color: var(--light_one);
+  border: 1px solid var(--light_one);
+  margin: 3rem auto;
+}
+
+.home-care-text {
+  flex: 1;
+  text-align: left;
+}
+
+.home-care-text h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: var(--dark_two);
+}
+
+.home-care-text p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--dark_one);
+  margin: 0 0 1rem 0;
+}
+
+.contact-info {
+  margin-top: 1rem;
+}
+
+.phone-number {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+  color: var(--dark_one);
+  margin: 0;
+}
+
+.phone-number a {
+  color: var(--dark_two);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.phone-number a:hover {
+  color: var(--dark_three);
+  text-decoration: underline;
+}
+
+.phone-icon {
+  display: absolute;
+  align-items: center;
+  margin-right: 10px;
+  margin-top: 20px;
+  color: var(--light_five);
+}
+
+.contact-btn-container {
+  flex-shrink: 0;
+}
+
+.contact-btn {
+  background-color: var(--light_five);
+  color: white;
+  font-weight: 700;
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  user-select: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1.15rem;
+  box-shadow: 0 3px 8px rgba(245, 166, 35, 0.5);
+  display: inline-block;
+}
+
+.contact-btn:hover,
+.contact-btn:focus {
+  background-color: var(--dark_three);
+  outline: none;
+  box-shadow: 0 5px 15px rgba(211, 84, 0, 0.7);
+}
+
+footer.leaf-footer {
+  background-image: url("images/footer.png");
+  background-size: contain;
+  padding: 4rem 2rem 2rem;
+  color: #e0ecff;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.left-footer {
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.question3 {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.right-footer {
+  flex: 1 1 300px;
+}
+
+.right-footer h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.right-footer p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.standard-footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+}
+
+.standard-footer p {
+  font-size: 0.9rem;
+  color: #999;
+}
+
+.leaf {
+  position: absolute;
+  pointer-events: none;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  z-index: 2000;
+}
+
+#page-content {
+  position: relative;
+  overflow: hidden;
+}
+

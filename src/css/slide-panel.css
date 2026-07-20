@@ -1,0 +1,263 @@
+#slidePanel {
+  position: fixed;
+  top: 20px;
+  right: -500px;
+  bottom: 20px;
+  width: 480px;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 25px 20px;
+  transition: right 0.3s ease;
+  z-index: 1001;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#slidePanel.open {
+  right: 20px;
+}
+
+.slide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#closeSlide {
+  position: absolute;
+  top: 8px;
+  right: 20px;
+  font-size: 35px;
+  font-weight: bold;
+  color: #333;
+  background: none;
+  border: none;
+  z-index: 1002;
+}
+
+.close-slide {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #333;
+  z-index: 10;
+}
+
+.back-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.back-arrow {
+  top: 25px;
+  width: 22px;
+  height: 22px;
+  left: 20px;
+  text-decoration: none;
+  z-index: 1002;
+}
+
+.step {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  opacity: 0;
+}
+
+.step.active {
+  display: block;
+  opacity: 1;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.3s forwards;
+}
+
+.slide-out-left {
+  animation: slideOutLeft 0.3s forwards;
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.3s forwards;
+}
+
+.slide-out-right {
+  animation: slideOutRight 0.3s forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.question {
+  padding-top: 70px;
+  padding-bottom: 20px;
+}
+
+.question2 {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.slide-content h2 {
+  font-size: 22px;
+  margin: 20px 0 20px;
+  color: var(--dark_one);
+}
+
+.option-btn {
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 16px 50px;
+  margin: 8px 0;
+  font-size: 18px;
+  background-color: var(--light_six);
+  color: var(--dark_one);
+  text-align: center;
+  text-decoration: none;
+  border-radius: 45px;
+  transition: background-color 0.2s ease;
+}
+
+.left-footer .option-btn {
+  background-color: var(--light_nine);
+}
+
+.option-btn:hover {
+  background-color: var(--dark_one);
+  color: var(--light_seven);
+}
+
+.option-btn .option-icon {
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+  margin-right: 20px;
+  transition: fill 0.3s ease, transform 0.3s ease;
+  position: relative;
+}
+
+.option-btn:hover .option-icon {
+  transform: scale(1.1);
+  fill: var(--light_eleven);
+}
+
+.option-btn .option-icon path {
+  transform-origin: center;
+}
+
+#next {
+  background-color: var(--dark_one);
+  color: var(--light_seven);
+}
+
+#next:hover {
+  background-color: var(--dark_two);
+}
+
+.mcq-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 16px 50px;
+  margin: 8px 0;
+  font-size: 18px;
+  background-color: var(--light_six);
+  color: var(--dark_one);
+  border-radius: 45px;
+  user-select: none;
+  border: 2px solid transparent;
+  gap: 10px;
+  transition: background-color 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease;
+  text-decoration: none;
+}
+
+.mcq-btn input[type="checkbox"] {
+  display: none;
+}
+
+.mcq-btn input[type="checkbox"]:checked + span {
+  background-color: var(--dark_four);
+  color: var(--light_seven);
+  padding: 0 2px;
+  border-radius: 45px;
+}
+
+.mcq-btn:hover {
+  background-color: var(--light_eight);
+  color: var(--dark_one);
+}
+
+.mcq-btn:has(input[type="checkbox"]:checked) {
+  background-color: var(--dark_four);
+  color: var(--light_seven);
+  border-color: var(--dark_four);
+}
+
+.mcq-btn .option-icon {
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+  margin-right: 10px;
+  transition: fill 0.3s ease, transform 0.3s ease;
+  position: relative;
+}
+
+.mcq-btn:hover .option-icon {
+  transform: scale(1.1);
+}
+
+.mcq-btn .option-icon path {
+  transform-origin: center;
+}
+

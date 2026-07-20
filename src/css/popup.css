@@ -1,0 +1,235 @@
+footer.leaf-footer {
+  background-color: var(--dark_six); /* footer background */
+  padding: 4rem 2rem 2rem;
+  color: #e0ecff;
+}
+
+.footer-inner2 {
+  background-color: var(--light_one); /* entire inner area white */
+  border-radius: 15px; /* rounded corners for the whole inner */
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  padding: 2rem 3rem; /* spacing inside white inner area */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 2rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1); /* subtle shadow for the inner container */
+  color: var(--dark_one); /* dark text inside white inner */
+  margin-top: 3rem;
+}
+
+.footer-inner2 .footer-column h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--dark_one);
+  font-weight: 600;
+}
+
+.footer-inner2 .footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-inner2 .footer-column ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-inner2 .footer-column ul li a {
+  color: var(--dark_two);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: 1rem;
+}
+
+.footer-inner2 .footer-column ul li a:hover {
+  color: var(--light_five);
+  text-decoration: underline;
+}
+
+.footer-inner2 .footer-contact {
+  color: var(--dark_two);
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.footer-inner2 .footer-contact a {
+  color: var(--dark_two);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-inner2 .footer-contact a:hover {
+  color: var(--light_five);
+  text-decoration: underline;
+}
+
+.footer-inner2 .social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.footer-inner2 .social-icon {
+  width: 40px;
+  height: 40px;
+  background-color: var(--dark_one);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: var(--light_one);
+}
+
+.footer-inner2 .social-icon:hover {
+  background-color: var(--light_five);
+  transform: scale(1.1);
+}
+
+.footer-inner2 .social-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+/* Popup Overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  animation: fadeIn 0.3s ease;
+}
+
+.popup-overlay.show {
+  display: flex;
+}
+
+/* Popup Modal */
+.popup-modal {
+  background: white;
+  border-radius: 20px;
+  max-width: 500px;
+  width: 90%;
+  padding: 2.5rem;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.4s ease;
+}
+
+/* Close Button */
+.popup-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--dark_six);
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.popup-close:hover {
+  background-color: var(--light_nine);
+  color: var(--dark_one);
+}
+
+/* Popup Content */
+.popup-content {
+  text-align: center;
+}
+
+.popup-icon {
+  width: 70px;
+  height: 70px;
+  fill: var(--light_five);
+  margin: 0 auto 1.5rem;
+  display: block;
+}
+
+.popup-content h3 {
+  font-size: 1.8rem;
+  color: var(--dark_one);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.popup-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--dark_six);
+  margin-bottom: 2rem;
+}
+
+/* Popup Buttons */
+.popup-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.popup-btn {
+  padding: 0.9rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.popup-btn-primary {
+  background-color: var(--dark_three);
+  color: white;
+  box-shadow: 0 4px 12px rgba(211, 84, 0, 0.3);
+}
+
+.popup-btn-primary:hover {
+  background-color: var(--light_five);
+  box-shadow: 0 6px 16px rgba(245, 166, 35, 0.4);
+  transform: translateY(-2px);
+}
+
+.popup-btn-secondary {
+  background-color: var(--dark_one);
+  color: white;
+  box-shadow: 0 4px 12px rgba(11, 45, 102, 0.3);
+}
+
+.popup-btn-secondary:hover {
+  background-color: var(--dark_two);
+  box-shadow: 0 6px 16px rgba(26, 61, 143, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+

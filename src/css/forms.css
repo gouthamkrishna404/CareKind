@@ -1,0 +1,328 @@
+#jobFormFields,
+#careRequestForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 16px;
+}
+
+#jobFormFields input[type="text"],
+#jobFormFields input[type="tel"],
+#jobFormFields input[type="email"],
+#careRequestForm input[type="text"],
+#careRequestForm input[type="tel"],
+#careRequestForm input[type="email"] {
+  padding: 14px 20px;
+  font-size: 18px;
+  border: 2px solid var(--light_eight);
+  border-radius: 45px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  color: var(--dark_one);
+  background-color: var(--light_nine);
+}
+
+#jobFormFields input[type="text"]:focus,
+#jobFormFields input[type="tel"]:focus,
+#jobFormFields input[type="email"]:focus,
+#careRequestForm input[type="text"]:focus,
+#careRequestForm input[type="tel"]:focus,
+#careRequestForm input[type="email"]:focus {
+  border-color: var(--dark_one);
+  box-shadow: 0 0 8px var(--dark_six);
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 18px;
+  border: 2px solid var(--light_eight);
+  border-radius: 45px;
+  outline: none;
+  background-color: var(--light_nine);
+  color: var(--dark_one);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input::placeholder {
+  color: transparent;
+}
+
+.form-group label {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #555;
+  background-color: transparent;
+  padding: 0 6px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 16px;
+  font-size: 14px;
+  color: var(--dark_one);
+  background-color: transparent;
+}
+
+.form-group input:focus {
+  border-color: var(--dark_one);
+  box-shadow: 0 0 8px var(--dark_six);
+}
+
+.form-group select {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 18px;
+  border: 2px solid var(--light_eight);
+  border-radius: 45px;
+  outline: none;
+  background-color: var(--light_nine);
+  color: var(--dark_one);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='7' viewBox='0 0 10 7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%232f4f2f' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 20px center;
+  background-size: 12px;
+  padding-right: 40px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.form-group select:focus {
+  border-color: var(--dark_one);
+  box-shadow: 0 0 8px var(--dark_six);
+}
+
+.form-group select:focus + label,
+.form-group select:valid + label {
+  top: -10px;
+  left: 16px;
+  font-size: 14px;
+  color: var(--dark_one);
+  background-color: transparent;
+}
+
+#jobFormFields button[type="submit"],
+#careRequestForm button[type="submit"] {
+  padding: 16px 20px;
+  font-size: 20px;
+  background-color: var(--dark_one);
+  color: var(--light_seven);
+  border: none;
+  border-radius: 45px;
+  transition: background-color 0.2s ease;
+}
+
+#jobFormFields button[type="submit"]:hover,
+#careRequestForm button[type="submit"]:hover {
+  background-color: var(--dark_six);
+}
+
+/* Contact Method Section Styles */
+.contact-method-section {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.contact-method-section label {
+  display: block;
+  margin-bottom: 1.2rem;
+  color: var(--dark_two);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.radio-group {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+  font-size: 1rem;
+  color: var(--dark_one);
+}
+
+.radio-label input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--dark_one);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: white;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.radio-label input[type="radio"]:hover {
+  border-color: var(--dark_two);
+  box-shadow: 0 0 5px rgba(26, 61, 143, 0.2);
+}
+
+.radio-label input[type="radio"]:checked {
+  background-color: var(--dark_one);
+  border-color: var(--dark_one);
+  box-shadow: inset 0 0 0 3px white;
+}
+
+.radio-label span {
+  font-weight: 500;
+}
+
+/* Availability Section Styles */
+.availability-section {
+  display: block;
+  width: 100%;
+}
+
+.availability-section label {
+  display: block;
+  margin-bottom: 1.2rem;
+  margin-left: 0.5rem;
+  color: var(--dark_two);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.availability-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.availability-grid .form-group {
+  margin-bottom: 0;
+}
+
+.availability-grid .form-group label {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--dark_two);
+  font-weight: 500;
+  font-size: 0.95rem;
+  position: static;
+  transform: none;
+  top: auto;
+  left: auto;
+  background-color: transparent;
+  padding: 0;
+  pointer-events: auto;
+}
+
+#careRequestForm input[type="time"] {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 18px;
+  border: 2px solid var(--light_eight);
+  border-radius: 45px;
+  outline: none;
+  background-color: var(--light_nine);
+  color: var(--dark_one);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#careRequestForm input[type="time"]:focus {
+  border-color: var(--dark_one);
+  box-shadow: 0 0 8px var(--dark_six);
+}
+
+.submit-note {
+  font-size: 13px;
+  color: var(--dark_one);
+  margin-top: 8px;
+  text-align: center;
+}
+
+.submit-note a {
+  color: var(--dark_one);
+  text-decoration: underline;
+}
+
+.affirmation-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--dark_one);
+  padding: 8px 12px;
+}
+
+.affirmation-checkbox input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--dark_one);
+  border-radius: 4px;
+  background-color: #fff;
+  position: relative;
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  margin: 0;
+}
+
+.affirmation-checkbox input[type="checkbox"]::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+}
+
+.affirmation-checkbox input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid var(--light_seven);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.affirmation-checkbox input[type="checkbox"]:hover {
+  background-color: var(--light_seven);
+}
+
+.affirmation-checkbox input[type="checkbox"]:active {
+  background-color: var(--light_ten);
+}
+
+.affirmation-checkbox input[type="checkbox"]:checked {
+  background-color: var(--dark_one);
+  border-color: var(--dark_one);
+}
+
+.affirmation-checkbox span {
+  display: inline-block;
+  color: inherit;
+  font-weight: normal;
+}
+

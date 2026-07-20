@@ -1,0 +1,307 @@
+             body{
+               background-size: cover;
+               min-height: 100vh;
+             }
+             
+             .care-form-container {
+               max-width: 800px;
+               margin: 4rem auto;
+               padding: 3rem 2rem;
+               background: white;
+               border-radius: 15px;
+               box-shadow: 0 10px 30px rgba(11, 45, 102, 0.15);
+               position: relative;
+             }
+             .care-form-header {
+               text-align: center;
+               margin-bottom: 2rem;
+             }
+             .care-form-header h1 {
+               font-size: 2.5rem;
+               color: var(--dark_one);
+               margin-bottom: 1rem;
+             }
+             .care-form-header p {
+               font-size: 1.1rem;
+               color: var(--dark_two);
+               line-height: 1.6;
+             }
+             .form-steps-wrapper {
+               position: relative;
+               overflow: hidden;
+               transition: height 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+             }
+             .form-step {
+               display: none;
+               width: 100%;
+             }
+             .form-step.active {
+               display: block;
+             }
+             @keyframes slideInFromRight {
+               from { transform: translateX(100%); opacity: 0; }
+               to { transform: translateX(0); opacity: 1; }
+             }
+             @keyframes slideOutToLeft {
+               from { transform: translateX(0); opacity: 1; }
+               to { transform: translateX(-100%); opacity: 0; }
+             }
+             @keyframes slideInFromLeft {
+               from { transform: translateX(-100%); opacity: 0; }
+               to { transform: translateX(0); opacity: 1; }
+             }
+             @keyframes slideOutToRight {
+               from { transform: translateX(0); opacity: 1; }
+               to { transform: translateX(100%); opacity: 0; }
+             }
+             .animate-in-right {
+               display: block !important;
+               animation: slideInFromRight 0.6s forwards cubic-bezier(0.65, 0, 0.35, 1);
+             }
+             .animate-out-left {
+               animation: slideOutToLeft 0.6s forwards cubic-bezier(0.65, 0, 0.35, 1);
+             }
+             .animate-in-left {
+               display: block !important;
+               animation: slideInFromLeft 0.6s forwards cubic-bezier(0.65, 0, 0.35, 1);
+             }
+             .animate-out-right {
+               animation: slideOutToRight 0.6s forwards cubic-bezier(0.65, 0, 0.35, 1);
+             }
+             .step-indicator {
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               margin-bottom: 3rem;
+               gap: 1rem;
+             }
+             .step-dot {
+               width: 12px;
+               height: 12px;
+               border-radius: 50%;
+               background-color: var(--light_eight);
+               transition: all 0.3s ease;
+             }
+             .step-dot.active {
+               width: 40px;
+               border-radius: 6px;
+               background-color: var(--dark_one);
+             }
+             
+             .step-title-container {
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               position: relative;
+               width: 100%;
+               margin-bottom: 2rem;
+             }
+             .step-title-container h2 {
+               margin-bottom: 0; 
+               margin-left: auto;
+               margin-right: auto;
+               padding-left: 40px;
+               padding-right: 40px;
+               text-align: center;
+             }
+             .btn-back-top {
+               position: absolute;
+               left: 0;
+               top: 50%;
+               transform: translateY(-50%);
+               background: transparent;
+               border: none;
+               cursor: pointer;
+               padding: 5px;
+               width: 32px;
+               height: 32px;
+             }
+             .btn-back-top img {
+               width: 100%;
+               height: auto;
+             }
+             .care-option-grid {
+               display: grid;
+               grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+               gap: 1.5rem;
+               margin: 2rem 0;
+             }
+             .care-option-card {
+               padding: 1rem 0.5rem;
+               background-color: var(--light_six);
+               color: var(--dark_one);
+               border-radius: 15px;
+               text-align: center;
+               cursor: pointer;
+               transition: all 0.3s ease;
+               border: 3px solid transparent;
+             }
+             .care-option-card:hover {
+               background-color: var(--dark_one);
+               color: var(--light_seven);
+             }
+             .care-option-card.selected {
+               background-color: var(--dark_four);
+               color: var(--light_seven);
+               border-color: var(--dark_one);
+             }
+             .care-option-card .option-icon {
+               width: 60px;
+               height: 60px;
+               fill: currentColor;
+               transition: fill 0.3s ease, transform 0.3s ease;
+               margin-bottom: 0.5rem;
+             }
+             .care-option-card:hover .option-icon {
+               transform: scale(1.1);
+               fill: var(--light_eleven);
+             }   
+             .care-option-card .option-icon path {
+               transform-origin: center;
+             }
+             .care-option-card h3 {
+               font-size: 1.15rem;
+             }
+             .needs-grid {
+               display: grid;
+               grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+               gap: 1rem;
+               margin: 2rem 0;
+             }
+             /* Step 4 layout fixes */
+             .contact-method-section,
+             .availability-section {
+               display: block;
+               width: 95%;
+             }
+             .contact-method-section .care-option-grid {
+               grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+               gap: 1rem;
+             }
+             .availability-grid {
+               display: grid;
+               grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+               gap: 1rem;
+               width: 100%;
+             }
+             .form-step[data-step="4"] .form-group { margin-bottom: 0.75rem; }
+             .form-step[data-step="4"] .form-group > label { display: block; }
+             .form-step[data-step="4"] input[type="time"] { width: 100%; }
+             .need-checkbox-card {
+               display: flex;
+               align-items: center;
+               gap: 1rem;
+               padding: 1rem;
+               background-color: var(--light_six);
+               border-radius: 12px;
+               cursor: pointer;
+               transition: all 0.3s ease;
+               border: 2px solid transparent;
+             }
+             .need-checkbox-card:hover {
+               background-color: var(--light_eight);
+             }
+             .need-checkbox-card.checked {
+               background-color: var(--dark_four);
+               color: var(--light_seven);
+               border-color: var(--dark_one);
+             }
+             .need-checkbox-card input[type="checkbox"] {
+               display: none;
+             }
+             .need-checkbox-card .option-icon {
+               width: 40px;
+               height: 40px;
+               fill: currentColor;
+               flex-shrink: 0;
+             }
+             
+             .form-group {
+               position: relative;
+               padding: 0.5rem;
+               margin-bottom: 1rem;
+             }
+             .step-nav {
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               flex-direction: column;
+               gap: 1rem;
+               margin-top: 2rem;
+             }
+             .btn-next, .btn-submit {
+               padding: 1rem 2rem;
+               font-size: 1.1rem;
+               border: none;
+               border-radius: 45px;
+               cursor: pointer;
+               transition: all 0.3s ease;
+               font-weight: 600;
+               width: 100%;
+               max-width: 350px;
+             }
+             
+             .btn-next, .btn-submit {
+               background-color: var(--dark_one);
+               color: var(--light_seven);
+             }
+             .btn-next:hover, .btn-submit:hover {
+               background-color: var(--dark_six);
+             }
+             .btn-next:disabled {
+               background-color: var(--light_six);
+               color: var(--dark_one);
+               cursor: not-allowed;
+             }
+             .submit-note {
+               text-align: center;
+               font-size: 0.9rem;
+               color: var(--dark_two);
+               margin: 0;
+             }
+             .success-message {
+               text-align: center;
+               padding: 3rem 2rem;
+             }
+             .success-message .success-icon {
+               width: 80px;
+               height: 80px;
+               margin: 0 auto 2rem;
+               fill: #a9bee8;
+             }
+             .success-message h2 {
+               color: var(--dark_one);
+               font-size: 2rem;
+               margin-bottom: 1rem;
+             }
+             .success-message p {
+               color: var(--dark_two);
+               font-size: 1.1rem;
+               line-height: 1.6;
+             }
+             @media (max-width: 768px) {
+               .care-form-container {
+                 margin: 2rem 1rem;
+                 padding: 2rem 1rem;
+               }
+               .care-form-header h1 {
+                 font-size: 2rem;
+               }
+               .care-option-grid {
+                 grid-template-columns: 1fr;
+               }
+               .needs-grid {
+                 grid-template-columns: 1fr;
+               }
+               
+               .step-title-container h2 {
+                   padding-left: 30px;
+                   padding-right: 30px;
+                   font-size: 1.5rem;
+               }
+               .btn-back-top {
+                   width: 24px;
+                   height: 24px;
+               }
+             }
+           
