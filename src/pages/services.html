@@ -57,14 +57,15 @@
           enhances independence, comfort, and quality of life right in the familiar surroundings of home.</p>
       </div>
       <div class="hero-image">
-        <img class="float-left" src="images/service_hero.webp" alt="Elderly woman smiling with caregiver" />
+        <img class="float-left" src="images/service_hero.webp" alt="Elderly woman smiling with caregiver"
+          width="1000" height="1500" />
       </div>
     </section>
 
     {{#each services}}
     <div class="service-block-page" id="{{id}}">
       <div class="service-image">
-        <img src="{{image}}" alt="{{imageAlt}}" />
+        <img src="{{image}}" alt="{{imageAlt}}" width="400" height="300" loading="lazy" />
       </div>
       <div class="service-text">
         <h2>{{title}}</h2>
@@ -87,7 +88,8 @@
         <a href="process.html" class="cta-button3">Learn About Our Process</a>
       </div>
       <div class="info-image">
-        <img class="float-right" src="images/process1.webp" alt="Elderly woman smiling with caregiver among nature">
+        <img class="float-right" src="images/process1.webp" alt="Elderly woman smiling with caregiver among nature"
+          width="1000" height="667" loading="lazy">
       </div>
     </section>
 
@@ -103,7 +105,8 @@
         <a href="benefits.html" class="cta-button3">Read More About Home Care</a>
       </div>
       <div class="info-image">
-        <img class="float-left" src="images/benefits.webp" alt="Elderly man smiling with caregiver">
+        <img class="float-left" src="images/benefits.webp" alt="Elderly man smiling with caregiver"
+          width="1000" height="667" loading="lazy">
       </div>
     </section>
 
@@ -138,7 +141,7 @@
 
   {{> footer}}
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 
 </html>

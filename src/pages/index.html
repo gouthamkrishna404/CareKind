@@ -65,13 +65,16 @@
       </div>
       <div class="hero-images">
         <div class="img-wrapper img1-wrapper float-right">
-          <img src="images/hero-caregiver-help.webp" alt="Home care professional helping a senior man with a task" />
+          <img src="images/hero-caregiver-help.webp" alt="Home care professional helping a senior man with a task"
+            width="1000" height="667" fetchpriority="high" />
         </div>
         <div class="img-wrapper img2-wrapper float-left">
-          <img src="images/hero-senior-nurse.webp" alt="Senior woman smiling with her compassionate nurse" />
+          <img src="images/hero-senior-nurse.webp" alt="Senior woman smiling with her compassionate nurse"
+            width="1000" height="667" />
         </div>
         <div class="img-wrapper img3-wrapper float-right">
-          <img src="images/hero-nurse-handhold.webp" alt="Nurse holding hands with a senior in a living room" />
+          <img src="images/hero-nurse-handhold.webp" alt="Nurse holding hands with a senior in a living room"
+            width="1000" height="667" />
         </div>
       </div>
     </section>
@@ -79,7 +82,7 @@
       <div class="score-column2">
         <div class="score-left">
           <img src="images/home-highlight-senior-nurse.webp" class="info-image img-wrapper float-above"
-            alt="Senior woman smiling with her compassionate nurse" />
+            alt="Senior woman smiling with her compassionate nurse" width="1000" height="667" loading="lazy" />
         </div>
 
         <div class="score-right">
@@ -378,7 +381,7 @@
             {{#each testimonials}}
             <div class="testimonial-card">
               <div class="review-header">
-                <img src="{{avatar}}" alt="{{name}}" />
+                <img src="{{avatar}}" alt="{{name}}" width="48" height="48" loading="lazy" />
                 <div class="reviewer-info">
                   <div class="reviewer-name">{{name}}</div>
                   <div class="stars">★★★★★</div>
@@ -422,7 +425,7 @@
   {{> popup}}
   {{> footer}}
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 
 </html>
