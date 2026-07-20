@@ -421,7 +421,7 @@
     hyphens: auto;
   }
 
-  .service-block-page .service-text h3 {
+  .service-block-page .service-text h2 {
     font-size: 1.6rem;
     text-align: center;
     margin-bottom: 0.75rem;
@@ -483,7 +483,7 @@
     display: none;
   }
 
-  .process-hero-text h1 {
+  .process-hero-text h2 {
     font-size: 2rem;
   }
 

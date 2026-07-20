@@ -148,7 +148,7 @@
   fill: var(--dark_one);
 }
 
-.location-card h3 {
+.location-card .location-title {
   font-size: 0.95rem;
   color: var(--dark_one);
   font-weight: 600;
