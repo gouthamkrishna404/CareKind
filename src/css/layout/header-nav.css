@@ -60,14 +60,15 @@ nav {
   flex-direction: column;
   gap: 5px;
   user-select: none;
-  width: 28px;
-  height: 24px;
+  width: 48px;
+  height: 48px;
   position: relative;
   justify-content: center;
+  align-items: center;
 }
 
 .hamburger-icon {
-  width: 100%;
+  width: 26px;
   height: 3px;
   background-color: var(--dark_one);
   border-radius: 2px;
@@ -90,7 +91,10 @@ nav {
   right: 15px;
   z-index: 9999;
   display: none;
-  padding: 4px 8px;
+  box-sizing: border-box;
+  min-width: 48px;
+  min-height: 48px;
+  padding: 12px 14px;
   background-color: transparent;
   border-radius: 4px;
   transition: opacity 0.3s ease;
@@ -120,7 +124,9 @@ nav {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 12px;
+  padding: 14px 12px;
+  min-height: 48px;
+  box-sizing: border-box;
   transition: color 0.3s ease;
 }
 
@@ -174,6 +180,13 @@ nav {
 }
 
 .dropdown:hover .dropdown-content {
+  display: flex;
+}
+
+/* Touch/tap fallback: devices without hover (touchscreens) toggle this via
+   the .open class from nav.js instead of relying on :hover, which doesn't
+   fire reliably on tap. */
+.dropdown.open .dropdown-content {
   display: flex;
 }
 

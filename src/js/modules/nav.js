@@ -79,6 +79,22 @@ export function initNav() {
   dropdowns.forEach((dropdown) => {
     dropdown.addEventListener("mouseenter", () => dropdown.classList.add("show"));
     dropdown.addEventListener("mouseleave", () => dropdown.classList.remove("show"));
+
+    const dropbtn = dropdown.querySelector(".dropbtn");
+    if (!dropbtn) return;
+    dropbtn.setAttribute("aria-expanded", "false");
+    dropbtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = dropdown.classList.contains("open");
+      dropdowns.forEach((dd) => {
+        dd.classList.remove("open");
+        dd.querySelector(".dropbtn")?.setAttribute("aria-expanded", "false");
+      });
+      if (!isOpen) {
+        dropdown.classList.add("open");
+        dropbtn.setAttribute("aria-expanded", "true");
+      }
+    });
   });
 
   updateMenuDisplay();

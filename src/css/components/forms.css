@@ -160,6 +160,9 @@
   user-select: none;
   font-size: 1rem;
   color: var(--dark_one);
+  min-height: 48px;
+  padding: 8px 0;
+  box-sizing: border-box;
 }
 
 .radio-label input[type="radio"] {
@@ -269,7 +272,9 @@
   font-size: 16px;
   line-height: 1.4;
   color: var(--dark_one);
-  padding: 8px 12px;
+  padding: 13px 12px;
+  min-height: 48px;
+  box-sizing: border-box;
 }
 
 .affirmation-checkbox input[type="checkbox"] {

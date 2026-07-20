@@ -36,6 +36,12 @@
   background: none;
   border: none;
   z-index: 1002;
+  box-sizing: border-box;
+  min-width: 48px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .close-slide {
@@ -56,11 +62,17 @@
 
 .back-arrow {
   top: 25px;
-  width: 22px;
-  height: 22px;
   left: 20px;
   text-decoration: none;
   z-index: 1002;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  box-sizing: border-box;
+  min-width: 48px;
+  min-height: 48px;
+  padding: 13px;
 }
 
 .step {
