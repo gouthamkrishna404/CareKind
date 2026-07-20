@@ -41,17 +41,15 @@ nav {
   margin-right: 10px;
 }
 
-.brandtext {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.brandtext:hover,
+.brandtext,
+.brandtext:link,
 .brandtext:visited,
+.brandtext:hover,
 .brandtext:active,
 .brandtext:focus {
-  color: currentColor;
+  color: var(--dark_one);
+  font-size: 1.5rem;
+  font-weight: bold;
   text-decoration: none;
 }
 
