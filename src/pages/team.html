@@ -4,28 +4,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CareKind - Our Team</title>
+  <title>{{page.title}}</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
-  <meta name="description"
-    content="Meet the compassionate and dedicated team behind CareKind, providing exceptional home care services to families in Halifax, Nova Scotia." />
-  <meta name="keywords"
-    content="CareKind team, home care Halifax, senior care professionals, caregivers Halifax, in-home care team, CareKind staff, trusted caregivers Nova Scotia" />
+  <meta name="description" content="{{page.description}}" />
+  <meta name="keywords" content="{{page.keywords}}" />
   <meta name="author" content="CareKind" />
 
-  <meta property="og:title" content="CareKind - Our Team" />
-  <meta property="og:description"
-    content="Meet the compassionate and dedicated team behind CareKind, providing exceptional home care services to families in Halifax, Nova Scotia." />
+  <meta property="og:title" content="{{page.ogTitle}}" />
+  <meta property="og:description" content="{{page.ogDescription}}" />
   <meta property="og:image" content="https://carekind.ca/images/logo.png" />
-  <meta property="og:url" content="https://carekind.ca" />
+  <meta property="og:url" content="{{page.ogUrl}}" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_CA" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="CareKind - Our Team" />
-  <meta name="twitter:description"
-    content="Meet the compassionate and dedicated team behind CareKind, providing exceptional home care services to families in Halifax, Nova Scotia." />
+  <meta name="twitter:title" content="{{page.twitterTitle}}" />
+  <meta name="twitter:description" content="{{page.twitterDescription}}" />
   <meta name="twitter:image" content="https://carekind.ca/images/logo.png" />
 
   <script type="application/ld+json">
@@ -42,7 +38,7 @@
       "addressRegion": "NS",
       "addressCountry": "CA"
     },
-    "description": "CareKind provides personalized and compassionate in-home senior care services in Halifax, Nova Scotia. Our team of professionals is committed to supporting independence, dignity, and well-being for every client.",
+    "description": "{{page.jsonLdDescription}}",
     "areaServed": {
       "@type": "Place",
       "name": "Halifax"

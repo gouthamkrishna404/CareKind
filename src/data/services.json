@@ -1,0 +1,67 @@
+[
+  {
+    "id": "personal-care",
+    "image": "images/personal_care.webp",
+    "imageAlt": "Caregiver helping an elderly man choose a sweater",
+    "title": "Personal Care",
+    "description": "We support dignity and independence through compassionate assistance with daily tasks. From gentle bathing to grooming and dressing, our caregivers treat each client with respect and attentiveness, making sure they feel clean, comfortable, and cared for every day."
+  },
+  {
+    "id": "cognitive-care",
+    "image": "images/cognitive_care.webp",
+    "imageAlt": "Caregiver assisting with cognitive exercises",
+    "title": "Cognitive Care",
+    "description": "Our cognitive care programs are designed to stimulate the mind and provide meaningful engagement. Activities such as memory games, storytelling, and daily routines are tailored to support focus, recognition, and mental clarity, especially for those experiencing dementia or memory loss.",
+    "ctaHref": "cognitive.html",
+    "ctaLabel": "Read More About Alzheimer's & Dementia Care"
+  },
+  {
+    "id": "end-of-life-care",
+    "image": "images/end_of_life_care.webp",
+    "imageAlt": "Caregiver providing end-of-life comfort",
+    "title": "End-of-Life Care",
+    "description": "With warmth and compassion, we walk alongside families during life’s most delicate moments. Our caregivers ensure physical comfort while offering emotional support to both the client and their loved ones, so that peace, presence, and dignity remain at the forefront."
+  },
+  {
+    "id": "mobility-assistance",
+    "image": "images/mobility_assistance.webp",
+    "imageAlt": "Caregiver helping with mobility",
+    "title": "Mobility Assistance",
+    "description": "Whether it’s walking around the house, using mobility aids, or transferring safely, we help reduce fall risks and encourage independence. Our team offers steady support with patience and care, so clients feel confident moving about their homes."
+  },
+  {
+    "id": "home-helper",
+    "image": "images/home_helper.webp",
+    "imageAlt": "Caregiver helping prepare meals",
+    "title": "Home Helper",
+    "description": "A clean and organized space makes home feel like home. From preparing nourishing meals to light cleaning and errand help, our caregivers keep the home environment safe, welcoming, and well-managed so our clients can relax and thrive."
+  },
+  {
+    "id": "transportation",
+    "image": "images/transportation.webp",
+    "imageAlt": "Caregiver helping into car",
+    "title": "Transportation",
+    "description": "We provide reliable rides for doctor’s appointments, family visits, and outings. Our caregivers ensure that clients travel comfortably and return home safely, maintaining social connection and access to necessary care."
+  },
+  {
+    "id": "light-housekeeping",
+    "image": "images/light_housekeeping.webp",
+    "imageAlt": "Caregiver dusting and tidying",
+    "title": "Light Housekeeping",
+    "description": "Maintaining cleanliness can uplift both body and spirit. Our caregivers help with dusting, laundry, and simple organizing tasks—creating spaces that feel fresh, calming, and clutter-free."
+  },
+  {
+    "id": "medication-reminders",
+    "image": "images/medication_reminders.webp",
+    "imageAlt": "Caregiver reminding senior about meds",
+    "title": "Medication Reminders",
+    "description": "Missing doses can be dangerous. We provide gentle and reliable medication reminders, so our clients stay on schedule, follow doctors’ orders, and feel supported in their health journey."
+  },
+  {
+    "id": "companionship",
+    "image": "images/companionship.webp",
+    "imageAlt": "Caregiver enjoying conversation with elderly man",
+    "title": "Companionship",
+    "description": "Sometimes the greatest care is simply being there. Our caregivers offer friendly conversation, laughter, and a listening ear to help our clients feel seen, heard, and truly connected."
+  }
+]

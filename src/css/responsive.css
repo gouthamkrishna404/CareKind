@@ -69,7 +69,7 @@
     padding: 1.25rem 3.5rem 1.25rem 1.25rem;
   }
 
-  .titlee{
+  .title-accent--left {
     text-align: center;
   }
   nav {
@@ -324,7 +324,7 @@
     font-size: 1rem;
   }
 
-  .container2 {
+  .home-highlight-row {
     max-width: 98%;
     text-align: left;
   }
@@ -483,7 +483,7 @@
     display: none;
   }
 
-  .herotext2 h1 {
+  .process-hero-text h1 {
     font-size: 2rem;
   }
 
@@ -500,52 +500,6 @@
     padding: 1.5rem;
     background: #ffffff;
   }
-}
-
-@keyframes float-left {
-  0% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-15px) rotate(1deg);
-  }
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-}
-
-@keyframes float-right {
-  0% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-15px) rotate(-1deg);
-  }
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-}
-
-@keyframes float-above {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.03);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.float-left {
-  animation: float-left 10s ease-in-out infinite;
-}
-.float-right {
-  animation: float-right 10s ease-in-out infinite;
-}
-.float-above {
-  animation: float-above 10s ease-in-out infinite;
 }
 
 @media (max-width: 400px) {
@@ -587,8 +541,8 @@
     right: 10px;
   }
 
-  .question,
-  .question2 {
+  .panel-step-heading,
+  .panel-form-heading {
     font-size: 1.2rem;
   }
   .option-btn {

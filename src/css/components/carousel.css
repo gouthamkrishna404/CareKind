@@ -30,9 +30,6 @@
   will-change: transform;
 }
 
-.titlee{
-    text-align: left;
-}
 
 .testimonial-card {
   flex: 0 0 calc(33.333% - 2rem);

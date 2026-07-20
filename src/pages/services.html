@@ -4,29 +4,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CareKind - Our Services</title>
+  <title>{{page.title}}</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
 
-  <meta name="description"
-    content="Explore the wide range of home care services offered by CareKind in Halifax. From personal support and companionship to dementia care, we provide compassionate and reliable assistance tailored to each individual." />
-  <meta name="keywords"
-    content="CareKind services, home care Halifax, senior assistance, dementia care, companionship, personal care, caregiving Halifax, trusted support" />
+  <meta name="description" content="{{page.description}}" />
+  <meta name="keywords" content="{{page.keywords}}" />
   <meta name="author" content="CareKind Home Care" />
 
-  <meta property="og:title" content="CareKind - Our Home Care Services" />
-  <meta property="og:description"
-    content="Discover our full range of in-home support services available in Halifax. Personalized care that meets emotional and physical needs with dignity." />
+  <meta property="og:title" content="{{page.ogTitle}}" />
+  <meta property="og:description" content="{{page.ogDescription}}" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://carekind.ca/services" />
+  <meta property="og:url" content="{{page.ogUrl}}" />
   <meta property="og:image" content="https://carekind.ca/images/logo.png" />
   <meta property="og:site_name" content="CareKind Home Care" />
   <meta property="og:locale" content="en_CA" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="CareKind - Our Home Care Services" />
-  <meta name="twitter:description"
-    content="Tailored home care services in Halifax by CareKind. From everyday assistance to specialized support, we're here for your loved ones." />
+  <meta name="twitter:title" content="{{page.twitterTitle}}" />
+  <meta name="twitter:description" content="{{page.twitterDescription}}" />
   <meta name="twitter:image" content="https://carekind.ca/images/logo.png" />
 
   <script type="application/ld+json">
@@ -43,7 +39,7 @@
         "addressRegion": "NS",
         "addressCountry": "CA"
       },
-      "description": "CareKind offers a full suite of compassionate home care services for individuals in Halifax. Our team provides personal support, companionship, dementia care, and more with empathy and professionalism."
+      "description": "{{page.jsonLdDescription}}"
     }
   </script>
 </head>
@@ -63,111 +59,20 @@
       </div>
     </section>
 
-    <div class="service-block-page" id="personal-care">
+    {{#each services}}
+    <div class="service-block-page" id="{{id}}">
       <div class="service-image">
-        <img src="images/personal_care.webp" alt="Caregiver helping an elderly man choose a sweater" />
+        <img src="{{image}}" alt="{{imageAlt}}" />
       </div>
       <div class="service-text">
-        <h3>Personal Care</h3>
-        <p>We support dignity and independence through compassionate assistance with daily tasks. From gentle bathing to
-          grooming and dressing, our caregivers treat each client with respect and attentiveness, making sure they feel
-          clean, comfortable, and cared for every day.</p>
+        <h3>{{title}}</h3>
+        <p>{{description}}</p>
+        {{#if ctaHref}}
+        <a href="{{ctaHref}}" class="btn btn-primary">{{ctaLabel}}</a>
+        {{/if}}
       </div>
     </div>
-
-    <div class="service-block-page" id="cognitive-care">
-      <div class="service-image">
-        <img src="images/cognitive_care.webp" alt="Caregiver assisting with cognitive exercises" />
-      </div>
-      <div class="service-text">
-        <h3>Cognitive Care</h3>
-        <p>Our cognitive care programs are designed to stimulate the mind and provide meaningful engagement. Activities
-          such as memory games, storytelling, and daily routines are tailored to support focus, recognition, and mental
-          clarity, especially for those experiencing dementia or memory loss.</p>
-        <a href="cognitive.html" class="btn btn-primary">Read More About Alzheimer's & Dementia Care</a>
-      </div>
-    </div>
-
-    <div class="service-block-page" id="end-of-life-care">
-      <div class="service-image">
-        <img src="images/end_of_life_care.webp" alt="Caregiver providing end-of-life comfort" />
-      </div>
-      <div class="service-text">
-        <h3>End-of-Life Care</h3>
-        <p>With warmth and compassion, we walk alongside families during life’s most delicate moments. Our caregivers
-          ensure physical comfort while offering emotional support to both the client and their loved ones, so that
-          peace, presence, and dignity remain at the forefront.</p>
-      </div>
-    </div>
-
-    <div class="service-block-page" id="mobility-assistance">
-      <div class="service-image">
-        <img src="images/mobility_assistance.webp" alt="Caregiver helping with mobility" />
-      </div>
-      <div class="service-text">
-        <h3>Mobility Assistance</h3>
-        <p>Whether it’s walking around the house, using mobility aids, or transferring safely, we help reduce fall risks
-          and encourage independence. Our team offers steady support with patience and care, so clients feel confident
-          moving about their homes.</p>
-      </div>
-    </div>
-
-    <div class="service-block-page" id="home-helper">
-      <div class="service-image">
-        <img src="images/home_helper.webp" alt="Caregiver helping prepare meals" />
-      </div>
-      <div class="service-text">
-        <h3>Home Helper</h3>
-        <p>A clean and organized space makes home feel like home. From preparing nourishing meals to light cleaning and
-          errand help, our caregivers keep the home environment safe, welcoming, and well-managed so our clients can
-          relax and thrive.</p>
-      </div>
-    </div>
-
-    <div class="service-block-page" id="transportation">
-      <div class="service-image">
-        <img src="images/transportation.webp" alt="Caregiver helping into car" />
-      </div>
-      <div class="service-text">
-        <h3>Transportation</h3>
-        <p>We provide reliable rides for doctor’s appointments, family visits, and outings. Our caregivers ensure that
-          clients travel comfortably and return home safely, maintaining social connection and access to necessary care.
-        </p>
-      </div>
-    </div>
-
-    <div class="service-block-page" id="light-housekeeping">
-      <div class="service-image">
-        <img src="images/light_housekeeping.webp" alt="Caregiver dusting and tidying" />
-      </div>
-      <div class="service-text">
-        <h3>Light Housekeeping</h3>
-        <p>Maintaining cleanliness can uplift both body and spirit. Our caregivers help with dusting, laundry, and
-          simple organizing tasks—creating spaces that feel fresh, calming, and clutter-free.</p>
-      </div>
-    </div>
-
-    <div class="service-block-page" id="medication-reminders">
-      <div class="service-image">
-        <img src="images/medication_reminders.webp" alt="Caregiver reminding senior about meds" />
-      </div>
-      <div class="service-text">
-        <h3>Medication Reminders</h3>
-        <p>Missing doses can be dangerous. We provide gentle and reliable medication reminders, so our clients stay on
-          schedule, follow doctors’ orders, and feel supported in their health journey.</p>
-      </div>
-    </div>
-
-    <div class="service-block-page" id="companionship">
-      <div class="service-image">
-        <img src="images/companionship.webp" alt="Caregiver enjoying conversation with elderly man" />
-      </div>
-      <div class="service-text">
-        <h3>Companionship</h3>
-        <p>Sometimes the greatest care is simply being there. Our caregivers offer friendly conversation, laughter, and
-          a listening ear to help our clients feel seen, heard, and truly connected.</p>
-      </div>
-    </div>
+    {{/each}}
 
     <section class="info-split-section">
       <div class="info-text">

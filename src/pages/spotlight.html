@@ -4,29 +4,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CareKind - Spotlight</title>
+  <title>{{page.title}}</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
 
-  <meta name="description"
-    content="Meet the heart of CareKind. Our Spotlight page celebrates the caregivers who bring dedication, warmth, and compassion to every home care visit in Halifax." />
-  <meta name="keywords"
-    content="CareKind caregivers, Halifax home care team, caregiver spotlight, senior care staff, dedicated home care professionals, caregiver appreciation" />
+  <meta name="description" content="{{page.description}}" />
+  <meta name="keywords" content="{{page.keywords}}" />
   <meta name="author" content="CareKind Home Care" />
 
-  <meta property="og:title" content="CareKind - Caregiver Spotlight" />
-  <meta property="og:description"
-    content="Recognizing the incredible caregivers who make a difference every day. Explore their stories and commitment to compassionate care in Halifax." />
+  <meta property="og:title" content="{{page.ogTitle}}" />
+  <meta property="og:description" content="{{page.ogDescription}}" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://carekind.ca/spotlight" />
+  <meta property="og:url" content="{{page.ogUrl}}" />
   <meta property="og:image" content="https://carekind.ca/images/logo.png" />
   <meta property="og:site_name" content="CareKind Home Care" />
   <meta property="og:locale" content="en_CA" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="CareKind - Caregiver Spotlight" />
-  <meta name="twitter:description"
-    content="Celebrate the caregivers who define excellence at CareKind. Real stories, real impact, real compassion." />
+  <meta name="twitter:title" content="{{page.twitterTitle}}" />
+  <meta name="twitter:description" content="{{page.twitterDescription}}" />
   <meta name="twitter:image" content="https://carekind.ca/images/logo.png" />
 
   <script type="application/ld+json">
@@ -43,7 +39,7 @@
         "addressRegion": "NS",
         "addressCountry": "CA"
       },
-      "description": "CareKind proudly highlights our exceptional caregivers who bring kindness and reliability to every home visit in Halifax. Get to know the people who make a difference."
+      "description": "{{page.jsonLdDescription}}"
     }
   </script>
 </head>
