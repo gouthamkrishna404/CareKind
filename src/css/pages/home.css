@@ -274,6 +274,7 @@
   padding: 0 20px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: var(--dark_six);
+  text-align: center;
 }
 
 .why-choose-carekind h2 {

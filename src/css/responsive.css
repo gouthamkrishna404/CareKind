@@ -535,15 +535,16 @@
   }
 
   .bubble-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 0;
   }
 
   .bubble {
-    width: 90px;
+    width: 100%;
     height: 80px;
-    margin: 0.35rem;
-    font-size: 0.9rem;
+    margin: 0.35rem 0;
+    font-size: 0.78rem;
+    padding: 0.25rem;
   }
 
   .location-card {
