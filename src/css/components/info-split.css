@@ -35,8 +35,7 @@
   color: var(--dark_six);
   margin-bottom: 1.5rem;
   max-width: 600px;
-  text-align: justify;
-  hyphens: auto;
+  text-align: left;
 }
 
 .info-image {

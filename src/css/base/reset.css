@@ -11,6 +11,7 @@
 body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
   background-color: var(--light_four);
   overflow-x: hidden;
   background-image: linear-gradient(

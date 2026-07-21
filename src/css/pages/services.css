@@ -19,7 +19,7 @@
 .services-hero-page .hero-text h1 {
   font-weight: 700;
   color: var(--dark_two);
-  font-size: 2.6rem;
+  font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.1rem);
   margin-bottom: 1.5rem;
 }
 
@@ -107,7 +107,7 @@
   line-height: 1.6;
   color: var(--dark_six);
   max-width: 800px;
-  text-align: justify;
+  text-align: left;
   margin-bottom: 1rem;
 }
 .service-block-page {

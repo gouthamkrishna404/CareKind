@@ -1,7 +1,6 @@
 .home-highlight-row {
   max-width: 1200px;
   margin: 0 auto;
-  text-align: justify;
 }
 
 .score-column2 {
@@ -31,7 +30,7 @@
 }
 
 .score-section-hero h2 {
-  font-size: 2.2rem;
+  font-size: clamp(1.5rem, 1.1rem + 1.5vw, 1.9rem);
   margin: 0 0 1rem 0;
   font-weight: 700;
   color: var(--dark_six);
@@ -202,16 +201,16 @@
 }
 
 .headline {
-  font-size: 4.8rem;
+  font-size: clamp(2rem, 1.1rem + 4vw, 3.4rem);
   font-weight: bold;
-  line-height: 1.05;
+  line-height: 1.15;
   color: var(--dark_one);
   margin-bottom: 1rem;
   text-shadow: 0 2px 4px rgba(255, 255, 255, 0.6), 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .subtext {
-  font-size: 1.4rem;
+  font-size: clamp(1rem, 0.85rem + 0.8vw, 1.25rem);
   color: var(--dark_six);
   margin-bottom: 2rem;
   line-height: 1.4;
@@ -271,26 +270,27 @@
 
 .why-choose-carekind {
   max-width: 1100px;
-  margin: 40px auto;
+  margin: 24px auto;
   padding: 0 20px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center;
   color: var(--dark_six);
 }
 
 .why-choose-carekind h2 {
-  font-size: 2.8rem;
+  font-size: clamp(1.6rem, 1.1rem + 1.8vw, 2.2rem);
   margin-bottom: 0.5rem;
   color: var(--dark_six);
+  text-align: center;
 }
 
 .why-choose-carekind .intro {
   font-size: 1.1rem;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   color: var(--dark_two);
+  text-align: center;
 }
 
 .grid-container {

@@ -8,7 +8,7 @@
 
 .benefits-hero-section {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
 }
 
 .hero-subtitle {
@@ -18,7 +18,7 @@
 }
 
 .hero-title {
-  font-size: 3rem;
+  font-size: clamp(1.6rem, 1.1rem + 2vw, 2.4rem);
   font-weight: bold;
   color: var(--dark_four);
   margin-bottom: 1rem;
