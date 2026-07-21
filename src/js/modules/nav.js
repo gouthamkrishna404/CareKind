@@ -1,76 +1,90 @@
 export function initNav() {
   const hamburger = document.querySelector(".hamburger");
-  const closeIcon = document.querySelector(".close-icon");
   const nav = document.querySelector("nav");
   const container = document.querySelector(".container");
   const dropdowns = document.querySelectorAll(".dropdown");
 
-  if (!hamburger || !closeIcon || !nav || !container) return;
+  if (!hamburger || !nav || !container) return;
 
   function closeAllDropdowns() {
     dropdowns.forEach((dd) => dd.classList.remove("open", "show"));
   }
 
-  function updateMenuDisplay() {
-    if (window.innerWidth > 1250) {
-      nav.classList.remove("active");
-      container.classList.remove("menu-open");
-      hamburger.setAttribute("aria-expanded", "false");
-      closeIcon.style.display = "none";
-      hamburger.style.display = "none";
-      closeAllDropdowns();
-    } else {
-      hamburger.style.display = "flex";
-      closeIcon.style.display = "none";
-      nav.classList.remove("active");
-      container.classList.remove("menu-open");
-      hamburger.setAttribute("aria-expanded", "false");
-      closeAllDropdowns();
-    }
+  function lockBodyScroll() {
+    document.body.style.overflow = "hidden";
+  }
+
+  function unlockBodyScroll() {
+    document.body.style.overflow = "";
+  }
+
+  function pulseHamburger() {
+    if (navigator.vibrate) navigator.vibrate(10);
+    hamburger.classList.remove("pulse");
+    // Force reflow so the animation can restart on rapid repeat taps.
+    void hamburger.offsetWidth;
+    hamburger.classList.add("pulse");
+  }
+
+  function openMenu() {
+    nav.classList.add("active");
+    container.classList.add("menu-open");
+    hamburger.classList.add("open");
+    hamburger.setAttribute("aria-expanded", "true");
+    hamburger.setAttribute("aria-label", "Close menu");
+    lockBodyScroll();
+  }
+
+  function closeMenu() {
+    nav.classList.remove("active");
+    container.classList.remove("menu-open");
+    hamburger.classList.remove("open");
+    hamburger.setAttribute("aria-expanded", "false");
+    hamburger.setAttribute("aria-label", "Open menu");
+    unlockBodyScroll();
+    closeAllDropdowns();
   }
 
   function toggleMenu() {
-    const isOpen = nav.classList.contains("active");
-    if (isOpen) {
-      nav.classList.remove("active");
-      container.classList.remove("menu-open");
-      hamburger.setAttribute("aria-expanded", "false");
-      closeIcon.style.display = "none";
-      hamburger.style.display = "flex";
-      closeAllDropdowns();
+    pulseHamburger();
+    if (nav.classList.contains("active")) {
+      closeMenu();
     } else {
-      nav.classList.add("active");
-      container.classList.add("menu-open");
-      hamburger.setAttribute("aria-expanded", "true");
-      closeIcon.style.display = "block";
+      openMenu();
+    }
+  }
+
+  function updateMenuDisplay() {
+    if (window.innerWidth > 1250) {
       hamburger.style.display = "none";
+      closeMenu();
+    } else {
+      hamburger.style.display = "block";
+      closeMenu();
     }
   }
 
   hamburger.addEventListener("click", toggleMenu);
-  closeIcon.addEventListener("click", toggleMenu);
 
-  [hamburger, closeIcon].forEach((el) => {
-    el.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        toggleMenu();
-      }
-    });
+  hamburger.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      toggleMenu();
+    }
   });
 
   document.addEventListener("click", (e) => {
     const navRect = nav.getBoundingClientRect();
     const clickInsideNav = nav.contains(e.target);
     const clickOnHamburger = hamburger.contains(e.target);
-    const clickOnCloseIcon = closeIcon.contains(e.target);
     const clickBelowNav = e.clientY > navRect.bottom;
 
-    if (clickBelowNav && !clickInsideNav && !clickOnHamburger && !clickOnCloseIcon) {
+    if (clickBelowNav && !clickInsideNav && !clickOnHamburger) {
       if (nav.classList.contains("active")) {
-        toggleMenu();
+        closeMenu();
+      } else {
+        closeAllDropdowns();
       }
-      closeAllDropdowns();
     }
   });
 

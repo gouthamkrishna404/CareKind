@@ -18,6 +18,10 @@
   margin: 0 auto;
 }
 
+.mobile-nav-footer {
+  display: none;
+}
+
 nav {
   display: flex;
   gap: 15px;
@@ -55,61 +59,78 @@ nav {
 
 .hamburger {
   display: none;
-  flex-direction: column;
-  gap: 5px;
-  user-select: none;
+  position: relative;
   width: 48px;
   height: 48px;
-  position: relative;
-  justify-content: center;
-  align-items: center;
+  user-select: none;
+  cursor: pointer;
+  z-index: 2100;
 }
 
 .hamburger-icon {
+  position: absolute;
+  left: 50%;
   width: 26px;
   height: 3px;
   background-color: var(--dark_one);
   border-radius: 2px;
-  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.25s ease;
 }
 
-.hamburger.open .hamburger-icon {
+.hamburger-icon:nth-child(1) {
+  top: 16px;
+}
+
+.hamburger-icon:nth-child(2) {
+  top: 23px;
+}
+
+.hamburger-icon:nth-child(3) {
+  top: 30px;
+}
+
+.hamburger.open .hamburger-icon:nth-child(1) {
+  top: 23px;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.hamburger.open .hamburger-icon:nth-child(2) {
   opacity: 0;
+  transform: translateX(-50%) scaleX(0);
+}
+
+.hamburger.open .hamburger-icon:nth-child(3) {
+  top: 23px;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+/* Tap pulse: a quick expanding ring as a visual stand-in for haptic feedback
+   on devices/browsers where navigator.vibrate() isn't available (e.g. iOS Safari). */
+.hamburger::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: var(--dark_one);
+  opacity: 0;
+  transform: scale(0.5);
   pointer-events: none;
 }
 
-.close-icon {
-  font-size: 28px;
-  color: var(--dark_one);
-  font-weight: bold;
-  line-height: 1;
-  user-select: none;
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  z-index: 9999;
-  display: none;
-  box-sizing: border-box;
-  min-width: 48px;
-  min-height: 48px;
-  padding: 12px 14px;
-  background-color: transparent;
-  border-radius: 4px;
-  transition: opacity 0.3s ease;
+.hamburger.pulse::after {
+  animation: hamburger-pulse 0.45s ease-out;
 }
 
-.hamburger.open .close-icon {
-  display: block;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.menu-open .hamburger-icon {
-  display: none;
-}
-
-.menu-open .close-icon {
-  display: block;
+@keyframes hamburger-pulse {
+  0% {
+    opacity: 0.22;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
 }
 
 .dropbtn {
@@ -125,7 +146,11 @@ nav {
   padding: 14px 12px;
   min-height: 48px;
   box-sizing: border-box;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.15s ease;
+}
+
+.dropbtn:active {
+  transform: scale(0.98);
 }
 
 .dropbtn:hover {
@@ -169,7 +194,11 @@ nav {
   padding: 12px 18px;
   display: inline-block;
   border-radius: 6px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.dropdown-content a:active {
+  transform: scale(0.97);
 }
 
 .dropdown-content a:hover {

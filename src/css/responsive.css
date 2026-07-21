@@ -73,13 +73,30 @@
     text-align: center;
   }
   nav {
-    position: sticky;
-    display: none;
+    position: fixed;
+    inset: 0;
+    display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 10px 0;
-    margin-left: 0;
-    margin-right: 0;
+    height: 100vh;
+    height: 100dvh;
+    margin: 0;
+    padding: 96px 1.75rem 2rem;
+    background: rgba(245, 250, 255, 0.88);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    box-sizing: border-box;
+    gap: 6px;
+    overflow-y: auto;
+    z-index: 2000;
+    clip-path: circle(0% at calc(100% - 44px) 44px);
+    transition: clip-path 0.65s cubic-bezier(0.65, 0, 0.35, 1);
+    pointer-events: none;
+  }
+
+  .container.menu-open > nav {
+    clip-path: circle(150% at calc(100% - 44px) 44px);
+    pointer-events: auto;
   }
 
   .nav-call,
@@ -88,7 +105,34 @@
   }
 
   .hamburger {
-    display: flex;
+    display: block;
+  }
+
+  nav .dropdown {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .container.menu-open > nav .dropdown:nth-child(1) {
+    transition-delay: 0.18s;
+  }
+
+  .container.menu-open > nav .dropdown:nth-child(2) {
+    transition-delay: 0.24s;
+  }
+
+  .container.menu-open > nav .dropdown:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+
+  .container.menu-open > nav .dropdown:nth-child(4) {
+    transition-delay: 0.36s;
+  }
+
+  .container.menu-open > nav .dropdown {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .dropdown-content {
@@ -102,18 +146,96 @@
   .dropdown-content a {
     background-color: transparent;
     font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
   }
 
-  .dropdown-content a:hover {
+  .dropdown-content a:hover,
+  .dropdown-content a:active {
     background-color: var(--dark_six);
     color: var(--light_two);
+    transform: translateX(6px);
   }
 
   .dropbtn {
     width: 100%;
     justify-content: space-between;
     font-size: 20px;
+    font-weight: 700;
     padding: 12px 18px;
+  }
+
+  .mobile-nav-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid rgba(11, 45, 102, 0.15);
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition-delay: 0.42s;
+  }
+
+  .container.menu-open > nav .mobile-nav-footer {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mobile-nav-footer .call-now-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 48px;
+    background-color: var(--dark_three);
+    color: white;
+    border-radius: 45px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(245, 166, 35, 0.4);
+    transition: transform 0.15s ease;
+  }
+
+  .mobile-nav-footer .call-now-btn:active {
+    transform: scale(0.97);
+  }
+
+  .mobile-nav-footer .call-now-btn .option-icon {
+    width: 20px;
+    height: 20px;
+    fill: white;
+  }
+
+  .mobile-nav-footer .mobile-social-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .mobile-nav-footer .mobile-social-links .social-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--dark_one);
+    color: var(--light_one);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  .mobile-nav-footer .mobile-social-links .social-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .mobile-nav-footer .mobile-social-links .social-icon:hover,
+  .mobile-nav-footer .mobile-social-links .social-icon:active {
+    background-color: var(--dark_three);
+    transform: scale(1.08);
   }
 
   .why-choose-carekind .intro {
@@ -151,10 +273,6 @@
     width: 0;
     overflow: hidden;
     transition: opacity 0.3s ease;
-  }
-
-  .container.menu-open > nav {
-    display: flex;
   }
 
   .contact-bar {
