@@ -45,7 +45,13 @@ export function initNav() {
     closeAllDropdowns();
   }
 
+  let lastToggleTime = 0;
+
   function toggleMenu() {
+    const now = Date.now();
+    if (now - lastToggleTime < 250) return;
+    lastToggleTime = now;
+
     pulseHamburger();
     if (nav.classList.contains("active")) {
       closeMenu();
