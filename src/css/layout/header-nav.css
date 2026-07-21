@@ -22,10 +22,6 @@
   display: none;
 }
 
-.mobile-nav-header {
-  display: none;
-}
-
 nav {
   display: flex;
   gap: 15px;
@@ -38,6 +34,8 @@ nav {
 .brand {
   display: flex;
   align-items: center;
+  position: relative;
+  z-index: 2100;
   font-size: 28px;
   font-weight: bold;
   color: var(--dark_one);

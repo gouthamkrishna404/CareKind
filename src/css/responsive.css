@@ -83,7 +83,7 @@
     height: 100vh;
     height: 100dvh;
     margin: 0;
-    padding: 0 0 2rem;
+    padding: 96px 0 2rem;
     background: rgba(245, 250, 255, 0.88);
     backdrop-filter: blur(16px) saturate(160%);
     -webkit-backdrop-filter: blur(16px) saturate(160%);
@@ -100,28 +100,6 @@
   .container.menu-open > nav {
     clip-path: circle(150% at calc(100% - 44px) 44px);
     pointer-events: auto;
-  }
-
-  .mobile-nav-header {
-    display: flex;
-    align-items: center;
-    padding: 18px 24px;
-    flex-shrink: 0;
-  }
-
-  .mobile-nav-brand {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    color: var(--dark_one);
-    font-size: 1.15rem;
-    font-weight: bold;
-  }
-
-  .mobile-nav-logo {
-    height: 34px;
-    width: auto;
   }
 
   .nav-call,
@@ -327,14 +305,6 @@
 
   .dropdown.open > .dropbtn > .arrow {
     transform: rotate(180deg);
-  }
-
-  .container.menu-open > .brand {
-    opacity: 0;
-    pointer-events: none;
-    width: 0;
-    overflow: hidden;
-    transition: opacity 0.3s ease;
   }
 
   .contact-bar {

@@ -71,6 +71,7 @@ export function initNav() {
   }
 
   hamburger.addEventListener("click", (e) => {
+    e.preventDefault();
     e.stopPropagation();
     toggleMenu();
   });
@@ -84,6 +85,10 @@ export function initNav() {
   });
 
   document.addEventListener("click", (e) => {
+    // Ignore clicks landing immediately after a toggle so the same tap that
+    // just opened/closed the menu can never be re-read as an outside click.
+    if (Date.now() - lastToggleTime < 300) return;
+
     const navRect = nav.getBoundingClientRect();
     const clickInsideNav = nav.contains(e.target);
     const clickOnHamburger = hamburger.contains(e.target);
