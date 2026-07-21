@@ -188,11 +188,12 @@
     font-weight: 600;
     letter-spacing: 0.01em;
     margin: 0;
-    padding: 8px 0;
+    padding: 10px 14px;
     min-height: 44px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
+    border-radius: 6px;
   }
 
   .dropdown-content a:hover,

@@ -64,11 +64,15 @@ export function initNav() {
     }
   }
 
-  hamburger.addEventListener("click", toggleMenu);
+  hamburger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
 
   hamburger.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
+      e.stopPropagation();
       toggleMenu();
     }
   });
