@@ -168,8 +168,8 @@
     box-shadow: none;
     border-radius: 0;
     background-color: transparent;
-    padding-left: 18px;
-    margin-left: 4px;
+    margin: 0 0 0 12px;
+    padding: 0 0 0 16px;
     border-left: 2px solid rgba(11, 45, 102, 0.12);
     max-height: 0;
     opacity: 0;
@@ -187,7 +187,8 @@
     font-size: 15px;
     font-weight: 600;
     letter-spacing: 0.01em;
-    padding: 10px 0;
+    margin: 0;
+    padding: 8px 0;
     min-height: 44px;
     box-sizing: border-box;
     display: flex;
