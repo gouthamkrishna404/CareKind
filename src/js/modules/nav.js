@@ -105,6 +105,8 @@ export function initNav() {
 
   window.addEventListener("resize", updateMenuDisplay);
 
+  let lastDropdownToggleTime = 0;
+
   dropdowns.forEach((dropdown) => {
     dropdown.addEventListener("mouseenter", () => dropdown.classList.add("show"));
     dropdown.addEventListener("mouseleave", () => dropdown.classList.remove("show"));
@@ -113,7 +115,13 @@ export function initNav() {
     if (!dropbtn) return;
     dropbtn.setAttribute("aria-expanded", "false");
     dropbtn.addEventListener("click", (e) => {
+      e.preventDefault();
       e.stopPropagation();
+
+      const now = Date.now();
+      if (now - lastDropdownToggleTime < 250) return;
+      lastDropdownToggleTime = now;
+
       const isOpen = dropdown.classList.contains("open");
       dropdowns.forEach((dd) => {
         dd.classList.remove("open");
