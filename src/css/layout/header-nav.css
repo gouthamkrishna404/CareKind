@@ -154,18 +154,30 @@ nav {
   transform: scale(0.98);
 }
 
-.dropbtn:hover {
-  color: var(--dark_two);
-}
-
 .arrow {
   font-size: 12px;
   transition: transform 0.3s ease;
   color: var(--dark_one);
 }
 
-.dropdown:hover .arrow {
-  transform: rotate(180deg);
+/* Real-mouse-only hover interactions. Touchscreens report hover:none, and
+   without this guard, tapping would trigger a :hover state that many mobile
+   browsers then keep "stuck" until the next unrelated tap elsewhere on the
+   page — causing an unwanted color change on tap, and (for .dropdown-content
+   below) a higher-specificity rule that silently overrides the JS-driven
+   mobile accordion's open/close state. */
+@media (hover: hover) and (pointer: fine) {
+  .dropbtn:hover {
+    color: var(--dark_two);
+  }
+
+  .dropdown:hover .arrow {
+    transform: rotate(180deg);
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: flex;
+  }
 }
 
 .dropdown {
@@ -212,15 +224,14 @@ nav {
   color: var(--light_one);
 }
 
-.dropdown:hover .dropdown-content {
-  display: flex;
-}
-
-/* Touch/tap fallback: devices without hover (touchscreens) toggle this via
-   the .open class from nav.js instead of relying on :hover, which doesn't
-   fire reliably on tap. */
-.dropdown.open .dropdown-content {
-  display: flex;
+/* Desktop-only: below 1250px the mobile accordion in responsive.css owns
+   .dropdown-content entirely (display: grid + grid-template-rows). Scoping
+   these here stops their higher selector specificity from silently winning
+   over the mobile rule and overriding the JS-driven open/close state. */
+@media (min-width: 1250px) {
+  .dropdown.open .dropdown-content {
+    display: flex;
+  }
 }
 
 .call-button {
