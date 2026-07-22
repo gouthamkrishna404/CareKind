@@ -187,6 +187,11 @@ nav {
   flex-direction: column;
 }
 
+.dropdown-content-inner {
+  display: flex;
+  flex-direction: column;
+}
+
 .dropdown-content a {
   text-decoration: none;
   color: var(--dark_one);
